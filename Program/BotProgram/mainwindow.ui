@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>473</width>
+    <height>418</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QCheckBox" name="checkBox">
+          <property name="text">
+           <string>Бот говорит вслух</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="pbMicro">
+          <property name="text">
+           <string>Слушать микрофон</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbText">
+          <property name="text">
+           <string>Отправить текст</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="startTele"/>
+   <addaction name="DB"/>
+   <addaction name="settings"/>
+   <addaction name="supportForm"/>
+  </widget>
+  <action name="startTele">
+   <property name="icon">
+    <iconset>
+     <normaloff>../pics/teleiconon.png</normaloff>../pics/teleiconon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Запуск бота в Telegarm</string>
+   </property>
+  </action>
+  <action name="DB">
+   <property name="icon">
+    <iconset>
+     <normaloff>../pics/Databaseicon.png</normaloff>../pics/Databaseicon.png</iconset>
+   </property>
+   <property name="text">
+    <string>База данных</string>
+   </property>
+   <property name="toolTip">
+    <string>База данных</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="settings">
+   <property name="icon">
+    <iconset>
+     <normaloff>../pics/SettingDatabaseicon.png</normaloff>../pics/SettingDatabaseicon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Натройка подключения к MySQL</string>
+   </property>
+   <property name="toolTip">
+    <string>Натройка подключения к MySQL</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="supportForm">
+   <property name="icon">
+    <iconset>
+     <normaloff>../pics/support.png</normaloff>../pics/support.png</iconset>
+   </property>
+   <property name="text">
+    <string>Справка о программе</string>
+   </property>
+   <property name="toolTip">
+    <string>Справка о программе</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
