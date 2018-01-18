@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ИВТ-41 Ассистент</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../pics/binbetbot.jpg</normaloff>../pics/binbetbot.jpg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -78,6 +82,7 @@
    <addaction name="startTele"/>
    <addaction name="DB"/>
    <addaction name="settings"/>
+   <addaction name="action_SQL"/>
    <addaction name="supportForm"/>
   </widget>
   <action name="startTele">
@@ -132,6 +137,18 @@
    </property>
    <property name="shortcut">
     <string>F1</string>
+   </property>
+  </action>
+  <action name="action_SQL">
+   <property name="icon">
+    <iconset>
+     <normaloff>../pics/sql.png</normaloff>../pics/sql.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ввести SQL запрос вручную</string>
+   </property>
+   <property name="toolTip">
+    <string>Ввести SQL запрос вручную</string>
    </property>
   </action>
  </widget>

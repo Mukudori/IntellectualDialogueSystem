@@ -1,8 +1,8 @@
 ## -*- coding: utf-8 -*-
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5 import uic
-import DataBase
+import DataBaseModule
 from DataBaseForm import  DataBaseForm
 
 class MainWindow(QMainWindow):
@@ -10,8 +10,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("mainwindow.ui", self)
-        #data = DataBase.GetTable("SELECT * FROM wordsgrouptab")
-        #self.lineEdit.setText(str(data[6]['semantic']))
+        self.labToolBar = QLabel('<font color=red>Бот не запущен в Telegram<font>')
+        self.statusBar.addWidget(self.labToolBar)
         self.DB.triggered.connect(self.openDataBaseForm)
 
     def openDataBaseForm(self):

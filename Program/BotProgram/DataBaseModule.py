@@ -30,16 +30,21 @@ def GetTableViewModel(sql, table='tab'):
     model = QStandardItemModel()
     horhead = list(data[0].keys())
     model.setHorizontalHeaderLabels(horhead)
+    model.setVerticalHeaderLabels([' ']*len(data))
 
     for i in range(len(data)):
         for j in range(len(horhead)):
             item = QStandardItemModel()
+
             if table == 'dialogtab' and (horhead[j] == 'question' or horhead[j] == 'answer'):
                 item = QStandardItem(GetTextFromCodes(data[i][horhead[j]]))
             else:
                 item = QStandardItem(str(data[i][str(horhead[j])]))
+            item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             model.setItem(i, j, item)
-    return model
+    for i in range(len(horhead)):
+        if horhead[i] == 'id': break
+    return [model,i]
 
     #Преобразовать закодированную строку в текст
 def GetTextFromCodes(codeText):
