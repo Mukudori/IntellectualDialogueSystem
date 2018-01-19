@@ -1,12 +1,18 @@
 import MySQLdb
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
+import WordTableModule
 
 #Данные по подключению к БД
 connStr = '127.0.0.1;root;4862159357;botdb;utf8'
 
-#Выполнить запрос и вернуть кортеж из словарей
-def GetData(sql):
+'''
+    В Qt ксть встроенные медоды для работы с MySQL и построения моделей таблиц, 
+    но, так как драйвер БД требует плясок с бубном и не с разными версиями Python могут возникнуть сложности,
+    я решил не запариваться по этому поводу и строить модели вручную.
+'''
+
+def ConnectToDataBase():
     cs = connStr.split(';')
     try:
         conn = MySQLdb.connect(host=cs[0], user=cs[1], passwd=cs[2], db=cs[3])
@@ -18,14 +24,35 @@ def GetData(sql):
 
     try:
         cur = conn.cursor(MySQLdb.cursors.DictCursor)
-        cur.execute(sql)
-        data = cur.fetchall()
+        return cur
 
     except MySQLdb.Error as err:
+        return  -1
         print("Query error: {}".format(err))
+
+
+
+def GetData(sql):
+    '''Выполнить запрос и вернуть кортеж из словарей'''
+    cur = ConnectToDataBase()
+    cur.execute(sql)
+    data = cur.fetchall()
     return data
 
+def ExecuteSQL(sql):
+    '''Выполнить запрос'''
+    cur = ConnectToDataBase()
+    cur.execute(sql)
+
+
 def GetTableViewModel(sql, table='tab'):
+    '''
+    Функция подключается к БД, строит Модель по всем полям
+    Так как MySQL любит перепутывать поля мне пришлось учитывать позицию id записи.
+    :param sql: Запрос
+    :param table: Не обязательный параметр для перевода закодированных строк ы dialogtab
+    :return: возвращает массив из Модели и позиции id
+    '''
     data  = GetData(sql)
     model = QStandardItemModel()
     horhead = list(data[0].keys())
@@ -37,26 +64,19 @@ def GetTableViewModel(sql, table='tab'):
             item = QStandardItemModel()
 
             if table == 'dialogtab' and (horhead[j] == 'question' or horhead[j] == 'answer'):
-                item = QStandardItem(GetTextFromCodes(data[i][horhead[j]]))
+                wt = WordTableModule.WordTable()
+                item = QStandardItem(wt.GetDecodeText(data[i][horhead[j]]))
             else:
                 item = QStandardItem(str(data[i][str(horhead[j])]))
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             model.setItem(i, j, item)
-    for i in range(len(horhead)):
-        if horhead[i] == 'id': break
-    return [model,i]
+    for idPose in range(len(horhead)):
+        if horhead[idPose] == 'id': break
+    return [model,idPose]
 
-    #Преобразовать закодированную строку в текст
-def GetTextFromCodes(codeText):
-    codeStr = codeText.split(';')
-    outS = str()
-    for s in codeStr:
-        wordid = s.split(' ')
-        if wordid != ['']:
-            for word in wordid:
-                data = GetData("select word from wordtab"+
-                    " where idGroup='"+word.split('-')[0]+
-                    "' and id='"+word.split('-')[1]+"'")
-                outS=outS+data[0]['word']+' '
-                outS = outS + ';'
-    return outS
+
+
+
+
+
+

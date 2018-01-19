@@ -2,9 +2,12 @@ from PyQt5.QtWidgets import QWidget, QAction, QMenu
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import uic, QtCore, QtSql
 import DataBaseModule
+import EditDialogForm
 
 class DataBaseForm(QWidget):
-    '''Форма базы данных'''
+    '''Форма базы данных.
+    Показывает содержимое таблиц, откуда можно перейти на форму редактирования запси
+    '''
     def __init__(self):
         super().__init__()
         uic.loadUi("DataBaseForm.ui", self)
@@ -21,7 +24,7 @@ class DataBaseForm(QWidget):
         self.tableView.resizeRowsToContents()
         self.tableView.resizeColumnsToContents()
         self.idModel = model[1]
-        self.lineEdit.setText(str(self.idModel))
+
 
 
     def RefreshTable(self):
@@ -35,7 +38,7 @@ class DataBaseForm(QWidget):
 
         self.moreInfoAct = QAction('Подробнее', self)
         self.moreInfoAct.triggered.connect(self.OpenMoreInfoForm)
-        self.deleteRecordAct =QAction('Удалить запись', self)
+        self.deleteRecordAct = QAction('Удалить запись', self)
 
     def RunContextMenu(self, pos):
         '''Запуск контекстного меню'''
@@ -45,6 +48,11 @@ class DataBaseForm(QWidget):
         menu.exec_(self.sender().mapToGlobal(pos))
 
     def OpenMoreInfoForm(self):
+        '''Открывает форму редактирования'''
         currentDiscount = self.tableView.currentIndex()
-        self.lineEdit.setText(self.tableView.model().data(self.tableView.model().index(currentDiscount.row(), self.idModel), 0))
+        id = self.tableView.model().data(self.tableView.model().index(currentDiscount.row(), self.idModel), 0)
+        if(self.comboBox.currentText() == 'dialogtab'):
+            self.EDF = EditDialogForm.EditDataBaseForm(id)
+            self.EDF.show()
+
 
