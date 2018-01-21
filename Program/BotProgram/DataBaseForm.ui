@@ -25,28 +25,31 @@
        <property name="text">
         <string>Таблица : </string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QComboBox" name="comboBox">
        <item>
         <property name="text">
-         <string>wordsgrouptab</string>
+         <string>Вопросы</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>wordtab</string>
+         <string>Ответы</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>dialogtab</string>
+         <string>Диалоги</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>actiontab</string>
+         <string>Действия</string>
         </property>
        </item>
       </widget>
@@ -59,6 +62,9 @@
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Поиск :</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>

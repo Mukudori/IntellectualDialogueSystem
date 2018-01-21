@@ -12,14 +12,14 @@ class DataBaseForm(QWidget):
         super().__init__()
         uic.loadUi("DataBaseForm.ui", self)
         self.idModel = 0
-        self.GetTableModel('questiontab')
+        self.GetTableModel('wordsgrouptab')
         self.comboBox.currentIndexChanged.connect(self.RefreshTable)
         self.InitContextMenu()
 
     def GetTableModel(self, table):
         '''Вывод модели таблицы'''
-        if table == 'dlgtab': model = DataBaseModule.GetTableViewModel(" ", 'dlgtab')
-        else: model = DataBaseModule.GetTableViewModel("select * from " +table)
+        if table == 'dialogtab': model = DataBaseModule.GetTableViewModel("select * from " +table, 'dialogtab')
+        else: model = DataBaseModule.GetTableViewModel("select * from " +table, 'dialogtab')
         self.tableView.setModel(model[0])
         self.tableView.resizeRowsToContents()
         self.tableView.resizeColumnsToContents()
@@ -29,7 +29,7 @@ class DataBaseForm(QWidget):
 
     def RefreshTable(self):
         '''Обновить таблицу '''
-        self.GetTableModel(self.GetTableName())
+        self.GetTableModel(self.comboBox.currentText())
 
     def InitContextMenu(self):
         '''инициализация контекстного меню'''
@@ -55,13 +55,4 @@ class DataBaseForm(QWidget):
             self.EDF = EditDialogForm.EditDataBaseForm(id)
             self.EDF.show()
 
-    def GetTableName(self):
-        text = self.comboBox.currentText()
-        if text == 'Вопросы':
-            return 'questiontab'
-        elif text == 'Ответы':
-            return 'answertab'
-        elif text == 'Диалоги':
-            return 'dlgtab'
-        return 'actiontab'
 

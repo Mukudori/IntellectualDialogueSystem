@@ -1,7 +1,8 @@
 import MySQLdb
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
-import WordTableModule
+import DlgTableModule
+
 
 #Данные по подключению к БД
 connStr = '127.0.0.1;root;4862159357;botdb;utf8'
@@ -53,26 +54,26 @@ def GetTableViewModel(sql, table='tab'):
     :param table: Не обязательный параметр для перевода закодированных строк ы dialogtab
     :return: возвращает массив из Модели и позиции id
     '''
-    data  = GetData(sql)
-    model = QStandardItemModel()
-    horhead = list(data[0].keys())
-    model.setHorizontalHeaderLabels(horhead)
-    model.setVerticalHeaderLabels([' ']*len(data))
+    if table == 'dlgtab':
+        model = DlgTableModule.DlgTable()
+        return [model.GetViewModel(), 0]
+    else:
+        data  = GetData(sql)
+        model = QStandardItemModel()
+        horhead = list(data[0].keys())
+        model.setHorizontalHeaderLabels(horhead)
+        model.setVerticalHeaderLabels([' ']*len(data))
 
-    for i in range(len(data)):
-        for j in range(len(horhead)):
-            item = QStandardItemModel()
-
-            if table == 'dialogtab' and (horhead[j] == 'question' or horhead[j] == 'answer'):
-                wt = WordTableModule.WordTable()
-                item = QStandardItem(wt.GetDecodeText(data[i][horhead[j]]))
-            else:
+        for i in range(len(data)):
+            for j in range(len(horhead)):
                 item = QStandardItem(str(data[i][str(horhead[j])]))
-            item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-            model.setItem(i, j, item)
-    for idPose in range(len(horhead)):
-        if horhead[idPose] == 'id': break
-    return [model,idPose]
+                item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                model.setItem(i, j, item)
+        for idPose in range(len(horhead)):
+            if horhead[idPose] == 'id': break
+        return [model,idPose]
+
+
 
 
 

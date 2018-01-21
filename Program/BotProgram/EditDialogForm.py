@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QAction, QMenu
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import uic, QtCore, QtSql
 import DataBaseModule
-import WordTableModule
+
 
 class EditDataBaseForm(QWidget):
     '''Форма Редактирования диалога'''

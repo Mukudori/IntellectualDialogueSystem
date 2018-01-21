@@ -59,6 +59,10 @@ class WordTable:
                 return [0, word]
         return [1,0]
 
+    def GetEncryptText(self, text):
+        '''Кодирование текста'''
+        pass
+
 
 
 
