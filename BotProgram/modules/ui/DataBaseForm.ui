@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DataBaseWindow</class>
+ <widget class="QMainWindow" name="DataBaseWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>516</width>
+    <height>310</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>DataBaseForm</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../pics/Databaseicon.png</normaloff>../../pics/Databaseicon.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Таблица : </string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox">
+        <item>
+         <property name="text">
+          <string>Вопросы</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Ответы</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Диалоги</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Действия</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Поиск :</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTableView" name="tableView">
+      <property name="contextMenuPolicy">
+       <enum>Qt::ActionsContextMenu</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="addRecord"/>
+   <addaction name="editRecord"/>
+   <addaction name="delRecord"/>
+  </widget>
+  <action name="addRecord">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/Add.png</normaloff>../../pics/Add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить запись</string>
+   </property>
+   <property name="toolTip">
+    <string>Добавить запись</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="delRecord">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/Del.png</normaloff>../../pics/Del.png</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить запись</string>
+   </property>
+   <property name="toolTip">
+    <string>Удалить запись</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="editRecord">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/Edit.png</normaloff>../../pics/Edit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Редактировать запись</string>
+   </property>
+   <property name="toolTip">
+    <string>Редактировать запись</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
