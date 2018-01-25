@@ -20,7 +20,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <widget class="QListWidget" name="listWidget"/>
+     <widget class="QListWidget" name="chatWidget"/>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -34,7 +34,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="leMessage"/>
         </item>
        </layout>
       </item>

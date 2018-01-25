@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>352</width>
     <height>346</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>EdotAction</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -35,10 +35,20 @@
        <property name="text">
         <string>Команды</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="teComand"/>
+      <widget class="QTextEdit" name="teComand">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -49,22 +59,25 @@
        <property name="text">
         <string>Доп.Инфо</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="teNote"/>
+      <widget class="QTextEdit" name="teNote">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="pbCansel">
-       <property name="text">
-        <string>Отмена</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="pbSave">
        <property name="text">

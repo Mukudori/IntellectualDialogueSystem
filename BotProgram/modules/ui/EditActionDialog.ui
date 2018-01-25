@@ -47,7 +47,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="teComands">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -77,7 +77,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="textEdit_2">
+      <widget class="QTextEdit" name="teNote">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -90,13 +90,6 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="QPushButton" name="pbCansel">
-       <property name="text">
-        <string>Отмена</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="pbSave">
        <property name="text">

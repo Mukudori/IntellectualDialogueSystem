@@ -1,6 +1,10 @@
 from database import QuestionTableModule, DataBaseModule, ActionTableModule, AnswerTableModule
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
+from database.QuestionTableModule import QuestionTable
+from database.ActionTableModule import ActionTable
+from database.AnswerTableModule import AnswerTable
+
 
 class DlgTable:
 
@@ -24,9 +28,9 @@ class DlgTable:
 
     def GetRecordFromID(self, id):
         for record in self.dlgT:
-            if record['id'] == int(id):
+            if record['id'] == id:
                 return record
-        return 0
+        return {'id': 0 , 'idQuestion' : 0, 'idAnswer' : 0, 'idAction' : 0}
 
     def GetDialogListFromID(self,id):
         self.__ConnectToAllTables()
@@ -60,6 +64,33 @@ class DlgTable:
             model.setItem(i, 3, item)
         return model
 
+    def InsertRecord(self, question, answer, actionID):
+        self.__ConnectToAllTables()
+        idQuestion = self.qT.InsertRecord(question)
+        idAnswer = self.aT.InsertRecord(answer)
+        currentid = DataBaseModule.ExecuteSQL('''
+        INSERT INTO dlgtab (idQuestion,idAnswer,idAction) 
+         VALUES (\'''' + str(idQuestion)+"','"+str(idAnswer)+"','"+str(actionID)+"');")
+        return currentid
 
-    def AddDialog(self, question, answer, actionID):
-        pass
+    def DeleteRecord(self, id):
+        rec = self.GetRecordFromID(id)
+        idQuestion = rec['idQuestion']
+        idAnswer = rec['idAnswer']
+        idDlg = rec['id']
+        DataBaseModule.ExecuteSQL(
+            "DELETE FROM questiontab WHERE id='"+str(idQuestion)+"'; "+
+            "DELETE FROM answertab WHERE id='"+str(idAnswer)+"'; "+
+            "DELETE FROM dlgtab WHERE id='"+str(idDlg)+"';")
+
+    def UpdateRecord(self, idDlg, question, answer, actionID):
+        rec = self.GetRecordFromID(idDlg)
+        QuestionTable().UpdateRecordFromIDAndText(rec['idQuestion'], question)
+        AnswerTable().UpdateRecordFromIDAndText(rec['idAnswer'],answer)
+
+        if (actionID != rec['idAction']):
+            DataBaseModule.ExecuteSQL(
+                "UPDATE dlgtab "+
+                "SET idAction='"+str(actionID)+"' "
+                "WHERE id ='"+str(idDlg)+"';"
+            )

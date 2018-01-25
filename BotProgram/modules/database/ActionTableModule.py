@@ -14,7 +14,6 @@ class ActionTable:
     def __RefreshTable(self):
         self.__Table = DataBaseModule.GetData('SELECT * FROM actiontab')
 
-
     def GetActionFromID(self, id):
         for record in self.__Table:
             if record['id'] == id:
@@ -22,12 +21,9 @@ class ActionTable:
         return 0
 
     def GetList(self):
-        #self.__RefreshTable()
         itemList = list()
-
         for record in self.__Table:
             itemList.append(record['action'])
-
         return itemList
 
     def GetTableViewModel(self):
@@ -53,6 +49,34 @@ class ActionTable:
             model.setItem(i, 3, item)
 
         return model
+
+    def InsertRecord(self, action, comands, note):
+        currentid = DataBaseModule.ExecuteSQL('''
+            INSERT INTO actiontab (action,command,note) 
+            VALUES (\'''' + action+"','"+comands+"','"+note+"');")
+        return currentid
+
+    def UpdateRecord(self,id,action, comands, note):
+        DataBaseModule.ExecuteSQL('''
+        UPDATE actiontab 
+        SET action=\''''+action+"', command='"+comands+"', note='"+note+"'"
+       +"WHERE id='"+str(id)+"';")
+
+    def DeleteRecord(self, id):
+        DataBaseModule.ExecuteSQL(
+        "DELETE FROM actiontab WHERE id ='"+str(id)+"';")
+
+    def GetDataFromID(self, id):
+        for rec in self.__Table:
+            if rec['id'] == id:
+                return rec
+        return 0
+
+    def GetIDFromActionStr(self, action):
+        for rec in self.__Table:
+            if rec['action'].upper() == action.upper():
+                return rec['id']
+        return 0
 
 
 

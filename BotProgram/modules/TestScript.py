@@ -1,5 +1,7 @@
-
+from database import DataBaseModule
 
 if __name__ == '__main__':
-   # tab = WordTableModule.WordTable()
-    #print(tab.CheckString('Добрый день, Пидор'))
+    print(DataBaseModule.ExecuteSQL('''
+            INSERT INTO questiontab (question)
+             VALUES("Тестовый вопрос");'''))
+

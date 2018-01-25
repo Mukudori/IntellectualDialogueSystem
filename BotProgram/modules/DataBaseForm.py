@@ -6,10 +6,12 @@ from database.ActionTableModule import ActionTable
 from database.DlgTableModule import  DlgTable
 from database.AnswerTableModule import AnswerTable
 from database.QuestionTableModule import QuestionTable
+import EditActionForm
 
 class DataBaseForm(QMainWindow):
     '''Форма базы данных.
-    Показывает содержимое таблиц, откуда можно перейти на форму редактирования запси
+    Показывает содержимое таблиц, откуда можно перейти на форму
+    редактирования запси
     '''
     def __init__(self):
         super().__init__()
@@ -46,9 +48,13 @@ class DataBaseForm(QMainWindow):
         self.moreInfoAct = QAction('Редактировать запись', self)
         self.moreInfoAct.triggered.connect(self.OpenEditRecordForm)
         self.deleteRecordAct = QAction('Удалить запись', self)
+        self.deleteRecordAct.triggered.connect(self.DeleteRecord)
 
         self.addRecord.triggered.connect(self.OpenAddRecordForm)
         self.editRecord.triggered.connect(self.OpenEditRecordForm)
+        self.delRecord.triggered.connect(self.DeleteRecord)
+
+        self.refreshView.triggered.connect(self.RefreshTable)
         self.delRecord.triggered.connect(self.DeleteRecord)
 
     def RunContextMenu(self, pos):
@@ -58,22 +64,46 @@ class DataBaseForm(QMainWindow):
         menu.addAction(self.deleteRecordAct)
         menu.exec_(self.sender().mapToGlobal(pos))
 
-    def OpenEditRecordForm(self):
-        '''Открывает форму редактирования'''
+    def GetSelectedRecordID(self):
         currentDiscount = self.tableView.currentIndex()
         id = self.tableView.model().data(self.tableView.model().index(currentDiscount.row(), 0), 0)
-        if(self.GetTableName() == 'dlgtab'):
+        if id:
+            return int(id)
+        else:
+            return 0
+
+
+    def OpenEditRecordForm(self):
+        '''Открывает форму редактирования'''
+        id=self.GetSelectedRecordID()
+        table = self.GetTableName()
+        if(table == 'dlgtab'):
             self.EDF = EditDlgForm.EditDlgForm(id)
             self.EDF.show()
+        elif (table == 'actiontab'):
+            self.EAF = EditActionForm.EditActionForm(id)
+            self.EAF.show()
 
     def OpenAddRecordForm(self):
         '''Открывает форму добавления'''
-        if (self.GetTableName() == 'dlgtab'):
-            self.EDF = EditDlgForm.EditDlgForm(0)
+        table = self.GetTableName()
+        if (table == 'dlgtab'):
+            self.EDF = EditDlgForm.EditDlgForm()
             self.EDF.show()
+        elif (table == 'actiontab'):
+            self.EAF = EditActionForm.EditActionForm()
+            self.EAF.show()
 
     def DeleteRecord(self):
-        pass
+        id = self.GetSelectedRecordID()
+        table = self.GetTableName()
+
+        if (table == 'actiontab'):
+            ActionTable().DeleteRecord(id)
+        elif (table == 'dlgtab'):
+            DlgTable().DeleteRecord(id)
+
+        self.RefreshTable()
 
     def GetTableName(self):
         text = self.comboBox.currentText()
@@ -84,4 +114,8 @@ class DataBaseForm(QMainWindow):
         elif text == 'Диалоги':
             return 'dlgtab'
         return 'actiontab'
+
+
+
+
 

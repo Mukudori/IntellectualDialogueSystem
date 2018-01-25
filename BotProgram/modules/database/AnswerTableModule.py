@@ -33,3 +33,21 @@ class AnswerTable:
 
         return model
 
+    def InsertRecord(self,answer):
+        currentid = DataBaseModule.ExecuteSQL(
+                "INSERT INTO answertab (answer) "+
+                "VALUES('" + answer + "');")
+        return currentid
+
+    def UpdateRecord(self,id,answer):
+        pass
+
+    def DeleteRecord(self, id):
+        pass
+
+    def UpdateRecordFromIDAndText(self, id, answer):
+        DataBaseModule.ExecuteSQL(
+            "UPDATE answertab "+
+            "SET answer ='"+answer+"' "+
+            "WHERE id='"+str(id)+"';"
+        )
