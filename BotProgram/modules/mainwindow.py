@@ -1,10 +1,11 @@
 ## -*- coding: utf-8 -*-
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QListWidgetItem
-from PyQt5 import uic
+from PyQt5 import uic, QtCore
 from DataBaseForm import  DataBaseForm
 from MessageWidgetModule import MessageWidget
-from PyQt5 import QtGui
+from MainBotModule import MainBot
+from EditDlgForm import EditDlgForm
 
 class MainWindow(QMainWindow):
 
@@ -15,15 +16,31 @@ class MainWindow(QMainWindow):
         self.statusBar.addWidget(self.labToolBar)
         self.DB.triggered.connect(self.openDataBaseForm)
         self.PathAdminPic = '../pics/admin.png'
-        self.PathBotPic = '../pics/bot.png'
+        self.PathBotPic = '../pics/bot.jpg'
+        self.Bot = MainBot(self)
+        self.EditDlgForm = 0
+        self.leMessage.setFocus()
+
+
         self.pbText.clicked.connect(self.SendAdmin)
+
+    def keyPressEvent(self, event):
+        key = event.key()
+        if key == 16777220:
+            self.SendAdmin()
+
 
     def openDataBaseForm(self):
         self.f = DataBaseForm()
         self.f.show()
 
     def SendAdmin(self):
-        self.SendMessage('Админ',self.leMessage.text(),self.PathAdminPic)
+        AdminMessage = self.leMessage.text()
+        BotMessage = self.Bot.ReceiveMessage(AdminMessage)
+        self.SendMessage('Админ',AdminMessage,self.PathAdminPic)
+        self.SendMessage('Бот', BotMessage, self.PathBotPic)
+        self.leMessage.setText('')
+        self.leMessage.setFocus()
 
     def SendMessage(self, author, text, imgPath):
             # Create QCustomQWidget

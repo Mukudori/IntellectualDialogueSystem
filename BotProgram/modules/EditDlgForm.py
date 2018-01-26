@@ -20,7 +20,7 @@ class EditDlgForm(QWidget):
             self.initEdit()
         else:
             if len(text):
-                self.teQuestion.append(text)
+                self.teQ.append(text)
             else:
                 self.initCreate()
 

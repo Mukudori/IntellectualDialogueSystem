@@ -147,6 +147,14 @@
     <string>Ввести SQL запрос вручную</string>
    </property>
   </action>
+  <action name="sendAction">
+   <property name="text">
+    <string>Отправить сообщение</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

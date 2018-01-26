@@ -15,19 +15,15 @@ class MessageWidget (QWidget):
         self.allQHBoxLayout.addWidget(self.iconQLabel, 0)
         self.allQHBoxLayout.addLayout(self.textQVBoxLayout, 1)
         self.setLayout(self.allQHBoxLayout)
-        # setStyleSheet
-        self.textUpQLabel.setStyleSheet('''
-            color: rgb(0, 0, 255);
-        ''')
-        self.textDownQLabel.setStyleSheet('''
-            color: rgb(0, 0, 0);
-        ''')
 
-    def setTextUp (self, text):
+
+    def setTextUp (self, text, color = 'color: rgb(0, 0, 255);'):
         self.textUpQLabel.setText(text)
+        self.textUpQLabel.setStyleSheet(color)
 
-    def setTextDown (self, text):
+    def setTextDown (self, text, color = 'color: rgb(0, 0, 0)'):
         self.textDownQLabel.setText(text)
+        self.textDownQLabel.setStyleSheet(color)
 
     def setIcon (self, imagePath):
         self.iconQLabel.setPixmap(QtGui.QPixmap(imagePath))
