@@ -17,13 +17,13 @@ class MessageWidget (QWidget):
         self.setLayout(self.allQHBoxLayout)
 
 
-    def setTextUp (self, text, color = 'color: rgb(0, 0, 255);'):
+    def setTextUp (self, text):
         self.textUpQLabel.setText(text)
-        self.textUpQLabel.setStyleSheet(color)
 
-    def setTextDown (self, text, color = 'color: rgb(0, 0, 0)'):
+
+    def setTextDown (self, text):
         self.textDownQLabel.setText(text)
-        self.textDownQLabel.setStyleSheet(color)
+
 
     def setIcon (self, imagePath):
         self.iconQLabel.setPixmap(QtGui.QPixmap(imagePath))

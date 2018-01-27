@@ -21,6 +21,7 @@ class EditDlgForm(QWidget):
         else:
             if len(text):
                 self.teQ.append(text)
+                self.initCreate()
             else:
                 self.initCreate()
 

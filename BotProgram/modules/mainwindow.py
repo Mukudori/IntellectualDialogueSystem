@@ -5,7 +5,7 @@ from PyQt5 import uic, QtCore
 from DataBaseForm import  DataBaseForm
 from MessageWidgetModule import MessageWidget
 from MainBotModule import MainBot
-from EditDlgForm import EditDlgForm
+
 
 class MainWindow(QMainWindow):
 
@@ -20,13 +20,17 @@ class MainWindow(QMainWindow):
         self.Bot = MainBot(self)
         self.EditDlgForm = 0
         self.leMessage.setFocus()
+        self.SendMessage('<font color=green size=4><b>Бот</b></font>', self.Bot.GetHelloMessage()[0], self.PathBotPic)
 
 
         self.pbText.clicked.connect(self.SendAdmin)
+        self.checkBox.stateChanged.connect(self.changeVoiceMode)
 
+    def changeVoiceMode(self):
+        self.Bot.SetVoiceMode()
     def keyPressEvent(self, event):
         key = event.key()
-        if key == 16777220:
+        if key == 16777220: # код клавиши Enter
             self.SendAdmin()
 
 
@@ -37,10 +41,11 @@ class MainWindow(QMainWindow):
     def SendAdmin(self):
         AdminMessage = self.leMessage.text()
         BotMessage = self.Bot.ReceiveMessage(AdminMessage)
-        self.SendMessage('Админ',AdminMessage,self.PathAdminPic)
-        self.SendMessage('Бот', BotMessage, self.PathBotPic)
+        self.SendMessage('<font color=blue size=4><b>Админ<b></font>',AdminMessage,self.PathAdminPic)
+        self.SendMessage('<font color=green size=4><b>Бот</b></font>', BotMessage, self.PathBotPic)
         self.leMessage.setText('')
         self.leMessage.setFocus()
+
 
     def SendMessage(self, author, text, imgPath):
             # Create QCustomQWidget

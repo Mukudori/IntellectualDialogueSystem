@@ -66,7 +66,7 @@ class QuestionTable:
                 if word in question:
                     precoef += 1
             if (precoef):
-                precoef = len(StringFunctionsModule.GetWordsListFromText(question)) / precoef
+                precoef = precoef/len(StringFunctionsModule.GetWordsListFromText(question))
                 if (precoef > coef):
                     coef = precoef
                     id = rec['id']
