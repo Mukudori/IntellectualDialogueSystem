@@ -1,11 +1,11 @@
-from database.ActionTableModule import ActionTable
+from modules.database.ActionTableModule import ActionTable
 from PyQt5 import QtCore, uic
 from PyQt5.QtWidgets import QWidget
 
 class EditActionForm(QWidget):
     def __init__(self, id=0, parent=0):
         super().__init__()
-        uic.loadUi('ui/EditActionForm.ui',self)
+        uic.loadUi('modules/ui/EditActionForm.ui',self)
         self.ID=int(id)
         if(id):
             self.table = ActionTable()

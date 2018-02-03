@@ -1,7 +1,9 @@
 from itertools import groupby
+import re
 
 def GetWordsListFromText(text):
     # Вернуть слова, содержащиеся в строке, в верхнем регистре
+    # ИСПОЛЬЗОВАТЬ НЕ ЖЕЛАТЕЛЬНО
     textU = text.upper()
     wordsList = list()
     i = 0
@@ -15,6 +17,13 @@ def GetWordsListFromText(text):
         else:
             i += 1
 
-    return [word for word, _ in groupby(wordsList)]
+    return [word for word, _ in groupby(wordsList)] # возвращается список без повторов
+
+def GetWordsListFromTextWithRE(text):
+    # Более грамотный способ выделения списка слов
+    # через регулярное выражение
+    p = re.compile('[А-Я]+', re.S)
+    return p.findall(text.upper())
+
 
 

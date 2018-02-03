@@ -1,7 +1,7 @@
-from database import DataBaseModule
+from modules.database import DataBaseModule
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
-import StringFunctionsModule
+import modules.StringFunctionsModule
 
 
 class QuestionTable:
@@ -58,7 +58,7 @@ class QuestionTable:
     def FindQuestionID(self, message):
         coef = 0
         id = 0
-        wList = StringFunctionsModule.GetWordsListFromText(message)
+        wList = modules.StringFunctionsModule.GetWordsListFromText(message)
         for rec in self.__Table:
             precoef = 0
             question = rec['question'].upper()
@@ -66,7 +66,7 @@ class QuestionTable:
                 if word in question:
                     precoef += 1
             if (precoef):
-                precoef = precoef/len(StringFunctionsModule.GetWordsListFromText(question))
+               # precoef = precoef/len(StringFunctionsModule.GetWordsListFromText(question))
                 if (precoef > coef):
                     coef = precoef
                     id = rec['id']

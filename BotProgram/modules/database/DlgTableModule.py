@@ -1,9 +1,9 @@
-from database import QuestionTableModule, DataBaseModule, ActionTableModule, AnswerTableModule
+from modules.database import QuestionTableModule, DataBaseModule, ActionTableModule, AnswerTableModule
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
-from database.QuestionTableModule import QuestionTable
-from database.ActionTableModule import ActionTable
-from database.AnswerTableModule import AnswerTable
+from modules.database.QuestionTableModule import QuestionTable
+#from modules.database.ActionTableModule import ActionTable
+from modules.database.AnswerTableModule import AnswerTable
 
 
 class DlgTable:

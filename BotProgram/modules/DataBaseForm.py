@@ -1,12 +1,12 @@
 from PyQt5.QtWidgets import QWidget, QMainWindow, QAction, QMenu
 from PyQt5 import uic, QtCore
-from database import DataBaseModule
-import EditDlgForm
-from database.ActionTableModule import ActionTable
-from database.DlgTableModule import  DlgTable
-from database.AnswerTableModule import AnswerTable
-from database.QuestionTableModule import QuestionTable
-import EditActionForm
+from modules.database import DataBaseModule
+from modules.EditDlgForm import EditDlgForm
+from modules.database.ActionTableModule import ActionTable
+from modules.database.DlgTableModule import  DlgTable
+from modules.database.AnswerTableModule import AnswerTable
+from modules.database.QuestionTableModule import QuestionTable
+from modules.EditActionForm import EditActionForm
 
 class DataBaseForm(QMainWindow):
     '''Форма базы данных.
@@ -15,7 +15,7 @@ class DataBaseForm(QMainWindow):
     '''
     def __init__(self):
         super().__init__()
-        uic.loadUi("ui/DataBaseForm.ui", self)
+        uic.loadUi("modules/ui/DataBaseForm.ui", self)
         self.InitMenu()
 
     def GetTableModel(self, table):
@@ -78,20 +78,20 @@ class DataBaseForm(QMainWindow):
         id=self.GetSelectedRecordID()
         table = self.GetTableName()
         if(table == 'dlgtab'):
-            self.EDF = EditDlgForm.EditDlgForm(id)
+            self.EDF = EditDlgForm(id)
             self.EDF.show()
         elif (table == 'actiontab'):
-            self.EAF = EditActionForm.EditActionForm(id)
+            self.EAF = EditActionForm(id)
             self.EAF.show()
 
     def OpenAddRecordForm(self):
         '''Открывает форму добавления'''
         table = self.GetTableName()
         if (table == 'dlgtab'):
-            self.EDF = EditDlgForm.EditDlgForm()
+            self.EDF = EditDlgForm()
             self.EDF.show()
         elif (table == 'actiontab'):
-            self.EAF = EditActionForm.EditActionForm()
+            self.EAF = EditActionForm()
             self.EAF.show()
 
     def DeleteRecord(self):

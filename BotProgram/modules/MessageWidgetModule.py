@@ -15,7 +15,8 @@ class MessageWidget (QWidget):
         self.allQHBoxLayout.addWidget(self.iconQLabel, 0)
         self.allQHBoxLayout.addLayout(self.textQVBoxLayout, 1)
         self.setLayout(self.allQHBoxLayout)
-
+        self.textDownQLabel.setWordWrap(True)
+        self.textUpQLabel.setWordWrap(True)
 
     def setTextUp (self, text):
         self.textUpQLabel.setText(text)

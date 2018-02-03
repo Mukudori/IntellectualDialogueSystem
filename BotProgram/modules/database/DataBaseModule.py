@@ -1,10 +1,10 @@
 import MySQLdb
+import sys
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
-from database import DlgTableModule
+from modules.database import DlgTableModule
 
-#Данные по подключению к БД
-connStr = '127.0.0.1;root;4862159357;botdb;utf8'
+
 
 '''
     В Qt есть встроенные медоды для работы с MySQL и построения моделей таблиц, 
@@ -13,7 +13,11 @@ connStr = '127.0.0.1;root;4862159357;botdb;utf8'
 '''
 
 def ConnectToDataBase(ex=0):
-    cs = connStr.split(';')
+    # Данные по подключению к БД
+    f=open('modules//database//mysql.txt','r')
+    cs = f.read()
+    f.close()
+    cs =cs.split(';')
     try:
         db = MySQLdb.connect(host=cs[0], user=cs[1], passwd=cs[2], db=cs[3])
         db.set_character_set(cs[4])

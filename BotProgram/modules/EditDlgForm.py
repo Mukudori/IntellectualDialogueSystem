@@ -1,15 +1,15 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5 import uic
-from database import ActionTableModule
-from database.DlgTableModule import DlgTable
-from database.ActionTableModule import ActionTable
+from modules.database import ActionTableModule
+from modules.database.DlgTableModule import DlgTable
+from modules.database.ActionTableModule import ActionTable
 
 
 class EditDlgForm(QWidget):
 
     def __init__(self, id=0, text=''):
         super().__init__()
-        uic.loadUi("ui/EditDlgForm.ui", self)
+        uic.loadUi("modules/ui/EditDlgForm.ui", self)
         self.ActTab = ActionTableModule.ActionTable()
         self.comboBox.addItems(self.ActTab.GetList())
         self.rbCreateNew.toggled.connect(self.triggerNew)

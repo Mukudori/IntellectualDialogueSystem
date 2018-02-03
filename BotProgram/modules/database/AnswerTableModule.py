@@ -1,4 +1,4 @@
-from database import DataBaseModule
+from modules.database import DataBaseModule
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
 
