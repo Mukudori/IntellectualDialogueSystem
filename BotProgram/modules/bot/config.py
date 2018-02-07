@@ -1,5 +1,6 @@
 #from telegrambot import bot
 token = '412901164:AAFdVoZCHn43QSggrNyD333HWtQ7OzKxXj4'
+small_talk_token = '7de17cda70c24186ae02a3d732b02806'
 
 
 """
