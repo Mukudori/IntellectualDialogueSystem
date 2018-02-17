@@ -7,6 +7,9 @@ from modules.database.DlgTableModule import  DlgTable
 from modules.database.AnswerTableModule import AnswerTable
 from modules.database.QuestionTableModule import QuestionTable
 from modules.EditActionForm import EditActionForm
+from modules.database.UserGroupModule import UserGroup
+from modules.database.ContextTableModule import ContextTable
+from modules.EditUserGroupForm import EditUserGroup
 
 class DataBaseForm(QMainWindow):
     '''Форма базы данных.
@@ -27,6 +30,10 @@ class DataBaseForm(QMainWindow):
             model = AnswerTable().GetTableViewModel()
         elif table == 'actiontab':
             model = ActionTable().GetTableViewModel()
+        elif table == 'usergrouptab':
+            model = UserGroup().GetTableViewModel()
+        elif table == 'contexttab':
+            model = ContextTable().GetTableViewModel()
         else:
             model = DlgTable().GetViewModel()
         self.tableView.setModel(model)
@@ -83,6 +90,9 @@ class DataBaseForm(QMainWindow):
         elif (table == 'actiontab'):
             self.EAF = EditActionForm(id)
             self.EAF.show()
+        elif (table == 'usergrouptab'):
+            self.UGF = EditUserGroup(id)
+            self.UGF.show()
 
     def OpenAddRecordForm(self):
         '''Открывает форму добавления'''
@@ -93,6 +103,9 @@ class DataBaseForm(QMainWindow):
         elif (table == 'actiontab'):
             self.EAF = EditActionForm()
             self.EAF.show()
+        elif table == 'usergrouptab':
+            self.UGF = EditUserGroup()
+            self.UGF.show()
 
     def DeleteRecord(self):
         id = self.GetSelectedRecordID()
@@ -102,7 +115,8 @@ class DataBaseForm(QMainWindow):
             ActionTable().DeleteRecord(id)
         elif (table == 'dlgtab'):
             DlgTable().DeleteRecord(id)
-
+        elif table == 'usergrouptab':
+            UserGroup().DeleteRecord(id)
         self.RefreshTable()
 
     def GetTableName(self):
@@ -111,8 +125,12 @@ class DataBaseForm(QMainWindow):
             return 'questiontab'
         elif text == 'Ответы':
             return 'answertab'
-        elif text == 'Диалоги':
+        elif text == 'Диалоги общие':
             return 'dlgtab'
+        elif text == 'Диалоги в контексте':
+            return 'contexttab'
+        elif text == 'Группы пользователей':
+            return 'usergrouptab'
         return 'actiontab'
 
 

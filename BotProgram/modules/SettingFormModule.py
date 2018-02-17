@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QLineEdit, QLabel, QPushButton, QVBoxLayout, QHBoxLayout
+import os
 
 class SettingForm(QWidget):
     def __init__(self):
@@ -51,7 +52,8 @@ class SettingForm(QWidget):
         self.ReadData()
 
     def ReadData(self):
-        f = open('database//mysql.txt', 'r')
+        path = os.path.abspath(os.curdir) + '//modules//database//mysql.txt'
+        f = open(path, 'r')
         text = f.read()
         f.close()
         text = text.split(';')
@@ -62,7 +64,8 @@ class SettingForm(QWidget):
         self.leChar.setText(text[4])
 
     def WriteData(self):
-        f = open('database//mysql.txt', 'w')
+        path = os.path.abspath(os.curdir)+'//modules//database//mysql.txt'
+        f = open(path, 'w')
         f.write(self.leAdr.text()+';'+
                 self.leName.text()+';'+
                 self.lePass.text()+';'+

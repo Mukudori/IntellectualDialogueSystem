@@ -1,8 +1,5 @@
 import MySQLdb
-import sys
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
-from PyQt5 import QtCore
-from modules.database import DlgTableModule
+
 
 
 

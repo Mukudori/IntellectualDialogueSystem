@@ -51,11 +51,11 @@ class DlgTable:
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             model.setItem(i, 0, item)
 
-            item = QStandardItem(str(self.qT.GetQuestionFromID(self.dlgT[i]['idQuestion'])))
+            item = QStandardItem(str(self.qT.GetQuestionFromID(self.dlgT[i]['idQ'])))
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             model.setItem(i, 1, item)
 
-            item = QStandardItem(str(self.aT.GetAnswerFromID(self.dlgT[i]['idAnswer'])))
+            item = QStandardItem(str(self.aT.GetAnswerFromID(self.dlgT[i]['idA'])))
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             model.setItem(i, 2, item)
 

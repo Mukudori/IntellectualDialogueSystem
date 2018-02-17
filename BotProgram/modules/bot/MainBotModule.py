@@ -17,8 +17,9 @@ class MainBot:
         self.previousMessage = [str(),0] # Предыдущий ответ бота и его id
         self.UserGroup = 1
         self._mp3_nameold = 'file'
-        self.audiodir = 'E:\\Programming\\Python\\IVTAssistant\\BotProgram\\audio\\'
-        self.__DelAllAudioFiles() # Чистит папку audio
+        self.audioDir=os.path.abspath(os.curdir)+'\\audio\\'
+        if os.path.exists(self.audioDir):
+            self.__DelAllAudioFiles() # Чистит папку audio, если она есть
 
     def SetOnlineMode(self, mode):
         self.Online = mode
@@ -40,12 +41,12 @@ class MainBot:
             if (id):
                 # Если вопрос найден, то получаем ответ на него из базы
                 data = DataBaseModule.GetData(
-                    "SELECT answertab.answer, dlgtab.idAction, dlgtab.idAnswer "+
+                    "SELECT answertab.answer, dlgtab.idAction, dlgtab.idA "+
                     "FROM botdb.answertab INNER JOIN (botdb.actiontab INNER JOIN botdb.dlgtab "+
-                    "ON actiontab.id = dlgtab.idAction) ON answertab.id = dlgtab.idAnswer "+
-                    "WHERE dlgtab.idQuestion ='"+str(id)+"';"
+                    "ON actiontab.id = dlgtab.idAction) ON answertab.id = dlgtab.idA "+
+                    "WHERE dlgtab.idQ ='"+str(id)+"';"
                 )
-                return [data[0]['answer'], data[0]['idAnswer'], data[0]['idAction']]
+                return [data[0]['answer'], data[0]['idA'], data[0]['idAction']]
             else:
                 #Иначе запоминаем сообщение и просим его сохранить в базу
                 self.SaveMessage = text
