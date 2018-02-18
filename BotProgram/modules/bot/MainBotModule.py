@@ -1,6 +1,6 @@
 from modules.database import DataBaseModule
 from modules.database.QuestionTableModule import QuestionTable
-from modules.EditDlgForm import EditDlgForm
+#from modules.EditDlgForm import EditDlgForm
 from modules.EditActionForm import EditActionForm
 import speech_recognition as sr
 from gtts import gTTS

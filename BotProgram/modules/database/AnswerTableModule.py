@@ -1,4 +1,5 @@
 from modules.database import DataBaseModule
+from modules.database.ActionTableModule import ActionTable
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
 
@@ -19,7 +20,7 @@ class AnswerTable:
 
     def GetTableViewModel(self):
         model = QStandardItemModel()
-        model.setHorizontalHeaderLabels(['id', 'Ответ'])
+        model.setHorizontalHeaderLabels(['id', 'Ответ', 'Действие'])
         model.setVerticalHeaderLabels([' '] * len(self.__Table))
 
         for i in range(len(self.__Table)):
@@ -30,6 +31,10 @@ class AnswerTable:
             item = QStandardItem(str(self.__Table[i]['answer']))
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             model.setItem(i, 1, item)
+
+            item = QStandardItem(ActionTable().GetActionFromID(self.__Table[i]['idAction']))
+            item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+            model.setItem(i, 2, item)
 
         return model
 

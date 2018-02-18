@@ -18,7 +18,7 @@ class ActionTable:
         for record in self.__Table:
             if record['id'] == id:
                 return record['action']
-        return 0
+        return str()
 
     def GetList(self):
         itemList = list()
@@ -28,7 +28,7 @@ class ActionTable:
 
     def GetTableViewModel(self):
         model = QStandardItemModel()
-        model.setHorizontalHeaderLabels(['id','Название действия','Комманды', 'Доп.Инфо'])
+        model.setHorizontalHeaderLabels(['id','Название действия', 'Доп.Инфо'])
         model.setVerticalHeaderLabels([' ']*len(self.__Table))
 
         for i in range(len(self.__Table)):
@@ -40,13 +40,9 @@ class ActionTable:
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
             model.setItem(i, 1, item)
 
-            item = QStandardItem(str(self.__Table[i]['command']))
-            item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-            model.setItem(i, 2, item)
-
             item = QStandardItem(str(self.__Table[i]['note']))
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-            model.setItem(i, 3, item)
+            model.setItem(i, 2, item)
 
         return model
 

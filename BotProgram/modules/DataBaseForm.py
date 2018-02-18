@@ -1,15 +1,16 @@
 from PyQt5.QtWidgets import QWidget, QMainWindow, QAction, QMenu
 from PyQt5 import uic, QtCore
 from modules.database import DataBaseModule
-from modules.EditDlgForm import EditDlgForm
+#from modules.EditDlgForm import EditDlgForm
 from modules.database.ActionTableModule import ActionTable
-from modules.database.DlgTableModule import  DlgTable
+#from modules.database.DlgTableModule import  DlgTable
 from modules.database.AnswerTableModule import AnswerTable
 from modules.database.QuestionTableModule import QuestionTable
 from modules.EditActionForm import EditActionForm
 from modules.database.UserGroupModule import UserGroup
 from modules.database.ContextTableModule import ContextTable
 from modules.EditUserGroupForm import EditUserGroup
+from modules.EditContextModule import EditContextForm
 
 class DataBaseForm(QMainWindow):
     '''Форма базы данных.
@@ -34,8 +35,8 @@ class DataBaseForm(QMainWindow):
             model = UserGroup().GetTableViewModel()
         elif table == 'contexttab':
             model = ContextTable().GetTableViewModel()
-        else:
-            model = DlgTable().GetViewModel()
+        #else:
+           # model = DlgTable().GetViewModel()
         self.tableView.setModel(model)
         self.tableView.resizeRowsToContents()
         self.tableView.resizeColumnsToContents()
@@ -93,6 +94,9 @@ class DataBaseForm(QMainWindow):
         elif (table == 'usergrouptab'):
             self.UGF = EditUserGroup(id)
             self.UGF.show()
+        elif table == 'contexttab':
+            self.ECT = EditContextForm(id)
+            self.ECT.show()
 
     def OpenAddRecordForm(self):
         '''Открывает форму добавления'''

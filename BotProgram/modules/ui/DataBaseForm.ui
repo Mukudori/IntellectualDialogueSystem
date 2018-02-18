@@ -45,11 +45,6 @@
         </item>
         <item>
          <property name="text">
-          <string>Диалоги общие</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
           <string>Диалоги в контексте</string>
          </property>
         </item>
