@@ -6,53 +6,54 @@ from PyQt5 import QtCore
 class AnswerTable:
 
     def __init__(self):
-        self.__Table = DataBaseModule.GetData('SELECT * FROM answertab')
+        self.init = True
+
+
 
     def GetAllData(self):
         return self.__Table
 
+    def __RefreshTable(self):
+        self.__Table = DataBaseModule.GetData('SELECT * FROM answertab')
+
+
     def GetDataFromID(self,id):
         pass
     def GetAnswerFromID(self,id):
+        self.__RefreshTable()
         for record in self.__Table:
             if record['id']==id: return record['answer']
         return 0
 
     def GetTableViewModel(self):
-        model = QStandardItemModel()
-        model.setHorizontalHeaderLabels(['id', 'Ответ', 'Действие'])
-        model.setVerticalHeaderLabels([' '] * len(self.__Table))
+        return DataBaseModule.CreateTableViewModel('SELECT * FROM answertab',
+                                                   ['id', 'answer', 'idAction'],
+                                                   ['id', 'Ответ', 'Действие'])
 
-        for i in range(len(self.__Table)):
-            item = QStandardItem(str(self.__Table[i]['id']))
-            item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-            model.setItem(i, 0, item)
-
-            item = QStandardItem(str(self.__Table[i]['answer']))
-            item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-            model.setItem(i, 1, item)
-
-            item = QStandardItem(ActionTable().GetActionFromID(self.__Table[i]['idAction']))
-            item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-            model.setItem(i, 2, item)
-
-        return model
-
-    def InsertRecord(self,answer):
+    def InsertRecord(self,answer,idContext):
         currentid = DataBaseModule.ExecuteSQL(
-                "INSERT INTO answertab (answer) "+
-                "VALUES('" + answer + "');")
+                "INSERT INTO answertab (answer, idContext) "+
+                "VALUES('" + answer +"','"+str(idContext)+"');" )
         return currentid
 
     def UpdateRecord(self,id,answer):
         pass
 
-    def DeleteRecord(self, id):
-        pass
+    def DeleteFromID(self, id):
+        DataBaseModule.ExecuteSQL(
+            """DELETE FROM answertab
+                WHERE answertab.id = '"""+str(id)+"';"
+        )
 
     def UpdateRecordFromIDAndText(self, id, answer):
         DataBaseModule.ExecuteSQL(
             "UPDATE answertab "+
             "SET answer ='"+answer+"' "+
             "WHERE id='"+str(id)+"';"
+        )
+
+    def DeleteFromContextID(self, idContext):
+        DataBaseModule.ExecuteSQL(
+            """DELETE FROM answertab 
+            WHERE idContext = '"""+str(idContext)+"';"
         )

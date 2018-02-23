@@ -1,24 +1,26 @@
-from modules.database import DataBaseModule
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
 from modules.database import DataBaseModule
+from modules.database.AnswerTableModule import AnswerTable
+from modules.database.QuestionTableModule import QuestionTable
+from modules.database.AccessTableModule import AccessTable
 
 class ContextTable:
     """Таблица контекста диалога. Связывает все, что связано с диалогами.
     Вопросы и ответы неотделимы от контекста"""
     def __init__(self):
-        self.__RefreshShortTable()
+        self.__Table = 0
         self.CurrentRecord = 0
 
     def __RefreshShortTable(self):
         self.__Table = DataBaseModule.GetData('SELECT * FROM contexttab')
-        self.__shortTable = True
+
 
     def __RefreshLongTable(self):
         pass
 
     def GetTableViewModel(self):
-        model = QStandardItemModel()
+        """model = QStandardItemModel()
         model.setHorizontalHeaderLabels(['id','Заголовок контекста', 'id Родителя', 'Группы пользователей'])
         model.setVerticalHeaderLabels([' ']*len(self.__Table))
 
@@ -37,16 +39,20 @@ class ContextTable:
 
             item = QStandardItem(str(self.__Table[i]['idGroupStr']))
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-            model.setItem(i, 3, item)
-        return model
+            model.setItem(i, 3, item)"""
+        sql = 'SELECT * FROM contexttab'
+
+        return DataBaseModule.CreateTableViewModel(sql, ['id', 'header', 'idParent', 'level'], ['id', 'Заголовок контекста', 'id Родителя', 'Уровень'])
 
     def GetStrFromID(self, id):
+        self.__RefreshShortTable()
         for rec in self.__Table:
             if rec['id'] == id:
                 return rec['header']
         return str()
 
     def __QuestionOrAnswerModel(self, idCon, tabAnswer=False):
+
         tabNam = str()
         tabField = str()
         header = str()
@@ -105,6 +111,7 @@ class ContextTable:
         return self.__QuestionOrAnswerModel(id, True)
 
     def GetRecordFromID(self,id):
+        self.__RefreshShortTable()
         for rec in self.__Table:
             if rec['id']==id:
                 self.CurrentRecord = rec
@@ -134,6 +141,37 @@ class ContextTable:
             model.setHorizontalHeaderLabels(['Отсутствуют'])
 
         return model
+
+    def GetGroupsModelFromID(self, id):
+        sql = """SELECT usergrouptab.id as 'id', usergrouptab.nameGroup as 'nameGroup'
+        FROM botdb.usergrouptab INNER JOIN (botdb.accesstab
+        INNER JOIN botdb.contexttab ON accesstab.idContext = contexttab.id)
+        ON usergrouptab.id = accesstab.idGroup 
+        WHERE contexttab.id='"""+str(id)+"';"
+        return DataBaseModule.CreateTableViewModel(sql, ['id', 'nameGroup'], ['id', 'Группа'])
+
+    def InsertRecord(self, header, idParent, level):
+       id = DataBaseModule.ExecuteSQL("""
+        INSERT INTO contexttab (header, idParent, level) 
+        VALUES ('""" +header+"','"+str(idParent)+"','"+str(level)+"');")
+       return id
+
+    def DeleteRecordFromID(self, idContext):
+        QuestionTable().DeleteFromContextID(idContext)
+        AnswerTable().DeleteFromContextID(idContext)
+        AccessTable().DeleteFromContextID(idContext)
+        DataBaseModule.ExecuteSQL(
+            """DELETE FROM contexttab 
+            WHERE id = '"""+str(idContext)+"';"
+        )
+
+    def UpdateRecord(self, id, header):
+        DataBaseModule.ExecuteSQL(
+            """UPDATE contexttab 
+            SET header='"""+header+"""' 
+            WHERE id ='"""+str(id)+"';"
+        )
+
 
 
 

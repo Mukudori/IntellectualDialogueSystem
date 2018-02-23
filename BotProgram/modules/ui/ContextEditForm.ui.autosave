@@ -39,6 +39,9 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="text">
+        <string>Новый контекст</string>
+       </property>
       </widget>
      </item>
     </layout>

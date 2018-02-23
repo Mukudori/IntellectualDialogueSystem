@@ -2,9 +2,10 @@ from modules.database import DataBaseModule
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
 
-class UserGroup:
+class UserGroupTable:
     def __init__(self):
-        self.__refreshTable()
+        self.__Table = 0
+
 
     def __refreshTable(self):
         self.__Table = DataBaseModule.GetData('SELECT * FROM usergrouptab')
@@ -20,12 +21,14 @@ class UserGroup:
             "DELETE FROM usergrouptab WHERE id ='" + str(id) + "';")
 
     def GetDataFromID(self, id):
+        self.__refreshTable()
         for rec in self.__Table:
             if rec['id'] == id:
                 return rec
         return 0
 
     def GetTableViewModel(self):
+        self.__refreshTable()
         model = QStandardItemModel()
         model.setHorizontalHeaderLabels(['id','Название группы','Редактирование БД'])
         model.setVerticalHeaderLabels([' ']*len(self.__Table))
@@ -50,6 +53,11 @@ class UserGroup:
                 UPDATE usergrouptab 
                 SET nameGroup=\'''' + rec['nameGroup'] + "', editDB='"+str(rec['editDB'])+ "'"
                                   + "WHERE id='" + str(rec['id']) + "';")
+
+    def GetStringAndIDList(self):
+        self.__refreshTable()
+        return [ [ rec['id'],rec['nameGroup'] ]
+                for rec in self.__Table]
 
 
 

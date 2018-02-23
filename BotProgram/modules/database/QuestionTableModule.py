@@ -7,7 +7,8 @@ import modules.StringFunctionsModule
 class QuestionTable:
 
     def __init__(self):
-        self.__Connect()
+        #self.__Connect()
+        super().__init__()
 
     def __Connect(self):
         self.__Table = DataBaseModule.GetData('SELECT * FROM questiontab')
@@ -25,7 +26,7 @@ class QuestionTable:
         return 0
 
     def GetTableViewModel(self):
-        model = QStandardItemModel()
+        """model = QStandardItemModel()
         model.setHorizontalHeaderLabels(['id', 'Вопрос'])
         model.setVerticalHeaderLabels([' '] * len(self.__Table))
 
@@ -36,15 +37,19 @@ class QuestionTable:
 
             item = QStandardItem(str(self.__Table[i]['question']))
             item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
-            model.setItem(i, 1, item)
+            model.setItem(i, 1, item)"""
 
-        return model
+        return DataBaseModule.CreateTableViewModel(
+            'SELECT * FROM questiontab',
+            ['id','question'],
+            ['id', 'Вопрос']
+        )
 
 
-    def InsertRecord(self, question):
-        currentid = DataBaseModule.ExecuteSQL('''
-        INSERT INTO questiontab (question)
-         VALUES("''' +question+'");' )
+    def InsertRecord(self, question, idContext):
+        currentid = DataBaseModule.ExecuteSQL("""
+        INSERT INTO questiontab (question, idContext)
+         VALUES('""" +question+"','"+str(idContext)+"');" )
         return  currentid
 
     def UpdateRecordFromIDAndText(self, id, question):
@@ -53,6 +58,15 @@ class QuestionTable:
             "SET question ='"+question+"' "+
             "WHERE id='"+str(id)+"';"
         )
+
+    def DeleteFromID(self, id):
+        DataBaseModule.ExecuteSQL(
+            """DELETE FROM questiontab
+                WHERE questiontab.id = '""" + str(id) + "';"
+        )
+
+    def GetModelFromContextID(self, id):
+        pass
 
 
     def FindQuestionID(self, message):
@@ -72,5 +86,11 @@ class QuestionTable:
                     id = rec['id']
 
         return id
+
+    def DeleteFromContextID(self, idContext):
+        DataBaseModule.ExecuteSQL(
+            """DELETE FROM questiontab 
+            WHERE idContext = '"""+str(idContext)+"';"
+        )
 
 

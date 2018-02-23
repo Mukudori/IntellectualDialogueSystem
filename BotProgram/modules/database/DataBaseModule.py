@@ -1,4 +1,6 @@
 import MySQLdb
+from PyQt5.QtGui import QStandardItem, QStandardItemModel
+from PyQt5 import QtCore
 
 '''
     В Qt есть встроенные медоды для работы с MySQL и построения моделей таблиц, 
@@ -49,6 +51,20 @@ def ExecuteSQL(sql):
     id = db[0].fetchall()
     db[1].commit()
     return id[0]['LAST_INSERT_ID()']
+
+def CreateTableViewModel(sql, fieldTab, fieldsView):
+    data = GetData(sql)
+    model = QStandardItemModel()
+    model.setHorizontalHeaderLabels(fieldsView)
+    model.setVerticalHeaderLabels([' '] * len(data))
+
+    for i in range(len(data)):
+        for j in range(len(fieldTab)):
+            item = QStandardItem(str(data[i][fieldTab[j]]))
+            item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+            model.setItem(i, j, item)
+
+    return model
 
 
 

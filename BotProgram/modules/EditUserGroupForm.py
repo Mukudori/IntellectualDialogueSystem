@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout,QCheckBox
-from modules.database.UserGroupModule import UserGroup
+from modules.database.UserGroupModule import UserGroupTable
 class EditUserGroup(QWidget):
     def __init__(self, id=0):
         super().__init__()
@@ -21,7 +21,7 @@ class EditUserGroup(QWidget):
         self.butLay = QHBoxLayout()
         self.butLay.addWidget(self.butUpdate)
         self.butLay.addWidget(self.butInsert)
-        self.table = UserGroup()
+        self.table = UserGroupTable()
         if id:
             rec = self.table.GetDataFromID(id)
             self.editDB.setChecked(rec['editDB'])

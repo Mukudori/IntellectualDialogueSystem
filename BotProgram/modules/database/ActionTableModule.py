@@ -6,7 +6,8 @@ from PyQt5 import QtCore
 class ActionTable:
 
     def __init__(self):
-        self.__RefreshTable()
+
+        self.__Table = 0
 
     def GetAllData(self):
         return self.__Table
@@ -15,18 +16,21 @@ class ActionTable:
         self.__Table = DataBaseModule.GetData('SELECT * FROM actiontab')
 
     def GetActionFromID(self, id):
+        self.__RefreshTable()
         for record in self.__Table:
             if record['id'] == id:
                 return record['action']
         return str()
 
     def GetList(self):
+        self.__RefreshTable()
         itemList = list()
         for record in self.__Table:
             itemList.append(record['action'])
         return itemList
 
     def GetTableViewModel(self):
+        self.__RefreshTable()
         model = QStandardItemModel()
         model.setHorizontalHeaderLabels(['id','Название действия', 'Доп.Инфо'])
         model.setVerticalHeaderLabels([' ']*len(self.__Table))
@@ -63,16 +67,23 @@ class ActionTable:
         "DELETE FROM actiontab WHERE id ='"+str(id)+"';")
 
     def GetDataFromID(self, id):
+        self.__RefreshTable()
         for rec in self.__Table:
             if rec['id'] == id:
                 return rec
         return 0
 
     def GetIDFromActionStr(self, action):
+        self.__RefreshTable()
         for rec in self.__Table:
             if rec['action'].upper() == action.upper():
                 return rec['id']
         return 0
+
+    def GetStringAndIDList(self):
+        self.__RefreshTable()
+        return [[rec['id'], rec['action']] for rec in self.__Table]
+
 
 
 

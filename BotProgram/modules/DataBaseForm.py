@@ -7,7 +7,7 @@ from modules.database.ActionTableModule import ActionTable
 from modules.database.AnswerTableModule import AnswerTable
 from modules.database.QuestionTableModule import QuestionTable
 from modules.EditActionForm import EditActionForm
-from modules.database.UserGroupModule import UserGroup
+from modules.database.UserGroupModule import UserGroupTable
 from modules.database.ContextTableModule import ContextTable
 from modules.EditUserGroupForm import EditUserGroup
 from modules.EditContextModule import EditContextForm
@@ -32,7 +32,7 @@ class DataBaseForm(QMainWindow):
         elif table == 'actiontab':
             model = ActionTable().GetTableViewModel()
         elif table == 'usergrouptab':
-            model = UserGroup().GetTableViewModel()
+            model = UserGroupTable().GetTableViewModel()
         elif table == 'contexttab':
             model = ContextTable().GetTableViewModel()
         #else:
@@ -101,9 +101,9 @@ class DataBaseForm(QMainWindow):
     def OpenAddRecordForm(self):
         '''Открывает форму добавления'''
         table = self.GetTableName()
-        if (table == 'dlgtab'):
-            self.EDF = EditDlgForm()
-            self.EDF.show()
+        if (table == 'contexttab'):
+            self.ECT = EditContextForm()
+            self.ECT.show()
         elif (table == 'actiontab'):
             self.EAF = EditActionForm()
             self.EAF.show()
@@ -117,10 +117,10 @@ class DataBaseForm(QMainWindow):
 
         if (table == 'actiontab'):
             ActionTable().DeleteRecord(id)
-        elif (table == 'dlgtab'):
-            DlgTable().DeleteRecord(id)
+        elif (table == 'contexttab'):
+            ContextTable().DeleteRecordFromID(id)
         elif table == 'usergrouptab':
-            UserGroup().DeleteRecord(id)
+            UserGroupTable().DeleteRecord(id)
         self.RefreshTable()
 
     def GetTableName(self):
