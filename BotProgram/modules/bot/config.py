@@ -1,6 +1,6 @@
 #from telegrambot import bot
-telebot_token = '412901164:AAFdVoZCHn43QSggrNyD333HWtQ7OzKxXj4'
-small_talk_token = 'c16ca22b87e64ee5a5a03c355e5604f5'
+telebot_token = '000'
+small_talk_token = '000'
 token = telebot_token # пока путь по-будет тут, чтобы в классах ничего не поломалось
 
 
