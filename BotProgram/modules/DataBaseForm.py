@@ -80,7 +80,6 @@ class DataBaseForm(QMainWindow):
         else:
             return 0
 
-
     def OpenEditRecordForm(self):
         '''Открывает форму редактирования'''
         id=self.GetSelectedRecordID()
@@ -118,7 +117,7 @@ class DataBaseForm(QMainWindow):
         if (table == 'actiontab'):
             ActionTable().DeleteRecord(id)
         elif (table == 'contexttab'):
-            ContextTable().DeleteRecordFromID(id)
+            ContextTable().CascadeDeleteFromID(id)
         elif table == 'usergrouptab':
             UserGroupTable().DeleteRecord(id)
         self.RefreshTable()

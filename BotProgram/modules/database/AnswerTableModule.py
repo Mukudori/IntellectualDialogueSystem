@@ -45,10 +45,10 @@ class AnswerTable:
                 WHERE answertab.id = '"""+str(id)+"';"
         )
 
-    def UpdateRecordFromIDAndText(self, id, answer):
+    def UpdateRecord(self, id, answer, idAction):
         DataBaseModule.ExecuteSQL(
             "UPDATE answertab "+
-            "SET answer ='"+answer+"' "+
+            "SET answer ='"+answer+"', idAction ='"+str(idAction)+"' "+
             "WHERE id='"+str(id)+"';"
         )
 
@@ -57,3 +57,13 @@ class AnswerTable:
             """DELETE FROM answertab 
             WHERE idContext = '"""+str(idContext)+"';"
         )
+
+    def GetAnswerAndActionFromAnswerID(self, id):
+        data = DataBaseModule.GetData(
+            """
+            SELECT answertab.answer as 'ans', actiontab.action as 'act' 
+            FROM botdb.answertab INNER JOIN botdb.actiontab ON answertab.idAction = actiontab.id 
+            WHERE answertab.id = '""" + str(id)+"';"
+        )
+
+        return (data[0]['ans'], data[0]['act'])

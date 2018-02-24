@@ -1,7 +1,7 @@
-from PyQt5 import QtCore, uic
+from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit,QPushButton, QVBoxLayout,QHBoxLayout,QComboBox, QMessageBox
 from modules.database.ContextTableModule import ContextTable
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
+from PyQt5.QtGui import QStandardItem
 from modules.database.QuestionTableModule import QuestionTable
 from modules.database.AnswerTableModule import AnswerTable
 from modules import ObjectMethodsModule
@@ -11,8 +11,10 @@ from modules.database.UserGroupModule import UserGroupTable
 
 #Классы для добавления вопросов и ответов
 class AddQuestionDlg(QWidget):
-    def __init__(self, tableView, model, idC):
+    def __init__(self, tableView, model, idC, idRecord=0, indModel=0):
         super().__init__()
+        self.IDRecord = idRecord
+        self.INDModel = indModel
         self.label = QLabel()
         self.le = QLineEdit()
         self.layH = QHBoxLayout()
@@ -29,19 +31,33 @@ class AddQuestionDlg(QWidget):
         self.pb.clicked.connect(self.click)
         self.SetHeaders()
 
-    def AddOtherWidgets(self):
+    def AddOtherWidgets(self, ):
         self.pb = QPushButton('Добавить')
         self.layV.addWidget(self.pb)
+        if self.IDRecord:
+            self.le.setText(QuestionTable().GetQuestionFromID(self.IDRecord))
+
 
     def click(self):
         tab = QuestionTable()
-        id=tab.InsertRecord(self.le.text(), self.IDC)
-        i = self.Model.rowCount()
+        if not self.IDRecord:
+            id=tab.InsertRecord(self.le.text(), self.IDC)
+            i = self.Model.rowCount()
 
-        self.Model.setItem(i,1,QStandardItem(self.le.text()) )
-        self.Model.setItem(i,0,QStandardItem(str(id)))
+            self.Model.setItem(i,1,QStandardItem(self.le.text()) )
+            self.Model.setItem(i,0,QStandardItem(str(id)))
+            self.Model.setVerticalHeaderLabels([' '] * (i + 1))
+        else:
+            tab.UpdateRecordFromIDAndText(self.IDRecord, self.le.text())
+            self.Model.setItem(self.INDModel.row(), 1, QStandardItem(self.le.text()))
+
         self.tv.setModel(self.Model)
         self.close()
+
+    def keyPressEvent(self, event):
+        key = event.key()
+        if key == 16777220: # код клавиши Enter
+            self.click()
 
     def SetHeaders(self):
         self.label.setText('Введите вопрос :')
@@ -59,6 +75,18 @@ class AddAnswerDlg(AddQuestionDlg):
         self.layV.addWidget(self.pb)
         self._initComboBox()
 
+        if self.IDRecord:
+            answer, action = AnswerTable().GetAnswerAndActionFromAnswerID(self.IDRecord)
+            self.le.setText(answer)
+            i=0
+            for row in self.actTab:
+                if row[1] == action:
+                    self.cb.setCurrentIndex(i)
+                    break
+                i+=1
+            self.pb.setText('Изменить')
+
+
     def SetHeaders(self):
         self.label.setText('Введите ответ на вопрос :')
         self.setWindowTitle('Ввод ответа')
@@ -69,19 +97,29 @@ class AddAnswerDlg(AddQuestionDlg):
 
     def click(self):
         text = self.cb.currentText()
-        id = 0
+        idA = 0
         for row in self.actTab:
             if row[1] == text:
-                id = str(row[0])
+                idA = str(row[0])
                 break
-        if id:
-            idA =AnswerTable().InsertRecord(self.le.text(),self.IDC)
-            i = self.Model.rowCount()
-            self.Model.setItem(i, 2, QStandardItem(text))
-            self.Model.setItem(i, 1, QStandardItem(self.le.text()))
-            self.Model.setItem(i, 0, QStandardItem(str(idA)))
+        if idA:
+            if not self.IDRecord:
+                idA =AnswerTable().InsertRecord(self.le.text(),self.IDC)
+                i = self.Model.rowCount()
+                self.Model.setItem(i, 2, QStandardItem(text))
+                self.Model.setItem(i, 1, QStandardItem(self.le.text()))
+                self.Model.setItem(i, 0, QStandardItem(str(idA)))
+                self.Model.setVerticalHeaderLabels([' '] * (i + 1))
 
-            self.tv.setModel(self.Model)
+            else:
+                AnswerTable().UpdateRecord(id=self.IDRecord ,answer=self.le.text(), idAction = idA)
+                i = self.INDModel.row()
+                self.Model.setItem(i, 2, QStandardItem(text))
+                self.Model.setItem(i, 1, QStandardItem(self.le.text()))
+                self.Model.setItem(i, 0, QStandardItem(str(idA)))
+
+
+        self.tv.setModel(self.Model)
         self.close()
 
 class AddGroupDlg(QWidget):
@@ -133,13 +171,17 @@ class EditContextForm(QWidget):
         self.IDParent = idParent
         if idParent:
             self.ParentLevel = parentLevel+1
+            self.ParentForm =parent
+        else:
+            self.ParentLevel = 0
+            self.ParentForm = 0
 
         if id:
             self.__initEdit(id)
             self.ID = id
         else:
             self.ID = self.table.InsertRecord(header=self.leHeader.text(), idParent=self.IDParent, level=self.ParentLevel)
-            self.__initEdit(id)
+            self.__initEdit(self.ID)
         if parent:
             self.leHeader.setText(parent.leHeader.text()+" >> ")
             self.leParentContext.setText(parent.leHeader.text())
@@ -152,7 +194,13 @@ class EditContextForm(QWidget):
         self.pbGAdd.clicked.connect(self.AddUserGroup)
         self.pbGDel.clicked.connect(self.DeleteSelectedGroup)
         self.pbSave.clicked.connect(self.SaveContext)
+        self.pbQEdit.clicked.connect(self.EditQuestion)
+        self.pbAEdit.clicked.connect(self.EditAnswer)
+        self.pbCEdit.clicked.connect(self.EditChildContext)
 
+    def RefreshChildContexts(self, id):
+        self.modelC = self.table.GetChildContextModelFromParentID(id)
+        self.tvChildContext.setModel(self.modelC)
 
 
     def __initEdit(self, id):
@@ -162,8 +210,7 @@ class EditContextForm(QWidget):
         self.tvQ.setModel(self.modelQ)
         self.modelA = self.table.GetAnswerModelFromContextID(id)
         self.tvA.setModel(self.modelA)
-        self.modelC = self.table.GetChildContextModelFromParentID(id)
-        self.tvChildContext.setModel(self.modelC)
+        self.RefreshChildContexts(id)
         self.modelG = self.table.GetGroupsModelFromID(id)
         self.tvG.setModel(self.modelG)
         if self.Rec['idParent']:
@@ -209,7 +256,33 @@ class EditContextForm(QWidget):
 
     def SaveContext(self):
         self.table.UpdateRecord(self.ID, self.leHeader.text())
+        if self.ParentForm:
+            self.ParentForm.RefreshChildContexts(self.IDParent)
         self.close()
+
+    def EditQuestion(self):
+        idQ, selInd = ObjectMethodsModule.GetSelectedRecordID(self.tvQ)
+
+        self.qdlg = AddQuestionDlg(self.tvQ, self.modelQ, self.ID, idRecord=idQ, indModel=selInd)
+        self.qdlg.show()
+
+    def EditAnswer(self):
+        idA, selInd = ObjectMethodsModule.GetSelectedRecordID(self.tvA)
+        self.adlg = AddAnswerDlg(tableView=self.tvA,model=self.modelA, idC=self.ID,
+                                 idRecord=idA, indModel=selInd)
+        self.adlg.show()
+
+    def EditChildContext(self):
+        idC, selInd = ObjectMethodsModule.GetSelectedRecordID(self.tvChildContext)
+
+        if selInd:
+            self.childConForm = EditContextForm(parent=self,id=idC)
+            self.childConForm.show()
+
+
+
+
+
 
 
 

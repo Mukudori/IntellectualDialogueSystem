@@ -39,6 +39,9 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="text">
+        <string>Новый контекст</string>
+       </property>
       </widget>
      </item>
     </layout>
@@ -77,6 +80,17 @@
            <property name="icon">
             <iconset>
              <normaloff>../../pics/Add.png</normaloff>../../pics/Add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbQEdit">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../../pics/Edit.png</normaloff>../../pics/Edit.png</iconset>
            </property>
           </widget>
          </item>
@@ -127,6 +141,17 @@
            <property name="icon">
             <iconset>
              <normaloff>../../pics/Add.png</normaloff>../../pics/Add.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbAEdit">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../../pics/Edit.png</normaloff>../../pics/Edit.png</iconset>
            </property>
           </widget>
          </item>
@@ -218,6 +243,17 @@
               <property name="icon">
                <iconset>
                 <normaloff>../../pics/Add.png</normaloff>../../pics/Add.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pbCEdit">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../pics/Edit.png</normaloff>../../pics/Edit.png</iconset>
               </property>
              </widget>
             </item>
@@ -322,6 +358,10 @@
     <widget class="QPushButton" name="pbSave">
      <property name="text">
       <string>Сохранить</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../pics/save.png</normaloff>../../pics/save.png</iconset>
      </property>
     </widget>
    </item>

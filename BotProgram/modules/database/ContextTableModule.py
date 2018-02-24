@@ -12,12 +12,10 @@ class ContextTable:
         self.__Table = 0
         self.CurrentRecord = 0
 
-    def __RefreshShortTable(self):
+    def __RefreshTable(self):
         self.__Table = DataBaseModule.GetData('SELECT * FROM contexttab')
 
 
-    def __RefreshLongTable(self):
-        pass
 
     def GetTableViewModel(self):
         """model = QStandardItemModel()
@@ -45,7 +43,7 @@ class ContextTable:
         return DataBaseModule.CreateTableViewModel(sql, ['id', 'header', 'idParent', 'level'], ['id', 'Заголовок контекста', 'id Родителя', 'Уровень'])
 
     def GetStrFromID(self, id):
-        self.__RefreshShortTable()
+        self.__RefreshTable()
         for rec in self.__Table:
             if rec['id'] == id:
                 return rec['header']
@@ -111,7 +109,7 @@ class ContextTable:
         return self.__QuestionOrAnswerModel(id, True)
 
     def GetRecordFromID(self,id):
-        self.__RefreshShortTable()
+        self.__RefreshTable()
         for rec in self.__Table:
             if rec['id']==id:
                 self.CurrentRecord = rec
@@ -156,7 +154,7 @@ class ContextTable:
         VALUES ('""" +header+"','"+str(idParent)+"','"+str(level)+"');")
        return id
 
-    def DeleteRecordFromID(self, idContext):
+    def _DeleteRecordFromID(self, idContext):
         QuestionTable().DeleteFromContextID(idContext)
         AnswerTable().DeleteFromContextID(idContext)
         AccessTable().DeleteFromContextID(idContext)
@@ -164,6 +162,23 @@ class ContextTable:
             """DELETE FROM contexttab 
             WHERE id = '"""+str(idContext)+"';"
         )
+
+    def CascadeDeleteFromID(self, idContext):
+        idConList = [idContext]
+        self.__RefreshTable()
+
+        for rec in self.__Table:
+            idP = idConList[-1]
+            if idP and rec['idParent'] == idP:
+                idConList.append(rec['id'])
+
+        idConList = idConList[-1::-1]
+
+        for idCon in idConList:
+            self._DeleteRecordFromID(idCon)
+
+
+
 
     def UpdateRecord(self, id, header):
         DataBaseModule.ExecuteSQL(

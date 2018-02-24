@@ -20,10 +20,17 @@ class QuestionTable:
         pass
 
     def GetQuestionFromID(self, id):
+        """
         for record in self.__Table:
             if record['id']==id:
                 return record['question']
-        return 0
+                """
+        data = DataBaseModule.GetData(
+            """
+            SELECT question FROM botdb.questiontab 
+            WHERE id ='"""+str(id)+"';"
+        )
+        return data[0]['question']
 
     def GetTableViewModel(self):
         """model = QStandardItemModel()
