@@ -7,6 +7,7 @@ from gtts import gTTS
 from pygame import mixer
 import os, shutil
 import  datetime, time
+from modules.bot.BotDialogModule import BotDialog
 
 class MainBot:
     def __init__(self, parent = 0, online=0, voice=0):
@@ -15,7 +16,7 @@ class MainBot:
         self.ReConnectToDB()
         self.SaveMessage = str() # сообщение, отсутствующее в базе
         self.previousMessage = [str(),0] # Предыдущий ответ бота и его id
-        self.UserGroup = 1
+        self.UserGroup = 4
         self._mp3_nameold = 'file'
         self.audioDir=os.path.abspath(os.curdir)+'\\audio\\'
         if os.path.exists(self.audioDir):
@@ -36,39 +37,16 @@ class MainBot:
         return ['Здравствуйте!\nЯ ваш персональный помощник.\nРад буду ответить на ваши вопросы.', 0,0]
 
     def GetAnswer(self, text):
-        if (not len(self.SaveMessage)): # Если сообщение отсутствующее в базе пустое
-            id = self.tabQ.FindQuestionID(text) # ищем максимально похожий вопрос в базе
-            if (id):
-                # Если вопрос найден, то получаем ответ на него из базы
-                data = DataBaseModule.GetData(
-                    "SELECT answertab.answer, dlgtab.idAction, dlgtab.idA "+
-                    "FROM botdb.answertab INNER JOIN (botdb.actiontab INNER JOIN botdb.dlgtab "+
-                    "ON actiontab.id = dlgtab.idAction) ON answertab.id = dlgtab.idA "+
-                    "WHERE dlgtab.idQ ='"+str(id)+"';"
-                )
-                return [data[0]['answer'], data[0]['idA'], data[0]['idAction']]
-            else:
-                #Иначе запоминаем сообщение и просим его сохранить в базу
-                self.SaveMessage = text
-                return ["Не понимаю...\nМне запомнить ответ на этот вопрос?", 0,0]
-        else:
-            if 'ДА' in text.upper():
-                #Если пользователь соглашается добавить диалог, то открываем форму
-                self.EditDlgForm = EditDlgForm(0,self.SaveMessage)
-                self.EditDlgForm.show()
-                self.SaveMessage = str()
-                return ['Хорошо, отрываю форму добавления диалога.', 0,0]
-            else:
-                # Иначе игнорируем и стираем вопрос из памяти
-                self.SaveMessage = str()
-                return ['Вы отказались от добавления диалога.', 0,0]
+        dlg = BotDialog(idGroup=self.UserGroup)
+        return dlg.GetAnswer(text)
+
 
     def ReceiveMessage(self, text):
         self.previousMessage = self.GetAnswer(text)
         if(self.Voice):
-            self.__Say(self.previousMessage[0])
-        self.__ExecuteAction(self.previousMessage[2])
-        return self.previousMessage[0]
+            self.__Say(self.previousMessage)
+        #self.__ExecuteAction(self.previousMessage[2])
+        return self.previousMessage
 
     def __Say(self, phrase):
         # Функция произносит вслух фразу

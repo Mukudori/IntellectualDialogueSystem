@@ -67,3 +67,12 @@ class AnswerTable:
         )
 
         return (data[0]['ans'], data[0]['act'])
+
+    def GetAnswerDictFromContextID(self, idContext):
+        data = DataBaseModule.GetData(
+            """
+            SELECT answer 
+            FROM botdb.answertab 
+            WHERE idContext = '"""+str(idContext)+"';"
+        )
+        return data

@@ -187,6 +187,40 @@ class ContextTable:
             WHERE id ='"""+str(id)+"';"
         )
 
+    def GetIDDictFromLevel(self, level):
+        data = DataBaseModule.GetData("""SELECT id, level FROM contexttab 
+        WHERE level = '"""+str(level)+"';")
+        return data
+
+    def GetQuestionDictFromContextID(self,idContext, idGroup):
+        groupDict = DataBaseModule.GetData(
+            """
+            SELECT usergrouptab.id as 'idGroup' FROM botdb.usergrouptab INNER JOIN 
+            (botdb.contexttab INNER JOIN botdb.accesstab ON contexttab.id = accesstab.idContext )
+            ON usergrouptab.id = accesstab.idGroup 
+            WHERE contexttab.id = '"""+str(idContext)+"';"
+        )
+
+        if {'idGroup': idGroup} in groupDict:
+            data = DataBaseModule.GetData(
+                """
+                SELECT questiontab.id as 'idQ', questiontab.question as 'question', 
+                contexttab.id as 'idC', contexttab.level as 'level' 
+                FROM botdb.questiontab INNER JOIN botdb.contexttab 
+                ON questiontab.idContext = contexttab.id 
+                WHERE contexttab.id='"""+str(idContext)+"';"
+            )
+            return data
+
+    def GetChildContextIDList(self, idContext):
+        data = DataBaseModule.GetData(
+            """
+            SELECT id FROM botdb.contexttab 
+            WHERE idParent = '"""+str(idContext)+"';"
+        )
+        return data
+
+
 
 
 
