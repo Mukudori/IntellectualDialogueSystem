@@ -3,6 +3,7 @@ from modules.database.ActionTableModule import ActionTable
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
 
+
 class AnswerTable:
 
     def __init__(self):
@@ -30,10 +31,10 @@ class AnswerTable:
                                                    ['id', 'answer', 'idAction'],
                                                    ['id', 'Ответ', 'Действие'])
 
-    def InsertRecord(self,answer,idContext):
+    def InsertRecord(self,answer,idContext, idAction):
         currentid = DataBaseModule.ExecuteSQL(
-                "INSERT INTO answertab (answer, idContext) "+
-                "VALUES('" + answer +"','"+str(idContext)+"');" )
+                "INSERT INTO answertab (answer, idContext, idAction) "+
+                "VALUES('" + answer +"','"+str(idContext)+"', idAction='"+str(idAction)+"');" )
         return currentid
 
     def UpdateRecord(self,id,answer):
@@ -61,7 +62,7 @@ class AnswerTable:
     def GetAnswerAndActionFromAnswerID(self, id):
         data = DataBaseModule.GetData(
             """
-            SELECT answertab.answer as 'ans', actiontab.action as 'act' 
+            SELECT answertab.answer as 'ans', actiontab.action as 'act', actiontab.id as 'idAction' 
             FROM botdb.answertab INNER JOIN botdb.actiontab ON answertab.idAction = actiontab.id 
             WHERE answertab.id = '""" + str(id)+"';"
         )
@@ -71,7 +72,7 @@ class AnswerTable:
     def GetAnswerDictFromContextID(self, idContext):
         data = DataBaseModule.GetData(
             """
-            SELECT answer 
+            SELECT answer, idAction
             FROM botdb.answertab 
             WHERE idContext = '"""+str(idContext)+"';"
         )

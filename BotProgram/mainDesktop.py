@@ -53,6 +53,7 @@ class MainWindow(QMainWindow):
         self.SendMessage('<font color=green size=4><b>Бот</b></font>', BotMessage, self.PathBotPic)
         #potok.start()
         self.leMessage.setText('')
+        self.chatWidget.scrollToBottom()
         self.leMessage.setFocus()
 
     def SendMessage(self, author, text, imgPath):

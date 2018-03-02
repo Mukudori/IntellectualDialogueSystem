@@ -19,6 +19,7 @@ class MainBot:
         self.UserGroup = 4
         self._mp3_nameold = 'file'
         self.audioDir=os.path.abspath(os.curdir)+'\\audio\\'
+        self.DialogModule = BotDialog(idGroup=self.UserGroup)
         if os.path.exists(self.audioDir):
             self.__DelAllAudioFiles() # Чистит папку audio, если она есть
 
@@ -37,9 +38,8 @@ class MainBot:
         return ['Здравствуйте!\nЯ ваш персональный помощник.\nРад буду ответить на ваши вопросы.', 0,0]
 
     def GetAnswer(self, text):
-        dlg = BotDialog(idGroup=self.UserGroup)
-        return dlg.GetAnswer(text)
 
+        return self.DialogModule.GetAnswer(text)
 
     def ReceiveMessage(self, text):
         self.previousMessage = self.GetAnswer(text)

@@ -2,6 +2,10 @@ from modules.database.ContextTableModule import ContextTable
 from modules import StringFunctionsModule
 from modules.database.AnswerTableModule import AnswerTable
 import random
+from modules.database.ActionTableModule import ActionTable
+from modules.bot.scrypts import ExecuteScryptsModule
+from modules.bot.scrypts import *
+
 
 
 
@@ -11,6 +15,7 @@ class BotDialog:
         self.idGroup = idGroup
         self.CurrentContextLevel = 0
         self.CurrentContextID = 0
+        self.FindedContext = False
 
     def FuncCoefError(self, check, lenText, lenQ):
         if lenText and lenQ:
@@ -42,42 +47,99 @@ class BotDialog:
         return [0,0]
 
     def GetQuestionID(self, question):
-        idQ = 0
-        errorQ = 0
+        idQ = 0 #id вопроса с минимальной ошибкой
+        errorQ = 0 # значение минимальной ошибки
 
-        if self.CurrentContextLevel:
-            contextDict = self.conTab.GetChildContextIDList(self.CurrentContextID)
+        #Проверка предыдущего контекста
+        contextIDTup = ({'id' : 0 , 'level' : 0, 'idParent' : 0},) #инициализация кортежа словарей
+        if self.CurrentContextID and self.CurrentContextLevel:
+            #Верхний уровень
+            """ Если уровень 1, то грузим весь верхний уровень,
+            иначе только родительский уровень текущего контекста"""
+            if self.CurrentContextLevel == 1:
+                parentTup = self.conTab.GetIDDictFromLevel(0, self.idGroup)
+            else:
+                parentTup = self.conTab.GetIDParent(self.CurrentContextID, self.idGroup)
+
+
+            if parentTup:
+                contextIDTup+=parentTup
+            #Средний уровень
+            currentParent = self.conTab.GetIDParent(self.CurrentContextID, self.idGroup)
+            broTup = self.conTab.GetChildContextIDList(currentParent[0]['id'], self.idGroup)
+
+            if broTup:
+                contextIDTup+=broTup
+
+            #Нижний уровень
+            childTup = self.conTab.GetChildContextIDList(self.CurrentContextID, self.idGroup)
+
+            if childTup:
+                contextIDTup+=childTup
+
         else:
-            contextDict = self.conTab.GetIDDictFromLevel(0)
+            contextIDTup = self.conTab.GetIDDictFromLevel(0, self.idGroup)
+            self.CurrentContextLevel = 0
+            childTup = self.conTab.GetChildContextIDList(self.CurrentContextID, self.idGroup)
 
-        for idContext in contextDict:
+            if childTup:
+                contextIDTup += childTup
+
+        #Проходим по контекстам и ищем совпадения в их вопросах
+        for idContext in contextIDTup:
+
             idq, er = self.FindQuestionInContext(idContext=idContext['id'], question=question)
             if er > errorQ:
                 errorQ = er
                 idQ = idq
                 self.CurrentContextID = idContext['id']
-            childContextDict = self.conTab.GetChildContextIDList(idContext['id'])
-            for idChildContext in childContextDict:
-                idq, er = self.FindQuestionInContext(idContext=idChildContext['id'], question=question)
+                self.CurrentContextLevel = idContext['level']
+            if idContext['idParent']:
+                idq, er = self.FindQuestionInContext(idContext=idContext['idParent'], question=question)
                 if er > errorQ:
                     errorQ = er
                     idQ = idq
-                    self.CurrentContextID = idChildContext['id']
+                    self.CurrentContextID = idContext['id']
+                    self.CurrentContextLevel = idContext['level']
+
+
         return idQ
 
-
     def GetAnswer(self, question):
-        idQ = self.GetQuestionID(question)
-        if idQ:
-            answerTup = random.choice(AnswerTable().GetAnswerDictFromContextID(self.CurrentContextID))
-            return answerTup['answer']
-        else:
-            return random.choice(
+        """Ищем пока не нактнемся на вопрос в рамках текущей ветви контестов
+        Или пока не пройдемся по всем доступным вопросам ветви"""
+        while True:
+            idQ = self.GetQuestionID(question)
+            if idQ:
+                answerTup = random.choice(AnswerTable().GetAnswerDictFromContextID(self.CurrentContextID))
+
+                answer = answerTup['answer']+self.CheckAction(answerTup['idAction'])
+                return answer
+            elif self.CurrentContextLevel:
+                curCon = self.conTab.GetIDParent(self.CurrentContextID, self.idGroup)[0]
+                self.CurrentContextID = curCon['id']
+                self.CurrentContextLevel = curCon['level']
+            else:
+                break
+
+
+        return random.choice(
                 [
                     'Я вас не понимаю.',
-                    'Неизсевстная команда'
+                    'Неизвестная команда.'
                 ]
             )
+
+    def CheckAction(self, idAction):
+        actionRec = ActionTable().CheckScryptFromIDAction(idAction)
+        if actionRec:
+            print()#[str(actionRec)].GetAnswer()
+            return '\n\n'+ExecuteScryptsModule.GetAnswer('id_'+str(idAction))
+        return str()
+
+
+
+
 
 
 

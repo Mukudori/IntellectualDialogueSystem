@@ -40,7 +40,8 @@ class ContextTable:
             model.setItem(i, 3, item)"""
         sql = 'SELECT * FROM contexttab'
 
-        return DataBaseModule.CreateTableViewModel(sql, ['id', 'header', 'idParent', 'level'], ['id', 'Заголовок контекста', 'id Родителя', 'Уровень'])
+        model = DataBaseModule.CreateTableViewModel(sql, ['id', 'header', 'idParent', 'level'], ['id', 'Заголовок контекста', 'id Родителя', 'Уровень'])
+        return model
 
     def GetStrFromID(self, id):
         self.__RefreshTable()
@@ -81,6 +82,7 @@ class ContextTable:
             ON contexttab.id = answertab.idContext) ON actiontab.id = answertab.idAction
             WHERE contexttab.id = '"""+ str(idCon)+"';"
             colAction = DataBaseModule.GetData(sql)
+
         else:
             header = ['id', header]
 
@@ -146,7 +148,8 @@ class ContextTable:
         INNER JOIN botdb.contexttab ON accesstab.idContext = contexttab.id)
         ON usergrouptab.id = accesstab.idGroup 
         WHERE contexttab.id='"""+str(id)+"';"
-        return DataBaseModule.CreateTableViewModel(sql, ['id', 'nameGroup'], ['id', 'Группа'])
+        model = DataBaseModule.CreateTableViewModel(sql, ['id', 'nameGroup'], ['id', 'Группа'])
+        return model
 
     def InsertRecord(self, header, idParent, level):
        id = DataBaseModule.ExecuteSQL("""
@@ -177,9 +180,6 @@ class ContextTable:
         for idCon in idConList:
             self._DeleteRecordFromID(idCon)
 
-
-
-
     def UpdateRecord(self, id, header):
         DataBaseModule.ExecuteSQL(
             """UPDATE contexttab 
@@ -187,13 +187,21 @@ class ContextTable:
             WHERE id ='"""+str(id)+"';"
         )
 
-    def GetIDDictFromLevel(self, level):
-        data = DataBaseModule.GetData("""SELECT id, level FROM contexttab 
+    def GetIDDictFromLevel(self, level, idGroup):
+        data = DataBaseModule.GetData("""SELECT id, level, idParent FROM contexttab 
         WHERE level = '"""+str(level)+"';")
-        return data
 
-    def GetQuestionDictFromContextID(self,idContext, idGroup):
-        groupDict = DataBaseModule.GetData(
+
+        retData =  ({'id' : 0, 'level': 0, 'idParent' : 0}, )
+        for rec in data:
+            if {'idGroup': idGroup} in  self.GetGroupDict(rec['id']):
+                retData+=(rec,)
+
+
+        return retData
+
+    def GetGroupDict(self, idContext):
+        data = DataBaseModule.GetData(
             """
             SELECT usergrouptab.id as 'idGroup' FROM botdb.usergrouptab INNER JOIN 
             (botdb.contexttab INNER JOIN botdb.accesstab ON contexttab.id = accesstab.idContext )
@@ -201,27 +209,67 @@ class ContextTable:
             WHERE contexttab.id = '"""+str(idContext)+"';"
         )
 
+        return self.ConvertData(data)
+
+    def GetQuestionDictFromContextID(self,idContext, idGroup):
+        groupDict = self.GetGroupDict(idContext)
+
         if {'idGroup': idGroup} in groupDict:
             data = DataBaseModule.GetData(
                 """
                 SELECT questiontab.id as 'idQ', questiontab.question as 'question', 
-                contexttab.id as 'idC', contexttab.level as 'level' 
+                contexttab.id as 'idC', contexttab.level as 'level', contexttab.idParent as 'idParent' 
                 FROM botdb.questiontab INNER JOIN botdb.contexttab 
                 ON questiontab.idContext = contexttab.id 
                 WHERE contexttab.id='"""+str(idContext)+"';"
             )
-            return data
+            return self.ConvertData(data)
 
-    def GetChildContextIDList(self, idContext):
+    def GetChildContextIDList(self, idContext,idGroup):
+        groupDict = self.GetGroupDict(idContext)
+
+        if {'idGroup': idGroup} in groupDict:
+            data = DataBaseModule.GetData(
+                """
+                SELECT id, level, idParent FROM botdb.contexttab 
+                WHERE idParent = '"""+str(idContext)+"';"
+            )
+            return self.ConvertData(data)
+
+    def GetRecordFromID(self, idContext):
         data = DataBaseModule.GetData(
             """
-            SELECT id FROM botdb.contexttab 
-            WHERE idParent = '"""+str(idContext)+"';"
+            SELECT id, level, idParent FROM botdb.contexttab 
+            WHERE id = '""" + str(idContext) + "';"
         )
-        return data
+        return self.ConvertData(data)
 
+    def GetIDParent(self, idContext, idGroup):
+        child = self.GetRecordFromID(idContext)
+        groupDict = self.GetGroupDict(child[0]['idParent'])
+        data =0
+        if {'idGroup': idGroup} in groupDict:
+            data = self.GetRecordFromID(child[0]['idParent'])
+        if data:
+            return self.ConvertData(data)
+        else:
+            return self.ConvertData({'id' : 0, 'level' : 0, 'idParent' : 0})
 
+    def GetParentParentChildContextIDList(self, idContext, idGroup):
+        parentid = self.GetIDParent(idContext, idGroup)
+        parentid = self.GetIDParent(parentid[0]['id'], idGroup)
+        groupDict = self.GetGroupDict(parentid[0]['id'])
+        if {'idGroup': idGroup} in groupDict:
+            if parentid[0]['level']:
+                return self.GetChildContextIDList(parentid[0]['id'], idGroup)
+            else:
+                return self.GetIDDictFromLevel(0,idGroup)
 
+    def ConvertData(self, data):
+        if type(data) == type(tuple()):
+            return data
+        else:
+            return (data,)
 
 
 

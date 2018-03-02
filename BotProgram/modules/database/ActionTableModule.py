@@ -50,17 +50,37 @@ class ActionTable:
 
         return model
 
-    def InsertRecord(self, action, comands, note):
+    def InsertRecord(self, action, note, scrypt = 0):
+        if scrypt:
+            check =1
+        else:
+            check = 0
+
         currentid = DataBaseModule.ExecuteSQL('''
-            INSERT INTO actiontab (action,command,note) 
-            VALUES (\'''' + action+"','"+comands+"','"+note+"');")
+            INSERT INTO actiontab (action,note,scrypt) 
+            VALUES (\'''' + action+"','"+note+"','"+str(check)+"');")
+        """if scrypt:
+            f  = open('//modules//bot//scrypts//'+str(currentid)+'.py', 'tw', encoding='utf-8')
+            f.write(scrypt)
+            f.close()"""
+
         return currentid
 
-    def UpdateRecord(self,id,action, comands, note):
+    def UpdateRecord(self,id,action, note, scrypt =0):
+        if scrypt:
+            check =1
+        else:
+            check = 0
+
         DataBaseModule.ExecuteSQL('''
         UPDATE actiontab 
-        SET action=\''''+action+"', command='"+comands+"', note='"+note+"'"
-       +"WHERE id='"+str(id)+"';")
+        SET action=\''''+action+"', note='"+note+"', scrypt ='"+str(check)+"' "+
+        "WHERE id='"+str(id)+"';" )
+
+        """ if scrypt:
+            f  = open('modules\\bot\\scrypts\\'+str(id)+'.py', 'tw', encoding='utf-8')
+            f.write(scrypt)
+            f.close()"""
 
     def DeleteRecord(self, id):
         DataBaseModule.ExecuteSQL(
@@ -83,6 +103,14 @@ class ActionTable:
     def GetStringAndIDList(self):
         self.__RefreshTable()
         return [[rec['id'], rec['action']] for rec in self.__Table]
+
+    def CheckScryptFromIDAction(self, idAction):
+        data = DataBaseModule.GetData(
+            """
+            SELECT scrypt FROM botdb.actiontab 
+            WHERE id = '"""+str(idAction)+"';"
+        )
+        return data[0]['scrypt']
 
 
 

@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/modules" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/modules/bot" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/modules/bot/scrypts" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.5.2 (D:\Program files\Python3.5.2\pythonw.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

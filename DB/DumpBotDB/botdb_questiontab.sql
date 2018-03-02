@@ -27,7 +27,7 @@ CREATE TABLE `questiontab` (
   `question` varchar(255) DEFAULT NULL,
   `idContext` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `questiontab` (
 
 LOCK TABLES `questiontab` WRITE;
 /*!40000 ALTER TABLE `questiontab` DISABLE KEYS */;
-INSERT INTO `questiontab` VALUES (1,'ПРИВЕТ',1),(2,'ДОБРЫЙ ДЕНЬ',1),(3,'ДОБРЫЙ ВЕЧЕР',1);
+INSERT INTO `questiontab` VALUES (18,'Привет',10),(19,'Здравствуй',10),(20,'Как дела',11),(21,'Че как',11),(22,'Что делаешь',12),(23,'Сколько время',13),(25,'Тест',14),(26,'Проверка',15);
 /*!40000 ALTER TABLE `questiontab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-18 16:08:39
+-- Dump completed on 2018-03-02 23:34:55

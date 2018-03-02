@@ -104,7 +104,7 @@ class AddAnswerDlg(AddQuestionDlg):
                 break
         if idA:
             if not self.IDRecord:
-                idA =AnswerTable().InsertRecord(self.le.text(),self.IDC)
+                idA =AnswerTable().InsertRecord(self.le.text(),self.IDC, idA)
                 i = self.Model.rowCount()
                 self.Model.setItem(i, 2, QStandardItem(text))
                 self.Model.setItem(i, 1, QStandardItem(self.le.text()))
@@ -204,7 +204,7 @@ class EditContextForm(QWidget):
 
 
     def __initEdit(self, id):
-        self.Rec = self.table.GetRecordFromID(id)
+        self.Rec = self.table.GetRecordFromID(id)[0]
         self.leHeader.setText(self.table.GetStrFromID(id))
         self.modelQ= self.table.GetQuestionsModelFromContextID(id)
         self.tvQ.setModel(self.modelQ)
@@ -217,6 +217,7 @@ class EditContextForm(QWidget):
             self.leParentContext.setText(self.table.GetStrFromID(self.Rec['idParent']))
         else:
             self.leParentContext.setText("Отсутствует")
+        self.ParentLevel = self.Rec['level']
 
     def AddQuestion(self):
         self.qdlg = AddQuestionDlg(self.tvQ,self.modelQ, self.ID)

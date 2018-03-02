@@ -26,10 +26,9 @@ CREATE TABLE `contexttab` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `header` varchar(45) NOT NULL,
   `idParent` int(11) DEFAULT '0',
-  `idGroupStr` varchar(20) DEFAULT '*',
   `level` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +37,7 @@ CREATE TABLE `contexttab` (
 
 LOCK TABLES `contexttab` WRITE;
 /*!40000 ALTER TABLE `contexttab` DISABLE KEYS */;
-INSERT INTO `contexttab` VALUES (1,'Обычное приветствие',0,'*',0);
+INSERT INTO `contexttab` VALUES (10,'Приветствие',0,0),(11,'Приветствие >> Как дела',10,1),(12,'Приветствие >> Как дела >> Что делаешь',11,2),(13,'Запрос текущего времени',0,0),(14,'Тест',0,0),(15,'Проверочный контекст',0,0);
 /*!40000 ALTER TABLE `contexttab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-18 16:08:39
+-- Dump completed on 2018-03-02 23:34:55
