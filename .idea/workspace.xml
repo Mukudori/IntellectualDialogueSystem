@@ -4,69 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/modules/StringFunctionsModule.py" line="25" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c96dad87-938e-4e49-95d8-030c98ad80d2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/BotProgram/.idea/BotProgram.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/.idea/misc.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/.idea/workspace.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/installs.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/mainDesktop.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/mainTelegram.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/DataBaseForm.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/EditActionForm.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/EditContextModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/EditUserGroupForm.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/MessageWidgetModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/ObjectMethodsModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/SQLForm.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/SettingFormModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/StringFunctionsModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/BotDialogModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/MainBotModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/TelegramBot.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/config.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/newbot.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/scrypts/ExecuteScryptsModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/scrypts/id_4.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/scrypts/id_5.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/bot/scrypts/id_6.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/AccessTableModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/ActionTableModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/AnswerTableModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/ContextTableModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/DataBaseModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/MainTableModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/QuestionTableModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/UserGroupModule.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/database/mysql.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/support.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/ui/ContextEditForm.ui" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/ui/DataBaseForm.ui" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/ui/EditActionDialog.ui" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/ui/EditActionForm.ui" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/ui/EditDlgForm.ui" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/ui/addworddialog.ui" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/modules/ui/mainwindow.ui" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/Add.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/Databaseicon.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/Del.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/Edit.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/Microphone-icon.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/SettingDatabaseicon.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/admin.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/bot.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/dbrefresh.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/mysql.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/refresh.ico" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/refresh.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/save.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/sql.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/starttele.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/stoptele.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/pics/support.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/runDesktop.bat" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BotProgram/runTeleBot.bat" afterPath="" />
-    </list>
+    <list default="true" id="c96dad87-938e-4e49-95d8-030c98ad80d2" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/modules/EditContextModule.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
-              <caret line="171" column="32" lean-forward="true" selection-start-line="171" selection-start-column="32" selection-end-line="172" selection-end-column="20" />
+              <caret line="171" column="32" lean-forward="false" selection-start-line="171" selection-start-column="32" selection-end-line="172" selection-end-column="20" />
               <folding>
                 <element signature="e#24#45#0" expanded="true" />
               </folding>
@@ -156,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/modules/bot/scrypts/id_6.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -214,8 +152,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="113" />
-    <option name="y" value="61" />
+    <option name="x" value="265" />
+    <option name="y" value="70" />
     <option name="width" value="1081" />
     <option name="height" value="961" />
   </component>
@@ -330,7 +268,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="113" y="61" width="1081" height="961" extended-state="0" />
+    <frame x="265" y="70" width="1081" height="961" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24976873" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -460,7 +398,7 @@
         <state relative-caret-position="91">
           <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding>
-            <element signature="e#24#67#0" expanded="true" />
+            <element signature="e#24#67#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -492,7 +430,7 @@
     <entry file="file://$PROJECT_DIR$/modules/EditContextModule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
-          <caret line="171" column="32" lean-forward="true" selection-start-line="171" selection-start-column="32" selection-end-line="172" selection-end-column="20" />
+          <caret line="171" column="32" lean-forward="false" selection-start-line="171" selection-start-column="32" selection-end-line="172" selection-end-column="20" />
           <folding>
             <element signature="e#24#45#0" expanded="true" />
           </folding>
@@ -570,7 +508,7 @@
     <entry file="file://$PROJECT_DIR$/modules/bot/scrypts/id_6.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
           <folding />
         </state>
       </provider>
