@@ -1,2 +1,0 @@
-
-python mainTelegram.py

@@ -1,2 +1,0 @@
-def GetAnswer():
-	return 'тест'
