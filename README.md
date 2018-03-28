@@ -5,13 +5,21 @@
 Python 3.6.4 Anaconda 3
 
 pip 9.0.1
+
 tensorflow 1.0 (!!!)
+
 tensorflow-gpu 1.0 (!!!)
+
 tflearn 0.3.1 (!!!)
+
 cuda 8 (!!!)
+
 qt 5.6.2
+
 conda 4.5.0
+
 telebot 0.0.3
+
 mysql-python 1.2.5
 
 
