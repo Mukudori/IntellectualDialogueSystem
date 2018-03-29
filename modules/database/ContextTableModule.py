@@ -193,10 +193,11 @@ class ContextTable:
         WHERE level = '"""+str(level)+"';")
 
 
-        retData =  ({'id' : 0, 'level': 0, 'idParent' : 0}, )
+        retData =  [{'id' : 0, 'level': 0, 'idParent' : 0}, ]
         for rec in data:
-            if {'idGroup': idGroup} in  self.GetGroupDict(rec['id']):
-                retData+=(rec,)
+            l = self.GetGroupDict(rec['id'])
+            if {'idGroup': idGroup} in  l:
+                retData.append(rec)
 
 
         return retData
@@ -270,7 +271,10 @@ class ContextTable:
         if type(data) == type(tuple()):
             return data
         else:
-            return (data,)
+            if type(list()) == type(data):
+                return data
+            else:
+                return [data,]
 
 
 

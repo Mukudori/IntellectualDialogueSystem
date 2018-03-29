@@ -37,7 +37,7 @@ class BotDialog:
                 id=0
                 lenQ=0
                 for word in WordList:
-                    w=row['question'].upper().decode('UTF-8')
+                    w=row['question'].upper()
 
                     if word in w.upper():
                         check+=1
@@ -55,7 +55,7 @@ class BotDialog:
         errorQ = 0 # значение минимальной ошибки
 
         #Проверка предыдущего контекста
-        contextIDTup = ({'id' : 0 , 'level' : 0, 'idParent' : 0},) #инициализация кортежа словарей
+        contextIDTup = [{'id' : 0 , 'level' : 0, 'idParent' : 0},] #инициализация кортежа словарей
         if self.CurrentContextID and self.CurrentContextLevel:
             #Верхний уровень
             """ Если уровень 1, то грузим весь верхний уровень,
@@ -67,6 +67,7 @@ class BotDialog:
 
 
             if parentTup:
+
                 contextIDTup+=parentTup
             #Средний уровень
             currentParent = self.conTab.GetIDParent(self.CurrentContextID, self.idGroup)

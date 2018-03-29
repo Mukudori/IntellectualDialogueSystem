@@ -206,6 +206,8 @@ class EditContextForm(QWidget):
 
     def __initEdit(self, id):
         self.Rec = self.table.GetRecordFromID(id)[0]
+        if type(self.Rec) == type(list()):
+            self.Rec = self.Rec[0]
         self.leHeader.setText(self.table.GetStrFromID(id))
         self.modelQ= self.table.GetQuestionsModelFromContextID(id)
         self.tvQ.setModel(self.modelQ)

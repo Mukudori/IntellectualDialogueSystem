@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtWidgets import QWidget, QMainWindow, QAction, QMenu
 from PyQt5 import uic, QtCore
-from modules.database import DataBaseModule
+#from modules.database import DataBaseModule
 #from modules.EditDlgForm import EditDlgForm
 from modules.database.ActionTableModule import ActionTable
 
