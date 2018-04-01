@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from six.moves import xrange  # pylint: disable=redefined-builtin
 from datetime import datetime
-from lib import seq2seq_model_utils, data_utils
+from ai_subsystem.lib import seq2seq_model_utils, data_utils
 
 
 def setup_workpath(workspace):

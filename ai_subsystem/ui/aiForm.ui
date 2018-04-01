@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Редактор нейросетй</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="act_Add"/>
+   <addaction name="act_Activate"/>
+   <addaction name="act_Refresh"/>
+   <addaction name="act_del"/>
+  </widget>
+  <action name="act_Add">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/modelAdd.png</normaloff>../../pics/modelAdd.png</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить модель</string>
+   </property>
+   <property name="toolTip">
+    <string>Добавить модель</string>
+   </property>
+  </action>
+  <action name="act_del">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/modelDel.png</normaloff>../../pics/modelDel.png</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить модель</string>
+   </property>
+   <property name="toolTip">
+    <string>Удалить модель</string>
+   </property>
+  </action>
+  <action name="act_Activate">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/modelActivate.png</normaloff>../../pics/modelActivate.png</iconset>
+   </property>
+   <property name="text">
+    <string>Активировать модель</string>
+   </property>
+   <property name="toolTip">
+    <string>Активировать модель</string>
+   </property>
+  </action>
+  <action name="act_Refresh">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/modelRefresh.png</normaloff>../../pics/modelRefresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>Переобучение модели</string>
+   </property>
+   <property name="toolTip">
+    <string>Переобучение модели</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

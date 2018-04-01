@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>371</width>
+    <height>303</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Обучение Нейросети</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTableView" name="tableView"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="act_Add"/>
+   <addaction name="act_Del"/>
+   <addaction name="act_Start"/>
+  </widget>
+  <action name="act_Add">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/Add_Dialogs.png</normaloff>../../pics/Add_Dialogs.png</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить диалоги</string>
+   </property>
+   <property name="toolTip">
+    <string>Добавить диалоги</string>
+   </property>
+  </action>
+  <action name="act_Del">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/Delete_dialog.png</normaloff>../../pics/Delete_dialog.png</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить диалоги</string>
+   </property>
+   <property name="toolTip">
+    <string>Удалить диалоги</string>
+   </property>
+  </action>
+  <action name="act_Start">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/modelActivate.png</normaloff>../../pics/modelActivate.png</iconset>
+   </property>
+   <property name="text">
+    <string>Начать обучение</string>
+   </property>
+   <property name="toolTip">
+    <string>Начать обучение</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

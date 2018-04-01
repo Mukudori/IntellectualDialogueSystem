@@ -1,20 +1,25 @@
 import sys
 from PyQt5.QtWidgets import (QMainWindow, QTextEdit,
-    QAction, QFileDialog, QApplication)
-from PyQt5.QtGui import QIcon
+    QAction, QFileDialog, QApplication, QMessageBox)
+from PyQt5.QtGui import QIcon, QStandardItem
 import chardet
 from copy import copy
 import os
 import gzip
-from ai_subsystem.subParser import ParseForm
 
 
-class Example(QMainWindow):
+class ParseForm(QMainWindow):
 
-    def __init__(self):
+    def __init__(self, parent=0):
         super().__init__()
 
         self.initUI()
+
+        if parent:
+            self.Model = parent.Model
+        else:
+            self.Model = 0
+
 
 
     def initUI(self):
@@ -34,11 +39,14 @@ class Example(QMainWindow):
         convertText=QAction(QIcon('open.png'), 'Вернуть первоначальный вид', self)
         convertText.triggered.connect(self.backStartText)
 
-        parseText = QAction(QIcon('open.png'), 'Отфильтровать субтитры', self)
+        parseText = QAction(QIcon('open.png'), 'Отфильтровать субтитры и привести в нужный формат', self)
         parseText.triggered.connect(self.parse)
 
         delDub = QAction(QIcon('open.png'), 'Убрать дублирование', self)
         delDub.triggered.connect(self.deleteDublicates)
+
+        Add = QAction(QIcon('open.png'), 'Добавить диалоги в модель', self)
+        Add.triggered.connect(self.AddData)
 
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('&Файл')
@@ -49,6 +57,7 @@ class Example(QMainWindow):
         textMenu.addAction(convertText)
         textMenu.addAction(parseText)
         textMenu.addAction(delDub)
+        textMenu.addAction(Add)
 
 
         self.setGeometry(300, 300, 350, 300)
@@ -106,31 +115,37 @@ class Example(QMainWindow):
             f.write(self.textEdit.toPlainText())
             f.close()
 
-
-
     def backStartText(self):
         self.textEdit.clear()
         self.textEdit.setText(self.Text)
-
 
     def parse(self):
         text = copy(self.Text).split('\r\n')
         self.textEdit.clear()
         i=0
+        j=0
+        line=str()
         while i<len(text):
-            line = str()
+            buf = str()
             f = True
             while f and i<len(text):
                 if len(text[i]) > 1:
                     c = ord(text[i][0])
                     f =(c>1039 and c<1107)
                     if f:
-                        line+=text[i]+' '
+                        buf+=text[i].replace('\n', '')+' '
                         i+=1
                 else:
                     f=False
-            if len(line):
-                self.textEdit.append(line)
+            if len(buf):
+
+                if j==1:
+                    line+=' => '+buf
+                    self.textEdit.append(line)
+                    j=0
+                else:
+                    line=buf
+                    j=1
             i+=1
 
     def deleteDublicates(self):
@@ -140,3 +155,22 @@ class Example(QMainWindow):
         while i<len(textList):
             self.textEdit.append(textList[i])
             i+=2
+
+    def AddData(self):
+        text = self.textEdit.toPlainText().split('\n')
+        try:
+            for line in text:
+                q,a = line.split('=>')
+                item1 = QStandardItem(q)
+                item2 = QStandardItem(a)
+                self.Model.appendRow([item1, item2])
+        except:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Ошибка")
+            msg.setInformativeText("Диалоги имеют не тот формат")
+            msg.setWindowTitle("Ошибка")
+            msg.show()
+
+
+
