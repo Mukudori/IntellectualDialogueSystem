@@ -12,23 +12,25 @@ from ai_subsystem.lib.chat import chat
 
 
 
-def main():
+def main(argv=0):
     #line = '--mode train --model_name name'
     '''sys.argv.append('--mode')
     sys.argv.append('train')
     sys.argv.append('--model_name')
     sys.argv.append('name')'''
+    if argv:
+        sys.argv=argv
 
     args = params_setup()
     print("[args]: ", args)
 
-    '''if args.mode == 'train':
+    if args.mode == 'train':
       train(args)
     elif args.mode == 'test':
       predict(args)
     elif args.mode == 'chat':
       chat(args)
-    '''
+
     # elif args.mode == 'mert':
     #   mert(args)
 

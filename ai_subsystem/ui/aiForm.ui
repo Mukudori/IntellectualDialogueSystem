@@ -41,7 +41,7 @@
    <addaction name="act_Add"/>
    <addaction name="act_Activate"/>
    <addaction name="act_Refresh"/>
-   <addaction name="act_del"/>
+   <addaction name="act_Del"/>
   </widget>
   <action name="act_Add">
    <property name="icon">
@@ -55,7 +55,7 @@
     <string>Добавить модель</string>
    </property>
   </action>
-  <action name="act_del">
+  <action name="act_Del">
    <property name="icon">
     <iconset>
      <normaloff>../../pics/modelDel.png</normaloff>../../pics/modelDel.png</iconset>

@@ -48,9 +48,9 @@ def params_setup(cmdline=None):
   args.buckets = [(5, 10), (10, 15), (20, 25), (40, 50)]
 
   # Пост-процесс
-  args.workspace = '%s/%s' % (args.work_root, args.model_name)
-  args.test_dataset_path = '%s/data/test/test_set.txt' % (args.workspace)
-  args.mert_dataset_path = '%s/data/test/mert_set.txt' % (args.workspace)
+  args.workspace = '%s/%s' % (('ai_subsystem/'+args.work_root), args.model_name)
+  args.test_dataset_path = '%s/ai_subsystem/data/test/test_set.txt' % (args.workspace)
+  args.mert_dataset_path = '%s/ai_subsystem/data/test/mert_set.txt' % (args.workspace)
   args.data_dir = '%s/data' % args.workspace
   args.model_dir = '%s/nn_models' % args.workspace
   args.results_dir = '%s/results' % args.workspace
