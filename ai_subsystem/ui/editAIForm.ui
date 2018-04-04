@@ -31,6 +31,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="act_Add"/>
+   <addaction name="act_Save"/>
    <addaction name="act_Del"/>
    <addaction name="act_Start"/>
   </widget>
@@ -68,6 +69,18 @@
    </property>
    <property name="toolTip">
     <string>Начать обучение</string>
+   </property>
+  </action>
+  <action name="act_Save">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/dialogSave.png</normaloff>../../pics/dialogSave.png</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить диалоги</string>
+   </property>
+   <property name="toolTip">
+    <string>Сохранить диалоги</string>
    </property>
   </action>
  </widget>

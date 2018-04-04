@@ -16,13 +16,13 @@ import gzip
 
 
 class ModelWidget(QWidget):
-  def __init__(self, name, activate = False):
+  def __init__(self, name,parserItems = 0, activate = False):
     super().__init__()
 
     self.labNam =QLabel(name)
     self.labIco = QLabel("<img src=pics/model.png width = 64>")
     if activate:
-      actText = "<font color = 'green'> Активная модель</font>"
+      actText = "<font color = 'blue'> Активная модель</font>"
     else:
       actText = str()
     self.labActivate = QLabel(actText)
@@ -32,7 +32,21 @@ class ModelWidget(QWidget):
     self.hLay.addWidget(self.labNam)
     self.vLay.addLayout(self.hLay)
     self.vLay.addWidget(self.labActivate)
+    self._initParser(parserItems)
     self.setLayout(self.vLay)
+
+
+  def _initParser(self, items):
+    if items:
+      self.labData = QLabel('Дата последнего обучения : '+items[1][1])
+      self.Size = QLabel('Размерность модели : %sx%s' % (items[2][1], items[3][1]))
+      self.vLay.addWidget(self.labData)
+      self.vLay.addWidget(self.Size)
+    else:
+      self.labInfoNotFound  = QLabel('Файл modelinfo.ini поврежден или не найден')
+      self.labInfoNotFound.setWordWrap(True)
+      self.vLay.addWidget(self.labInfoNotFound)
+
 
 class CreateModelForm(QWidget):
   def __init__(self, parent =0):
@@ -119,17 +133,26 @@ class AiMainForm(QMainWindow):
     self.act_Del.triggered.connect(self.runDeleteDialog)
 
   def refreshListWidget(self):
-    parser = ConfigParser()
+    parserActivated = ConfigParser()
     path_model = self.worksdir + 'activated.ini'
-    parser.read(path_model)
-    if parser.has_section('activated-model'):
-      name_activated_model = parser.items('activated-model')[0][1]
+    parserActivated.read(path_model)
+    if parserActivated.has_section('activated-model'):
+      name_activated_model = parserActivated.items('activated-model')[0][1]
     self.namelist = []
     self.listWidget.clear()
     for model in os.listdir(self.worksdir):
       if os.path.isdir(self.worksdir + model):
+        itemsInfo=0
+        try:
+          parserModel = ConfigParser()
+          parserModel.read(self.worksdir + model+'/modelinfo.ini')
+          itemsInfo = parserModel.items('modelinfo')
+        except:
+          print('файл %s/modelinfo.ini поврежден или не найден' % self.worksdir )
+
+
         self.namelist.append(model)
-        mwid = ModelWidget(model, activate=name_activated_model == model)
+        mwid = ModelWidget(model, parserItems=itemsInfo, activate=name_activated_model == model)
         myQListWidgetItem = QListWidgetItem(self.listWidget)
 
         myQListWidgetItem.setSizeHint(mwid.sizeHint())
@@ -139,7 +162,7 @@ class AiMainForm(QMainWindow):
 
 
   def showEditModelForm(self):
-    self.childF = EditModelForm(modelName=self.namelist[self.listWidget.currentRow()])
+    self.childF = EditModelForm(modelName=self.namelist[self.listWidget.currentRow()], parent=self)
     self.childF.show()
 
   def showCreateModelForm(self):

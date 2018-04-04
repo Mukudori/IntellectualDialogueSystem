@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QMainWindow, QLabel, QHBoxLayout, QVBoxLayout,\
-    QListWidgetItem
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
+    QListWidgetItem, QDialog, QPushButton
+from PyQt5.QtGui import QStandardItem, QStandardItemModel, QColor
 from PyQt5 import uic
 import gzip
 import os
@@ -43,15 +43,44 @@ class InputForm(QWidget):
     def AddDialog(self):
         if self.textInput:
             item1 = QStandardItem(self.teQ.toPlainText())
+            item1.setBackground(QColor(200, 100, 100))
             item2 = QStandardItem(self.teA.toPlainText())
+            item2.setBackground(QColor(200, 100, 100))
             self.Model.appendRow([item1, item2])
         else:
             self.parseForm = ParseForm(self.Parent)
             self.parseForm.show()
         self.close()
 
+class StartDialog(QDialog):
+    def __init__(self, parent):
+        super().__init__()
+        self.parent = parent
+        self.label = QLabel('Вы уверены, что хотите начать обучение? \n\n Процесс обучение требует много времени и ресурсов.')
+        self.bY = QPushButton('Да, начать обучение.')
+        self.bN = QPushButton('Нет')
+        self.vLay = QVBoxLayout()
+        self.hLay = QHBoxLayout()
+        self.hLay.addWidget(self.bY)
+        self.hLay.addWidget(self.bN)
+        self.vLay.addWidget(self.label)
+        self.vLay.addLayout(self.hLay)
+        self.setLayout(self.vLay)
+        self.bY.clicked.connect(self.yClick)
+        self.bN.clicked.connect(self.nClick)
+
+    def yClick(self):
+        self.parent.startTrain()
+        self.close()
+
+    def nClick(self):
+
+        self.close()
+
+
 class EditModelForm(QMainWindow):
-    def __init__(self, modelName = 0):
+    def __init__(self, modelName = 0, parent = 0):
+        self.Parent = parent
         self.carDir = os.path.abspath(os.curdir)+'/ai_subsystem/works/'+modelName
         super(EditModelForm,self).__init__()
         uic.loadUi('ai_subsystem/ui/editAIForm.ui',self)
@@ -65,7 +94,9 @@ class EditModelForm(QMainWindow):
         self.AddForm = InputForm(self)
         self.act_Add.triggered.connect(self.add_Click)
         self.act_Del.triggered.connect(self.deleteSelectedRows)
-        self.act_Start.triggered.connect(self.saveAndClose)
+        self.act_Start.triggered.connect(self.saveAndStart)
+        self.act_Save.triggered.connect(self.save)
+
     def openDialogs(self, data_dir):
         f_zip = gzip.open("%s/train/chat.txt.gz" % data_dir, 'r')
         textList =[]
@@ -78,6 +109,7 @@ class EditModelForm(QMainWindow):
         while i < len(textList)-1:
             item1 = QStandardItem(str(textList[i].decode('UTF-8')))
             item2 = QStandardItem(str(textList[i+1].decode('UTF-8')))
+           # item1.setBackground(QColor(0,0,100))
             self.Model.appendRow([item1,item2])
             i+=2
 
@@ -90,9 +122,14 @@ class EditModelForm(QMainWindow):
         for index in sorted(indices):
             self.Model.removeRow(index.row())
 
-    def saveAndClose(self):
-        f_zip = gzip.open("%s/train/chat.txt.gz" % (self.carDir+'/data'), 'w')
+    def saveAndStart(self):
+        self.save()
+        self.startDialog = StartDialog(self)
+        self.startDialog.exec()
 
+    def save(self):
+        f_zip = gzip.open("%s/train/chat.txt.gz" % (self.carDir + '/data'), 'w')
+        f_test = open("%s/test/test_set.txt" % (self.carDir + '/data'), 'w')
         for i in range(self.Model.rowCount()):
 
             for j in range(2):
@@ -100,12 +137,17 @@ class EditModelForm(QMainWindow):
                 if '\n'.encode('UTF-8') not in line:
                     line = (self.Model.item(i, j).text() + '\n').encode('UTF-8')
 
+                if j == 0:
+                    f_test.write(line + '\n')
                 f_zip.write(line)
         f_zip.close()
-#        subprocess.Popen
-        self.startTrain()
+        f_test.close()
+        self.openDialogs(self.carDir + '/data')
 
-        self.close()
+
+
+
+
 
     def startTrain(self):
         path = sys.argv[0]
@@ -115,9 +157,12 @@ class EditModelForm(QMainWindow):
         sys.argv.append('train')
         sys.argv.append('--model_name')
         sys.argv.append(self.ModeName)
+
        # ai.main(args=sys.argv)
 
         threading._start_new_thread(ai.main, (sys.argv,))
+        #self.Parent.close()
+        self.close()
 
 
 

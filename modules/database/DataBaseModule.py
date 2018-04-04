@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import mysql.connector
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
+
 from PyQt5 import QtCore
 from mysql.connector import MySQLConnection, Error
 from configparser import ConfigParser

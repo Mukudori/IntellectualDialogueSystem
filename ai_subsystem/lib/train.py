@@ -28,6 +28,18 @@ def setup_workpath(workspace):
         f_dev.write(line)
         n += 1
 
+def CreateInfoFile(args):
+    f = open(args.workspace+'/modelinfo.ini', 'w')
+
+    f.write('[modelinfo]\n')
+    f.write('model_name = %s\n' % args.model_name)
+    f.write("date_time = %s\n" % datetime.now())
+    f.write('num_layers = %s\n' % args.num_layers)
+    f.write('size = %s\n' % args.size)
+
+
+    f.close()
+
 
 def train(args):
     print("[%s] Подготовка диалогов в %s" % (args.model_name, args.data_dir))
@@ -40,6 +52,7 @@ def train(args):
     gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_usage)
     with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
 
+        CreateInfoFile(args)
         # Создается модель.
         print("Создание %d слоев на %d нейронов." % (args.num_layers, args.size))
         model = seq2seq_model_utils.create_model(sess, args, forward_only=False)
@@ -53,7 +66,7 @@ def train(args):
 
         # Шкала партии представляет собой список увеличивающихся чисел от 0 до 1, которые будут использоваться
         # для выбора партии. Длина [scale[i], scale[i+1]]  пропорциональна
-        # размеру если i-я тренировочная емкость использована позднее.
+        # размеру если i-я тренировочная партия использована позднее.
         train_buckets_scale = [sum(train_bucket_sizes[:i + 1]) / train_total_size
                                for i in xrange(len(train_bucket_sizes))]
 
@@ -94,17 +107,19 @@ def train(args):
           if (current_step % args.steps_per_checkpoint == 0) and (not args.reinforce_learn):
             # Печатается статистика за предыдущую эпоху
             perplexity = math.exp(loss) if loss < 300 else float('inf')
-            print ("Глобальный шаг %d, скорость обучения %.4f шаг времени %.2f perplexity %.2f @ %s" %
+            print ("Пройдено итераций %d, значение допустимой ошибки %.4f, шаг времени %.2f perplexity %.2f @ %s" %
                    (model.global_step.eval(), model.learning_rate.eval(), step_time, perplexity, datetime.now()))
 
             # Уменьшается скорость обучения, если за последние 3 раза не было улучшено.
             if len(previous_losses) > 2 and loss > max(previous_losses[-3:]):
-              sess.run(model.learning_rate_decay_op)
+                sess.run(model.learning_rate_decay_op)
+                print('Уменьшается скорость обучения..')
 
             previous_losses.append(loss)
 
             # # Сохранение контрольной точки, обнуление таймера и потерь
             checkpoint_path = os.path.join(args.model_dir, "model.ckpt")
+            print('Сохранение контрольной точки ...')
             model.saver.save(sess, checkpoint_path, global_step=model.global_step)
             step_time, loss = 0.0, 0.0
 

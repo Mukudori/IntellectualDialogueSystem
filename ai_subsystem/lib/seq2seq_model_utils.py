@@ -15,6 +15,9 @@ from lib import seq2seq_model
 
 import heapq
 
+def CreateFileInfo():
+    pass
+
 def create_model(session, args, forward_only=True):
   """Create translation model and initialize or load parameters in session."""
   model = seq2seq_model.Seq2SeqModel(
@@ -39,9 +42,9 @@ def create_model(session, args, forward_only=True):
   if ckpt and ckpt.model_checkpoint_path:
     print("Чтение параметров модели из %s @ %s" % (ckpt.model_checkpoint_path, datetime.now()))
     model.saver.restore(session, ckpt.model_checkpoint_path)
-    print("Модель перезагружена @ %s" % (datetime.now()))
+    print("Модель загружена @ %s" % (datetime.now()))
   else:
-    print("создание модели со свежими параметрами.")
+    print("создание модели с новыми параметрами.")
     session.run(tf.global_variables_initializer())
   return model
 

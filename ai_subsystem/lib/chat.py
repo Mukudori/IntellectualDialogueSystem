@@ -2,6 +2,7 @@ import os
 import sys
 
 import tensorflow as tf
+from termcolor import colored
 
 from lib import data_utils
 from lib.seq2seq_model_utils import create_model, get_predicted_sentence
@@ -18,20 +19,24 @@ def chat(args):
     vocab, rev_vocab = data_utils.initialize_vocabulary(vocab_path)
 
     # Декодировать из стандартного ввода.
-    sys.stdout.write("> ")
+    print(colored('Чат запущен.\nЧтобы завершить ручное тестирование ввежите "ЗАКОНЧИТЬ ТЕСТ".'))
+    sys.stdout.write(colored("Админ > ", 'green'))
     sys.stdout.flush()
     sentence = sys.stdin.readline()
 
-    while sentence:
-        predicted_sentence = get_predicted_sentence(args, sentence, vocab, rev_vocab, model, sess)
-        # print(predicted_sentence)
-        if isinstance(predicted_sentence, list):
-            for sent in predicted_sentence:
-                print("  (%s) -> %s" % (sent['prob'], sent['dec_inp']))
+    while True:
+        if sentence.upper() == 'ЗАКОНЧИТЬ ТЕСТ':
+            break
         else:
-            print(sentence, ' -> ', predicted_sentence)
-            
-        sys.stdout.write("> ")
-        sys.stdout.flush()
-        sentence = sys.stdin.readline()
+            predicted_sentence = get_predicted_sentence(args, sentence, vocab, rev_vocab, model, sess)
+            # print(predicted_sentence)
+            if isinstance(predicted_sentence, list):
+                for sent in predicted_sentence:
+                    print(colored("Система-> %s", 'blue') % sent['dec_inp'])
+            else:
+                print(sentence, ' -> ', predicted_sentence)
+
+            sys.stdout.write(colored("Админ > ", 'green'))
+            sys.stdout.flush()
+            sentence = sys.stdin.readline()
 

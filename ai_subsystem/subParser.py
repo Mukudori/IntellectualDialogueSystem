@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import (QMainWindow, QTextEdit,
     QAction, QFileDialog, QApplication, QMessageBox)
-from PyQt5.QtGui import QIcon, QStandardItem
+from PyQt5.QtGui import QIcon, QStandardItem,QColor
 import chardet
 from copy import copy
 import os
@@ -162,7 +162,9 @@ class ParseForm(QMainWindow):
             for line in text:
                 q,a = line.split('=>')
                 item1 = QStandardItem(q)
+                item1.setBackground(QColor(200, 100, 100))
                 item2 = QStandardItem(a)
+                item2.setBackground(QColor(200, 100, 100))
                 self.Model.appendRow([item1, item2])
         except:
             msg = QMessageBox()
