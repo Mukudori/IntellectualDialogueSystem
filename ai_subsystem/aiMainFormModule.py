@@ -61,6 +61,7 @@ class CreateModelForm(QWidget):
     self.setLayout(self.lay)
     self.button.clicked.connect(self.CreateWorkspace)
     self.Parent = parent
+    self.setWindowTitle('Создание рабочего пространства модели')
 
   def keyPressEvent(self, event):
     key = event.key()

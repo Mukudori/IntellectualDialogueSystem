@@ -40,6 +40,18 @@ def CreateInfoFile(args):
 
     f.close()
 
+def configDevice(CPU = False):
+    """Принудительное переключение вычислительного устройства"""
+    if not CPU:
+        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_usage)
+        return tf.ConfigProto(gpu_options=gpu_options)
+    else:
+        num_cores = 4
+        config = tf.ConfigProto(intra_op_parallelism_threads=num_cores, \
+                                inter_op_parallelism_threads=num_cores, allow_soft_placement=True, \
+                                device_count={'CPU': 1, 'GPU': 0})
+        return config
+
 
 def train(args):
     print("[%s] Подготовка диалогов в %s" % (args.model_name, args.data_dir))
@@ -49,8 +61,8 @@ def train(args):
     if args.reinforce_learn:
       args.batch_size = 1  # Декодируется одно предложение одновременно.
 
-    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_usage)
-    with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
+
+    with tf.Session(config=configDevice()) as sess:
 
         CreateInfoFile(args)
         # Создается модель.
@@ -130,6 +142,6 @@ def train(args):
                                           target_weights, bucket_id, forward_only=True, force_dec_input=False)
 
               eval_ppx = math.exp(eval_loss) if eval_loss < 300 else float('inf')
-              print("  Оценка : партия %d perplexity %.2f" % (bucket_id, eval_ppx))
+              print("  Оценка : bucket %d perplexity %.2f" % (bucket_id, eval_ppx))
 
             sys.stdout.flush()

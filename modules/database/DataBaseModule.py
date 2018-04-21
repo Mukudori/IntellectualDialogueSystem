@@ -4,13 +4,8 @@ import mysql.connector
 from PyQt5 import QtCore
 from mysql.connector import MySQLConnection, Error
 from configparser import ConfigParser
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
-
-'''
-    В Qt есть встроенные медоды для работы с MySQL и построения моделей таблиц, 
-    но, так как драйвер БД требует плясок с бубном и с разными версиями Python могут возникнуть сложности,
-    я решил не запариваться по этому поводу и строить модели вручную.
-'''
 
 
 def read_db_config(filename='modules//database//mysql.ini', section='mysql'):

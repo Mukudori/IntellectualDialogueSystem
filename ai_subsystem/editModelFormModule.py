@@ -85,10 +85,10 @@ class EditModelForm(QMainWindow):
         super(EditModelForm,self).__init__()
         uic.loadUi('ai_subsystem/ui/editAIForm.ui',self)
         self.Model = QStandardItemModel()
-        self.Model.setHorizontalHeaderLabels(['Вопрос', 'Ответ'])
         if modelName:
             self.setWindowTitle(modelName)
             self.openDialogs(self.carDir+'/data')
+
         self.ModeName = modelName
         self.tableView.setModel(self.Model)
         self.AddForm = InputForm(self)
@@ -98,17 +98,20 @@ class EditModelForm(QMainWindow):
         self.act_Save.triggered.connect(self.save)
 
     def openDialogs(self, data_dir):
+        self.Model.clear()
+        self.Model.setHorizontalHeaderLabels(['Вопрос', 'Ответ'])
         f_zip = gzip.open("%s/train/chat.txt.gz" % data_dir, 'r')
         textList =[]
         for line in f_zip:
-            textList.append(line)
+            lineS = line.decode('UTF-8')
+            textList.append(lineS)
         f_zip.close()
 
         i=0
 
         while i < len(textList)-1:
-            item1 = QStandardItem(str(textList[i].decode('UTF-8')))
-            item2 = QStandardItem(str(textList[i+1].decode('UTF-8')))
+            item1 = QStandardItem(str(textList[i]))
+            item2 = QStandardItem(str(textList[i+1]))
            # item1.setBackground(QColor(0,0,100))
             self.Model.appendRow([item1,item2])
             i+=2
@@ -133,15 +136,18 @@ class EditModelForm(QMainWindow):
         for i in range(self.Model.rowCount()):
 
             for j in range(2):
-                line = (self.Model.item(i, j).text()).encode('UTF-8')
-                if '\n'.encode('UTF-8') not in line:
-                    line = (self.Model.item(i, j).text() + '\n').encode('UTF-8')
+                line = self.Model.item(i, j).text()
+                if '\n' not in line:
+                    line += '\n'
+                else:
+                    line = line.replace('\n', '') + '\n'
 
                 if j == 0:
-                    f_test.write(line + '\n')
-                f_zip.write(line)
+                    f_test.write(line)
+                f_zip.write(line.encode('UTF-8'))
         f_zip.close()
         f_test.close()
+
         self.openDialogs(self.carDir + '/data')
 
 

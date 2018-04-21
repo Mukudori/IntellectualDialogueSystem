@@ -14,7 +14,7 @@
 # limitations under the License.
 # ==============================================================================
 
-"""Utilities for downloading data from WMT, tokenizing, vocabularies."""
+"""Утилиты зля загрузки данных из WMT, токенизация, словари."""
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -26,7 +26,7 @@ from six.moves import urllib
 from tensorflow.python.platform import gfile
 import tensorflow as tf
 
-# Special vocabulary symbols - we always put them at the start.
+# Специальные символы словарей - они всегда ставятся в начале.
 _PAD = b"_PAD"
 _GO = b"_GO"
 _EOS = b"_EOS"
@@ -38,7 +38,7 @@ GO_ID = 1
 EOS_ID = 2
 UNK_ID = 3
 
-# Regular expressions used to tokenize.
+# Регклярные выражения, используемые для токенизации
 #_WORD_SPLIT = re.compile(b"([.,!?\"':;，。！)(])")
 _WORD_SPLIT = re.compile(b"([.,!?\"':;)(])")
 # _DIGIT_RE = re.compile(br"\d{3,}")
@@ -112,7 +112,7 @@ def get_dialog_dev_set_path(path):
 
 
 def basic_tokenizer(sentence, en_jieba=False):
-  """Very basic tokenizer: split the sentence into a list of tokens."""
+  """очень простой токенизатор, разделяет предложение на слова"""
   if en_jieba:
     tokens = list([w.lower() for w in jieba.cut(sentence) if w not in [' ']])
     return tokens
@@ -128,24 +128,24 @@ def basic_tokenizer(sentence, en_jieba=False):
 
 def create_vocabulary(vocabulary_path, data_path, max_vocabulary_size,
                       tokenizer=None, normalize_digits=True):
-  """Create vocabulary file (if it does not exist yet) from data file.
+  """Создание файла словаря(если он не существует) из файла данных.
 
-  Data file is assumed to contain one sentence per line. Each sentence is
-  tokenized and digits are normalized (if normalize_digits is set).
-  Vocabulary contains the most-frequent tokens up to max_vocabulary_size.
-  We write it to vocabulary_path in a one-token-per-line format, so that later
-  token in the first line gets id=0, second line gets id=1, and so on.
+  Предпологается, что файл данных содержит одно предложение на строку.
+  Каждое предложение токинизируется и кодируется числами(если normalize_digits установлено).
+  Словарь содержит наиболее часто используемые токены до max_vocabulary_size.
+  Записываем его в vocabulary_path в формате one-token-per-line, потом
+  токен первой строки получает id=0, второй строки id=1, и так далее.
 
   Args:
-    vocabulary_path: path where the vocabulary will be created.
-    data_path: data file that will be used to create vocabulary.
-    max_vocabulary_size: limit on the size of the created vocabulary.
-    tokenizer: a function to use to tokenize each data sentence;
-      if None, basic_tokenizer will be used.
-    normalize_digits: Boolean; if true, all digits are replaced by 0s.
+    vocabulary_path: путь, где словарь был создан.
+    data_path: путь файла данных, по которому был создан словарь.
+    max_vocabulary_size: ограничение размера создаваемого словаря.
+    tokenizer: функция, используемая для токенизауции предложений.
+      Если None, то будет использовано basic_tokenizer.
+    normalize_digits: Boolean; Если true, все числа заменяюся на 0s.
   """
   if not gfile.Exists(vocabulary_path):
-    print("Creating vocabulary %s from data %s" % (vocabulary_path, data_path))
+    print("Создание словаря %s из даных %s" % (vocabulary_path, data_path))
     vocab = {}
     with gfile.GFile(data_path, mode="rb") as f:
       counter = 0
@@ -175,7 +175,7 @@ def create_vocabulary(vocabulary_path, data_path, max_vocabulary_size,
 
 
 def initialize_vocabulary(vocabulary_path):
-  """Initialize vocabulary from file.
+  """Инициализация словаря из файла.
 
   We assume the vocabulary is stored one-item-per-line, so a file:
     dog
@@ -201,26 +201,26 @@ def initialize_vocabulary(vocabulary_path):
     vocab = dict([(x, y) for (y, x) in enumerate(rev_vocab)])
     return vocab, rev_vocab
   else:
-    raise ValueError("Vocabulary file %s not found.", vocabulary_path)
+    raise ValueError("Файл словаря %s не найден."% vocabulary_path)
 
 
 def sentence_to_token_ids(sentence, vocabulary,
                           tokenizer=None, normalize_digits=True):
-  """Convert a string to list of integers representing token-ids.
+  """Конвертирует строку в список целых token-ids.
 
-  For example, a sentence "I have a dog" may become tokenized into
-  ["I", "have", "a", "dog"] and with vocabulary {"I": 1, "have": 2,
-  "a": 4, "dog": 7"} this function will return [1, 2, 4, 7].
+  Например предложение  "У меня есть собака" может быть  токенизировано в
+  ["У", "меня", "есть", "собака"] and with vocabulary {"У": 1, "меня": 2,
+  "есть": 4, "собака": 7"}, эта функция вернет [1, 2, 4, 7].
 
   Args:
-    sentence: the sentence in bytes format to convert to token-ids.
-    vocabulary: a dictionary mapping tokens to integers.
-    tokenizer: a function to use to tokenize each sentence;
-      if None, basic_tokenizer will be used.
-    normalize_digits: Boolean; if true, all digits are replaced by 0s.
+    sentence: предложение в формате байтов для конвертации в token-ids.
+    vocabulary: словарь, сопоставляющий слова с целыми числами.
+    tokenizer: функция токинизации предложения
+      Еслли None, то будет использовано basic_tokenizer .
+    normalize_digits: Boolean;  если true, все цифры заменяются на 0s.
 
   Returns:
-    a list of integers, the token-ids for the sentence.
+    Список целых token-ids.
   """
 
   if tokenizer:
@@ -235,22 +235,24 @@ def sentence_to_token_ids(sentence, vocabulary,
 
 def data_to_token_ids(data_path, target_path, vocabulary_path,
                       tokenizer=None, normalize_digits=True):
-  """Tokenize data file and turn into token-ids using given vocabulary file.
+  """Токенизация файла данных и превращение в токены-идентификаторы
+  с использованием данного словарного файла.
 
-  This function loads data line-by-line from data_path, calls the above
-  sentence_to_token_ids, and saves the result to target_path. See comment
-  for sentence_to_token_ids on the details of token-ids format.
+
+  Эта функция загружает данные по строкам из data_path,
+  вызывает sentence_to_token_ids, и сохраняет результаты в target_path.
+  См. Комментарий для sentence_to_token_ids о деталях формата token-ids format.
 
   Args:
-    data_path: path to the data file in one-sentence-per-line format.
-    target_path: path where the file with token-ids will be created.
-    vocabulary_path: path to the vocabulary file.
-    tokenizer: a function to use to tokenize each sentence;
-      if None, basic_tokenizer will be used.
-    normalize_digits: Boolean; if true, all digits are replaced by 0s.
+    data_path: путь к файлу данных в формате с одним предложением в строке.
+    target_path: путь, в котором будет создан файл с token-ids.
+    vocabulary_path: путь к файлу словаря.
+    tokenizer: функция, используемая для токенизации каждого предложения;
+      Если None, то будет использовано basic_tokenizer.
+    normalize_digits: Boolean; если true, все цифры заменяются на 0s.
   """
   if not gfile.Exists(target_path):
-    print("Tokenizing data in %s" % data_path)
+    print("Токенизация данных в %s" % data_path)
     vocab, _ = initialize_vocabulary(vocabulary_path)
     with gfile.GFile(data_path, mode="rb") as data_file:
       with gfile.GFile(target_path, mode="w") as tokens_file:
@@ -263,7 +265,7 @@ def data_to_token_ids(data_path, target_path, vocabulary_path,
           #   continue
           counter += 1
           if counter % 100000 == 0:
-            print("  tokenizing line %d" % counter)
+            print("  токенизирование строки %d" % counter)
           token_ids = sentence_to_token_ids(tf.compat.as_bytes(line), vocab,
                                             tokenizer, normalize_digits)
           tokens_file.write(" ".join([str(tok) for tok in token_ids]) + "\n")
@@ -349,11 +351,11 @@ def prepare_data(data_dir, from_train_path, to_train_path, from_dev_path, to_dev
 
 
 def prepare_dialog_data(data_dir, vocabulary_size):
-  """Get dialog data into data_dir, create vocabularies and tokenize data.
+  """Записсать диалогове данные в data_dir, создать словари и токенизировать данные.
 
   Args:
-    data_dir: directory in which the data sets will be stored.
-    vocabulary_size: size of the English vocabulary to create and use.
+    data_dir: директория с дата сетами
+    vocabulary_size: Размер словаря.
 
   Returns:
     A tuple of 3 elements:
@@ -361,19 +363,19 @@ def prepare_dialog_data(data_dir, vocabulary_size):
       (2) path to the token-ids for chat development data-set,
       (3) path to the chat vocabulary file
   """
-  # Get dialog data to the specified directory.
+  # Получить двнные диалогов в указанный каталог.
   train_path = get_dialog_train_set_path(data_dir)
   dev_path = get_dialog_dev_set_path(data_dir)
 
-  # Create vocabularies of the appropriate sizes.
+  # Создание словарей соответствующих размеров.
   vocab_path = os.path.join(data_dir, "vocab%d.in" % vocabulary_size)
   create_vocabulary(vocab_path, train_path + ".in", vocabulary_size)
 
-  # Create token ids for the training data.
+  # Создание токен-ids для тренировочных данных.
   train_ids_path = train_path + (".ids%d.in" % vocabulary_size)
   data_to_token_ids(train_path + ".in", train_ids_path, vocab_path)
 
-  # Create token ids for the development data.
+  # Созданиен токен-ids для development data.
   dev_ids_path = dev_path + (".ids%d.in" % vocabulary_size)
   data_to_token_ids(dev_path + ".in", dev_ids_path, vocab_path)
 

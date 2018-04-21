@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>EdotAction</string>
+   <string>Редактирование действия</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
