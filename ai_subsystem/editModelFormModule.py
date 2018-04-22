@@ -156,7 +156,7 @@ class EditModelForm(QMainWindow):
 
 
     def startTrain(self):
-        path = sys.argv[0]
+        ''' path = sys.argv[0]
         sys.argv.clear()
         sys.argv.append(path)
         sys.argv.append('--mode')
@@ -167,8 +167,10 @@ class EditModelForm(QMainWindow):
        # ai.main(args=sys.argv)
 
         threading._start_new_thread(ai.main, (sys.argv,))
-        #self.Parent.close()
+        #self.Parent.close()'''
+        self.Parent.startTraining(self.ModeName)
         self.close()
+
 
 
 

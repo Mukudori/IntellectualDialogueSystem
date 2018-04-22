@@ -6,6 +6,7 @@ if __name__ == '__main__':
     if len(argv) == 1:
         app = QApplication(argv)
         ex = AiMainForm()
+        ai.parent_form = ex
         ex.show()
         exit(app.exec_())
     elif len(argv)<5:

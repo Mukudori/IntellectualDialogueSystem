@@ -2,6 +2,7 @@
 import sys, os, math, time, argparse, shutil, gzip
 import numpy as np
 import tensorflow as tf
+from ai_subsystem.lib.config import configDevice
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -40,20 +41,10 @@ def CreateInfoFile(args):
 
     f.close()
 
-def configDevice(CPU = False):
-    """Принудительное переключение вычислительного устройства"""
-    if not CPU:
-        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_usage)
-        return tf.ConfigProto(gpu_options=gpu_options)
-    else:
-        num_cores = 4
-        config = tf.ConfigProto(intra_op_parallelism_threads=num_cores, \
-                                inter_op_parallelism_threads=num_cores, allow_soft_placement=True, \
-                                device_count={'CPU': 1, 'GPU': 0})
-        return config
 
 
-def train(args):
+
+def train(args, parent=0):
     print("[%s] Подготовка диалогов в %s" % (args.model_name, args.data_dir))
     setup_workpath(workspace=args.workspace)
     train_data, dev_data, _ = data_utils.prepare_dialog_data(args.data_dir, args.vocab_size)
@@ -62,7 +53,7 @@ def train(args):
       args.batch_size = 1  # Декодируется одно предложение одновременно.
 
 
-    with tf.Session(config=configDevice()) as sess:
+    with tf.Session(config=configDevice(args=args, CPU=False)) as sess:
 
         CreateInfoFile(args)
         # Создается модель.
@@ -92,6 +83,10 @@ def train(args):
         vocab, rev_vocab = data_utils.initialize_vocabulary(vocab_path)
 
         while True:
+          if parent:
+              if not parent.TrainingInProcess:
+                  print('Принята команда завершить обучение.')
+                  break
           # Выберите партию в соответствии с распределением данных. Здесь выбирается случайное число
           # в[0, 1] и используется соответствующий интервал в train_buckets_scale.
           random_number_01 = np.random.random_sample()
@@ -135,7 +130,7 @@ def train(args):
             model.saver.save(sess, checkpoint_path, global_step=model.global_step)
             step_time, loss = 0.0, 0.0
 
-            # запуск оценки на наборе и распечатка perplexity.
+            # запуск оценки на наборе и вывод perplexity.
             for bucket_id in xrange(len(args.buckets)):
               encoder_inputs, decoder_inputs, target_weights = model.get_batch(dev_set, bucket_id)
               _, eval_loss, _ = model.step(sess, encoder_inputs, decoder_inputs, 
@@ -143,5 +138,7 @@ def train(args):
 
               eval_ppx = math.exp(eval_loss) if eval_loss < 300 else float('inf')
               print("  Оценка : bucket %d perplexity %.2f" % (bucket_id, eval_ppx))
+
+
 
             sys.stdout.flush()

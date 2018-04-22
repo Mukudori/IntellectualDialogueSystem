@@ -57,3 +57,5 @@ DB/Как в Python работать с MySQL под Windows _ Pythono.ru.pdf
 DB/botdb.sql
 BotProgram/modules/bot/config.pyBotProgram/modules/bot/config.pyBotProgram/modules/bot/config.pyBotProgram/modules/bot/config.pyBotProgram/modules/bot/config.py
 ai_subsystem/works/First_model/nn_models/
+
+ai_subsystem/works/Second_model/nn_models/

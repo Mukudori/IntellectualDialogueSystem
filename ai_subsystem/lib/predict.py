@@ -9,7 +9,7 @@ from lib.seq2seq_model_utils import create_model, get_predicted_sentence
 
 
 
-def predict(args, debug=False):
+def predict(args, debug=False, parent =0):
     '''Тестирует модель на вопросы, записанные в файле test_dataset.txt
     и записывает результаты в файл '''
     def _get_test_dataset():
@@ -47,3 +47,5 @@ def predict(args, debug=False):
 
     results_fh.close()
     print("Результаты теста записаны в %s" % results_path)
+    if parent:
+        parent.clearWidget()

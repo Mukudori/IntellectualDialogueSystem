@@ -10,9 +10,10 @@ from ai_subsystem.lib.predict import predict
 from ai_subsystem.lib.chat import chat
 # from ai_subsystem.lib.mert import mert
 
+parent_form = 0
 
 
-def main(argv=0):
+def main(argv=0, mform=0):
     #line = '--mode train --model_name name'
     '''sys.argv.append('--mode')
     sys.argv.append('train')
@@ -29,7 +30,7 @@ def main(argv=0):
     elif args.mode == 'test':
       predict(args)
     elif args.mode == 'chat':
-      chat(args)
+      chat(args, parent_form=parent_form)
 
     # elif args.mode == 'mert':
     #   mert(args)

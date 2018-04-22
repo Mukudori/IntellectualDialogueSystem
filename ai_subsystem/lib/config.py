@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import argparse
-
+import tensorflow as tf
+#from ai_subsystem.aiMainFormModule import AiMainForm
+from PyQt5.QtWidgets import QMainWindow
 def params_setup(cmdline=None):
   parser = argparse.ArgumentParser()
   parser.add_argument('--mode', type=str, required=True, help='work mode: train/test/chat')
@@ -33,7 +35,10 @@ def params_setup(cmdline=None):
   parser.add_argument('--rev_model', type=int, default=0, help='перевернутая пара вопрос-ответ для двунаправленной модели')
   parser.add_argument('--reinforce_learn', type=int, default=0, help='1 для включения усиленного обучения')
   parser.add_argument('--en_tfboard', type=int, default=0, help='Включить запись мета данных tensorboard')
-  
+
+  # Дополнительные параметры
+ # parser.add_argument('--parent_form', type=QMainWindow, default=0, help='Ссылка на родительскую форму')
+  parser.add_argument('--device', type=str, default='GPU', help='Вычислительное устройство CPU/GPU')
 
   if cmdline:
     args = parser.parse_args(cmdline)
@@ -43,17 +48,29 @@ def params_setup(cmdline=None):
   if not args.scope_name: args.scope_name = args.model_name
   if args.rev_model: args.model_name += '_bidi' # двунаправленная модель
   
-  # Используется несколько емкостей(buckets) и прокладок(pad) для повышения эффективности.
+  # Используется несколько партий(buckets) и прокладок(pad) для повышения эффективности.
   # Смотреть seq2seq_model.Seq2SeqModel для получения дополнительной информации.
   args.buckets = [(5, 10), (10, 15), (20, 25), (40, 50)]
 
   # Пост-процесс
   args.workspace = '%s/%s' % (('ai_subsystem/'+args.work_root), args.model_name)
-  args.test_dataset_path = '%s/ai_subsystem/data/test/test_set.txt' % (args.workspace)
-  args.mert_dataset_path = '%s/ai_subsystem/data/test/mert_set.txt' % (args.workspace)
+  args.test_dataset_path = '%s/data/test/test_set.txt' % (args.workspace)
+  args.mert_dataset_path = '%s/data/test/mert_set.txt' % (args.workspace)
   args.data_dir = '%s/data' % args.workspace
   args.model_dir = '%s/nn_models' % args.workspace
   args.results_dir = '%s/results' % args.workspace
   args.tf_board_dir = '%s/tf_board' % args.workspace
   return args
+
+def configDevice(args,CPU = False):
+    """Принудительное переключение вычислительного устройства"""
+    if not CPU:
+        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=args.gpu_usage)
+        return tf.ConfigProto(gpu_options=gpu_options)
+    else:
+        num_cores = 4
+        config = tf.ConfigProto(intra_op_parallelism_threads=num_cores, \
+                                inter_op_parallelism_threads=num_cores, allow_soft_placement=True, \
+                                device_count={'CPU': 1, 'GPU': 0})
+        return config
 
