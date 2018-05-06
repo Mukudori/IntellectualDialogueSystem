@@ -48,7 +48,7 @@ def params_setup(cmdline=None):
   if not args.scope_name: args.scope_name = args.model_name
   if args.rev_model: args.model_name += '_bidi' # двунаправленная модель
   
-  # Используется несколько партий(buckets) и прокладок(pad) для повышения эффективности.
+  # Используется несколько партий(buckets) и выравниваний(pad) для повышения эффективности.
   # Смотреть seq2seq_model.Seq2SeqModel для получения дополнительной информации.
   args.buckets = [(5, 10), (10, 15), (20, 25), (40, 50)]
 

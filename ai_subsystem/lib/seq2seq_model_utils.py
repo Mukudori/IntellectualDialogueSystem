@@ -9,8 +9,8 @@ from random import random
 from datetime import datetime
 from tensorflow.python.platform import gfile
 
-from lib import data_utils
-from lib import seq2seq_model
+from ai_subsystem.lib import data_utils
+from ai_subsystem.lib import seq2seq_model
 
 
 import heapq

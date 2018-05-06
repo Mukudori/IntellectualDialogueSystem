@@ -10,6 +10,8 @@ from ai_subsystem import ai
 from ai_subsystem.subParser import ParseForm
 import threading
 import subprocess
+from tempdlg_subsystem import StringFunctionsModule as SFM
+from tensorflow.python.platform import gfile
 
 class InputForm(QWidget):
     def __init__(self, parent):
@@ -130,26 +132,46 @@ class EditModelForm(QMainWindow):
         self.startDialog = StartDialog(self)
         self.startDialog.exec()
 
-    def save(self):
-        f_zip = gzip.open("%s/train/chat.txt.gz" % (self.carDir + '/data'), 'w')
-        f_test = open("%s/test/test_set.txt" % (self.carDir + '/data'), 'w')
-        for i in range(self.Model.rowCount()):
+    def save(self, name_vocab='vocab100000'):
+        dataDir = self.carDir + '/data'
+        try:
+            f_zip = gzip.open("%s/train/chat.txt.gz" % (dataDir), 'w')
+            f_test = open("%s/test/test_set.txt" % (dataDir), 'w')
+            f_dlgin = open('%s/chat_test.in'%dataDir, 'w')
+            f_vocin = open('%s/%s.in'%(dataDir, name_vocab), 'r')
 
-            for j in range(2):
-                line = self.Model.item(i, j).text()
-                if '\n' not in line:
-                    line += '\n'
-                else:
-                    line = line.replace('\n', '') + '\n'
+            vocab = []
+            for line in f_vocin:
+                l = SFM.GetWordsListFromTextWithRE(line)[0]
+                vocab.append(line)
+            f_vocin.close()
+            for i in range(self.Model.rowCount()):
 
-                if j == 0:
-                    f_test.write(line)
-                f_zip.write(line.encode('UTF-8'))
-        f_zip.close()
-        f_test.close()
+                for j in range(2):
+                    line = self.Model.item(i, j).text()
+                    if '\n' not in line:
+                        line += '\n'
+                    else:
+                        line = line.replace('\n', '') + '\n'
 
-        self.openDialogs(self.carDir + '/data')
+                    if j == 0:
+                        f_test.write(line)
+                    f_zip.write(line.encode('UTF-8'))
+                    f_dlgin.write(line)
+                    SFM.checkLineInVocab(vocab,line)
+            f_zip.close()
+            f_test.close()
+            f_dlgin.close()
+            with gfile.GFile(dataDir+'/%s.in'%name_vocab, mode="wb") as f_vocin:
+                for w in vocab:
+                    f_vocin.write(w + b"\n")
 
+            self.openDialogs(self.carDir + '/data')
+        except:
+            f_zip.close()
+            f_test.close()
+            f_dlgin.close()
+            f_vocin.close()
 
 
 

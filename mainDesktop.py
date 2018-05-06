@@ -2,23 +2,23 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QListWidgetItem
 from PyQt5 import uic
-from modules.DataBaseForm import DataBaseForm
-from modules.MessageWidgetModule import MessageWidget
-from modules.bot.MainBotModule import MainBot
-from modules.SQLForm import SQLForm
-from modules.SettingFormModule import SettingForm
+from tempdlg_subsystem.DataBaseForm import DataBaseForm
+from tempdlg_subsystem.MessageWidgetModule import MessageWidget
+from tempdlg_subsystem.temp_logic.LocalChatModule import LocalChat
+from tempdlg_subsystem.SQLForm import SQLForm
+from tempdlg_subsystem.SettingFormModule import SettingForm
 
 
 class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow,self).__init__()
-        uic.loadUi("modules/ui/mainwindow.ui", self)
+        uic.loadUi("tempdlg_subsystem/ui/mainwindow.ui", self)
         self.labToolBar = QLabel('<font color=red>Бот не запущен в Telegram<font>')
         self.statusBar.addWidget(self.labToolBar)
         self.PathAdminPic = 'pics/admin.png'
         self.PathBotPic = 'pics/bot.jpg'
-        self.LocalBot = MainBot(self)
+        self.LocalBot = LocalChat(self)
         self.EditDlgForm = 0
         self.leMessage.setFocus()
         self.SendMessage('<font color=green size=4><b>Бот</b></font>', self.LocalBot.GetHelloMessage()[0], self.PathBotPic)
@@ -71,7 +71,7 @@ class MainWindow(QMainWindow):
         self.chatWidget.setItemWidget(myQListWidgetItem, message)
 
     def OpenSupport(self):
-        f = open('modules/support.txt','r')
+        f = open('tempdlg_subsystem/support.txt','r')
         self.lSupport = QLabel(f.read())
         f.close()
         self.lSupport.setWordWrap(True)
@@ -87,24 +87,7 @@ class MainWindow(QMainWindow):
         self.f.show()
 
     def StartTelegram(self):
-        '''if (not self.TeleBotStarted and 0):
-            self.labToolBar.setText('<font color=green>Бот запущен в Telegram<font>')
-            self.TeleBot = TelegramBot(self.LocalBot)
-            self.TeleBot.start()
-            self.TeleBotStarted =1
-        else:
-            self.labToolBar.setText('<font color=red>Бот не запущен в Telegram<font>')
-            self.TeleBot = 0
-            self.TeleBotStarted = 0
-
-
-
-
-        #path = os.path.abspath(os.curdir)
-        #можно так, но отключат потом только через процессы
-        #subprocess.Popen(path+'\\telegrambot\\TelegramBot.py', shell=True)
-        #subprocess.call(['xterm', '-e', 'python', path+'\\telegrambot\\TelegramBot.py'])
-        '''
+        pass
 
 
 

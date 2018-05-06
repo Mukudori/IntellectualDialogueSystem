@@ -7,7 +7,7 @@ import tensorflow as tf
 from ai_subsystem.lib.config import params_setup
 from ai_subsystem.lib.train import train
 from ai_subsystem.lib.predict import predict
-from ai_subsystem.lib.chat import chat
+from ai_subsystem.lib.chat import chat, ChatWithModel
 # from ai_subsystem.lib.mert import mert
 
 parent_form = 0
@@ -30,7 +30,8 @@ def main(argv=0, mform=0):
     elif args.mode == 'test':
       predict(args)
     elif args.mode == 'chat':
-      chat(args, parent_form=parent_form)
+      #chat(args, parent_form=parent_form)
+        ChatWithModel(args).StartTerminaleChat();
 
     # elif args.mode == 'mert':
     #   mert(args)

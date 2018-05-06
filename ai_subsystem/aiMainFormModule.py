@@ -13,6 +13,7 @@ import shutil
 import gzip
 import threading
 from pics.ImagePlayerModule import ImagePlayer
+from ai_subsystem.works import ModelGetter
 
 
 
@@ -32,7 +33,6 @@ class ProgressWidget(QWidget):
     #self.Lay.addWidget(self.processing)
 
     self.setLayout(self.Lay)
-
 
 class ModelWidget(QWidget):
   def __init__(self, name,parserItems = 0, activate = False):
@@ -117,7 +117,8 @@ class Y_N_Dialog(QDialog):
   def __init__(self, parent):
     super().__init__()
     self.Parent = parent
-    self.label = QLabel("Вы действительно хотите удалить модель?\n ВСЯ информация о модели будет удалена без возможности востановления.")
+    self.label = QLabel("Вы действительно хотите удалить модель?\n ВСЯ информа\
+    ция о модели будет удалена без возможности востановления.")
     self.bY = QPushButton('Да')
     self.bN = QPushButton('Нет')
     self.layH = QHBoxLayout()
@@ -195,11 +196,12 @@ class AiMainForm(QMainWindow):
     self.setVisibleButtonRefresh(False)
     self.setVisibleButtonStop(False)
     self.setVisibleActions(True)
-    parserActivated = ConfigParser()
+    '''parserActivated = ConfigParser()
     path_model = self.worksdir + 'activated.ini'
     parserActivated.read(path_model)
     if parserActivated.has_section('activated-model'):
-      name_activated_model = parserActivated.items('activated-model')[0][1]
+      name_activated_model = parserActivated.items('activated-model')[0][1]'''
+    name_activated_model = ModelGetter.getActiveModelName()
     self.namelist = []
     self.listWidget.clear()
     for model in os.listdir(self.worksdir):
@@ -214,7 +216,8 @@ class AiMainForm(QMainWindow):
 
 
         self.namelist.append(model)
-        mwid = ModelWidget(model, parserItems=itemsInfo, activate=name_activated_model == model)
+        mwid = ModelWidget(model, parserItems=itemsInfo,
+                           activate=name_activated_model == model)
         self.addWidget(mwid)
         '''myQListWidgetItem = QListWidgetItem(self.listWidget)
 
@@ -228,7 +231,8 @@ class AiMainForm(QMainWindow):
     return self.namelist[self.listWidget.currentRow()]
 
   def showEditModelForm(self):
-    self.childF = EditModelForm(modelName=self.getSelectedModelName(), parent=self)
+    self.childF = EditModelForm(modelName=self.getSelectedModelName(),
+                                parent=self)
     self.childF.show()
 
   def showCreateModelForm(self):
@@ -268,7 +272,8 @@ class AiMainForm(QMainWindow):
 
   def startTest(self):
     self.listWidget.clear()
-    widget = ProgressWidget(picPath='pics/terminalTest.png', text='Запущено автоматическое \
+    widget = ProgressWidget(picPath='pics/terminalTest.png',
+                            text='Запущено автоматическое \
     тестирование модели "%s" в терминале'%self.getSelectedModelName())
     self.addWidget(widget)
     self.setVisibleActions(False)
