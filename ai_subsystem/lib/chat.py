@@ -27,7 +27,8 @@ def chat(args, parent_form=0):
     vocab, rev_vocab = data_utils.initialize_vocabulary(vocab_path)
 
     # Декодировать из стандартного ввода.
-    print(colored('Чат запущен.\nЧтобы завершить ручное тестирование введите %s.'%stop_word))
+    print(colored('Чат запущен.\nЧтобы завершить ручное тестирование введите\
+     %s.'%stop_word))
     sys.stdout.write(colored("Админ > ", 'green'))
     sys.stdout.flush()
     sentence = sys.stdin.readline()

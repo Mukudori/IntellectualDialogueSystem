@@ -60,10 +60,6 @@ class ActionTable:
         currentid = DataBaseModule.ExecuteSQL('''
             INSERT INTO actiontab (action,note,scrypt) 
             VALUES (\'''' + action+"','"+note+"','"+str(check)+"');")
-        """if scrypt:
-            f  = open('//tempdlg_subsystem//temp_logic//scrypts//'+str(currentid)+'.py', 'tw', encoding='utf-8')
-            f.write(scrypt)
-            f.close()"""
 
         return currentid
 
@@ -78,10 +74,6 @@ class ActionTable:
         SET action=\''''+action+"', note='"+note+"', scrypt ='"+str(check)+"' "+
         "WHERE id='"+str(id)+"';" )
 
-        """ if scrypt:
-            f  = open('tempdlg_subsystem\\temp_logic\\scrypts\\'+str(id)+'.py', 'tw', encoding='utf-8')
-            f.write(scrypt)
-            f.close()"""
 
     def DeleteRecord(self, id):
         DataBaseModule.ExecuteSQL(

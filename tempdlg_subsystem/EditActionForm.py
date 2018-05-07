@@ -15,21 +15,13 @@ class EditActionForm(QWidget):
             rec = self.table.GetDataFromID(self.ID)
             self.leAction.setText(rec['action'])
 
-            try:
-                f = open('tempdlg_subsystem/temp_logic/scrypts/id_'+ str(rec['id'])+'.py', 'r', encoding='utf-8')
-
-                self.teScrypt.setText(f.read())
-                self.groupBox.setMaximumHeight(16777215)
-                self.check = True
-            except:
-                self.check = False
-                self.teScrypt.setText('Скрипт отсутствует')
-                self.groupBox.setMaximumHeight(0)
+            self.readScrypt(rec['id'])
 
             self.teNote.setText(rec['note'])
             self.pbSave.clicked.connect(self.UpdateRecord)
         else:
             self.pbSave.clicked.connect(self.InsertRecord)
+            self.readScrypt()
 
         self.checkBox.setChecked(self.check)
         self.checkBox.stateChanged.connect(self.CheckScrypt)
@@ -40,9 +32,7 @@ class EditActionForm(QWidget):
                            self.teNote.toPlainText(),
                            1 if self.check else 0)
         if self.check:
-            f = open('tempdlg_subsystem/temp_logic/scrypts/id_' + str(self.ID) + '.py', 'w', encoding='utf-8')
-            f.write(self.teScrypt.toPlainText())
-            f.close()
+            self.writeScrypt(self.ID)
         self.close()
 
     def UpdateRecord(self):
@@ -52,9 +42,7 @@ class EditActionForm(QWidget):
                            self.teNote.toPlainText(),
                            1 if self.check else 0)
         if self.check:
-            f = open('tempdlg_subsystem/temp_logic/scrypts/id_' + str(self.ID) + '.py', 'w', encoding='utf-8')
-            f.write(self.teScrypt.toPlainText())
-            f.close()
+            self.writeScrypt(self.ID)
         self.close()
 
     def CheckScrypt(self):
@@ -66,4 +54,30 @@ class EditActionForm(QWidget):
         else:
             self.check=True
             self.groupBox.setMaximumHeight(16777215)
+
+    def readScrypt(self, id_action=0):
+
+        def ReadFile(path):
+            try:
+                f = open(path, 'r', encoding='utf-8')
+
+                self.teScrypt.setText(f.read())
+                self.groupBox.setMaximumHeight(16777215)
+                self.check = True
+            except:
+                self.check = False
+                self.groupBox.setMaximumHeight(0)
+                ReadFile('tempdlg_subsystem/temp_logic/scrypts/Template.py')
+
+        if id_action:
+            ReadFile('tempdlg_subsystem/temp_logic/scrypts/id_'+ str(id_action)
+                     + '.py')
+        else:
+            ReadFile('tempdlg_subsystem/temp_logic/scrypts/Template.py')
+
+    def writeScrypt(self, id_action):
+        f = open('tempdlg_subsystem/temp_logic/scrypts/id_' + str(id_action)
+                 + '.py', 'w', encoding='utf-8')
+        f.write(self.teScrypt.toPlainText())
+        f.close()
 

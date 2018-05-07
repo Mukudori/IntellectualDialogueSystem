@@ -21,7 +21,8 @@ class MainWindow(QMainWindow):
         self.LocalBot = LocalChat(self)
         self.EditDlgForm = 0
         self.leMessage.setFocus()
-        self.SendMessage('<font color=green size=4><b>Бот</b></font>', self.LocalBot.GetHelloMessage()[0], self.PathBotPic)
+        self.SendMessage('<font color=green size=4><b>Бот</b></font>',
+                         self.LocalBot.GetHelloMessage()[0], self.PathBotPic)
         self.TeleBotStarted = 0
 
         self.pbText.clicked.connect(self.SendAdmin)
@@ -47,14 +48,21 @@ class MainWindow(QMainWindow):
 
     def SendAdmin(self):
         AdminMessage = self.leMessage.text()
-        BotMessage = self.LocalBot.ReceiveMessage(AdminMessage)
-        self.SendMessage('<font color=blue size=4><b>Админ<b></font>',AdminMessage,self.PathAdminPic)
-        #potok = Thread(target=self.SendMessage, args=('<font color=green size=4><b>Бот</b></font>', BotMessage, self.PathBotPic))
-        self.SendMessage('<font color=green size=4><b>Бот</b></font>', BotMessage, self.PathBotPic)
+        answerData = self.LocalBot.ReceiveMessage(AdminMessage)
+
+        self.SendMessage('<font color=blue size=4><b>Админ<b></font>',
+                         AdminMessage,self.PathAdminPic)
+        self.SendMessage('<font color=green size=4><b>Бот</b></font>',
+                         answerData[0]['answer'], self.PathBotPic)
         #potok.start()
         self.leMessage.setText('')
         self.chatWidget.scrollToBottom()
         self.leMessage.setFocus()
+
+        if answerData[0]['executable']:
+            answer=self.LocalBot.executeScrypt(idAction=answerData[0]['idAction'],  client=answerData[1])
+            self.SendMessage('<font color=green size=4><b>Бот</b></font>',
+                             answer, self.PathBotPic)
 
     def SendMessage(self, author, text, imgPath):
             # Create QCustomQWidget

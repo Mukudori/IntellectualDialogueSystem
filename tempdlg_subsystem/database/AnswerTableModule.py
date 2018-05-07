@@ -73,8 +73,8 @@ class AnswerTable:
     def GetAnswerDictFromContextID(self, idContext):
         data = DataBaseModule.GetData(
             """
-            SELECT answer, idAction
-            FROM botdb.answertab 
+            SELECT answertab.answer as answer, answertab.idAction as idAction, actiontab.scrypt as executable
+            FROM botdb.answertab inner join botdb.actiontab on answertab.idAction = actiontab.id
             WHERE idContext = '"""+str(idContext)+"';"
         )
         return data

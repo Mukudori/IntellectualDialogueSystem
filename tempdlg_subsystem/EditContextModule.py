@@ -10,6 +10,20 @@ from tempdlg_subsystem.database.ActionTableModule import ActionTable
 from tempdlg_subsystem.database.AccessTableModule import AccessTable
 from tempdlg_subsystem.database.UserGroupModule import UserGroupTable
 
+
+def PrintMessage(title,text, icon =QMessageBox.Critical):
+    msg = QMessageBox()
+    msg.setIcon(icon)
+    # msg.setIconPixmap(pixmap)  # Своя картинка
+
+    msg.setWindowTitle("Ошибка")
+    msg.setText(title)
+    msg.setInformativeText(text)
+
+
+    #okButton = msg.addButton('Окей', QMessageBox.AcceptRole)
+
+
 #Классы для добавления вопросов и ответов
 class AddQuestionDlg(QWidget):
     def __init__(self, tableView, model, idC, idRecord=0, indModel=0):
@@ -93,16 +107,16 @@ class AddAnswerDlg(AddQuestionDlg):
         self.setWindowTitle('Ввод ответа')
 
     def _initComboBox(self):
-        self.actTab = ActionTable().GetStringAndIDList()
-        self.cb.addItems([row[1] for row in self.actTab])
+        actList = ActionTable().GetStringAndIDList()
+        self.cb.addItems([row[1] for row in actList])
+        self.idList = [row[0] for row in actList]
+
 
     def click(self):
         text = self.cb.currentText()
-        idA = 0
-        for row in self.actTab:
-            if row[1] == text:
-                idA = str(row[0])
-                break
+        ci = self.cb.currentIndex()
+        idA = self.idList[ci] if self.idList[ci]!=-1 else self.idList[0]
+
         if idA:
             if not self.IDRecord:
                 idA =AnswerTable().InsertRecord(self.le.text(),self.IDC, idA)
@@ -205,14 +219,25 @@ class EditContextForm(QWidget):
 
 
     def __initEdit(self, id):
-        self.Rec = self.table.GetRecordFromID(id)[0]
-        if type(self.Rec) == type(list()):
-            self.Rec = self.Rec[0]
-        self.leHeader.setText(self.table.GetStrFromID(id))
-        self.modelQ= self.table.GetQuestionsModelFromContextID(id)
-        self.tvQ.setModel(self.modelQ)
-        self.modelA = self.table.GetAnswerModelFromContextID(id)
-        self.tvA.setModel(self.modelA)
+        try:
+            self.Rec = self.table.GetRecordFromID(id)[0]
+            if type(self.Rec) == type(list()):
+                self.Rec = self.Rec[0]
+            self.leHeader.setText(self.table.GetStrFromID(id))
+        except:
+            PrintMessage('Ошибка контекста', 'Не удалось получить информацию о контексте')
+
+        try:
+            self.modelQ= self.table.GetQuestionsModelFromContextID(id)
+            self.tvQ.setModel(self.modelQ)
+        except:
+            PrintMessage('Ошибка вопросов', 'Не удалось получить информацию о вопросах')
+
+        try:
+            self.modelA = self.table.GetAnswerModelFromContextID(id)
+            self.tvA.setModel(self.modelA)
+        except:
+            PrintMessage('Ошибка ответов', 'Не удалось получить информацию об ответах')
         self.RefreshChildContexts(id)
         self.modelG = self.table.GetGroupsModelFromID(id)
         self.tvG.setModel(self.modelG)

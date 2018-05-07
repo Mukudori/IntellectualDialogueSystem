@@ -40,12 +40,15 @@ class LocalChat:
     def GetAnswer(self, text):
         return self.LogicModule.getAnswerFromText(text)
 
+
     def ReceiveMessage(self, text):
         self.previousMessage = self.GetAnswer(text)
         if(self.Voice):
             self.__Say(self.previousMessage)
-        #self.__ExecuteAction(self.previousMessage[2])
         return self.previousMessage
+
+    def executeScrypt(self, client, idAction):
+        return self.LogicModule.executeScrypt(idAction=idAction, client=client)
 
     def __Say(self, phrase):
         # Функция произносит вслух фразу
@@ -86,6 +89,7 @@ class LocalChat:
 
     def ReConnectToDB(self):
         self.tabQ = QuestionTable()  # Список записей из таблицы вопросов
+
 
 
 

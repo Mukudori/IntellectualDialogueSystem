@@ -8,12 +8,29 @@ from tempdlg_subsystem.temp_logic.scrypts import ExecuteScryptsModule
 
 
 class TempDialog:
-    def __init__(self, idGroup=4):
+    '''
+     Модуль шаблонной логики.
+
+     При инициализации принимает 2 аргумента:
+     idGroup - идентефикатор группы пользователей
+               по умолчанию равен 4 (Гость)
+
+     mainLogic - ссылка на основной модуль логики,
+                для обмена информацией между модулями.
+
+     Снаружи модуля должен использоваться только метод
+     GetAnswer, который принимает текстовую строку и выдает
+     ответ с учетом предыдущего контекста.
+    '''
+    def __init__(self,client, mainLogic):
         self.conTab = ContextTable()
-        self.idGroup = idGroup
+        self.idGroup = client['id_Group']
         self.CurrentContextLevel = 0
         self.CurrentContextID = 0
         self.FindedContext = False
+        self.mainLogic = mainLogic
+        self.client=client
+        self.carrentMessage = 0
 
     def FuncCoefError(self, check, lenText, lenQ):
         if lenText and lenQ:
@@ -112,10 +129,9 @@ class TempDialog:
         while True:
             idQ = self.GetQuestionID(question)
             if idQ:
-                answerTup = random.choice(AnswerTable().GetAnswerDictFromContextID(self.CurrentContextID))
+                self.carrentMessage = random.choice(AnswerTable().GetAnswerDictFromContextID(self.CurrentContextID))
 
-                answer = answerTup['answer']+self.CheckAction(answerTup['idAction'])
-                return answer
+                return self.carrentMessage
             elif self.CurrentContextLevel:
                 curCon = self.conTab.GetIDParent(self.CurrentContextID, self.idGroup)[0]
                 self.CurrentContextID = curCon['id']
@@ -123,20 +139,35 @@ class TempDialog:
             else:
                 break
 
-
-        return random.choice(
+        retError = random.choice(
                 [
                     'Я вас не понимаю.',
                     'Неизвестная команда.'
                 ]
             )
+        self.carrentMessage = {'answer': retError, 'idAction' : 0, 'executable' : False}
+        return self.carrentMessage
 
-    def CheckAction(self, idAction):
+    def сheckAction(self, idAction):
         actionRec = ActionTable().CheckScryptFromIDAction(idAction)
         if actionRec:
-            print()#[str(actionRec)].GetAnswer()
-            return '\n\n' + ExecuteScryptsModule.GetAnswer('id_' + str(idAction))
-        return str()
+            #print()[str(actionRec)].GetAnswer()
+            text = ExecuteScryptsModule.GetAnswer('id_'+str(idAction),
+                                                  self)
+            if text:
+                return '\n\n' +text
+            else:
+                return 'Сценарий выполнен'
+        return False
+
+    def startAI(self):
+        self.client['ai_activated'] = True
+        self.mainLogic.startAI()
+
+
+
+
+
 
 
 
