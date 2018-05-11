@@ -1,5 +1,4 @@
-from tempdlg_subsystem.database import DataBaseModule
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
+from dbConnector import DataBaseModule
 
 """Хотел содать базовый класс для таблиц,
 но решил, что прорще каждой таблице создавать класс индивидуально,

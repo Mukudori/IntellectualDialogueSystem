@@ -8,12 +8,17 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 
 
-def read_db_config(filename='tempdlg_subsystem//database//mysql.ini', section='mysql'):
+def read_db_config(nameDB='botdb', section='mysql'):
     """ Read database configuration file and return a dictionary object
     :param filename: name of the configuration file
     :param section: section of database configuration
     :return: a dictionary of database parameters
     """
+    if nameDB=='botdb':
+        filename='tempdlg_subsystem//database//mysql.ini'
+    elif nameDB=='riidb':
+        filename = 'clients_subsystem//rii//database//config.ini'
+
     # create parser and read ini configuration file
     parser = ConfigParser()
     parser.read(filename)
@@ -60,14 +65,14 @@ def ConnectToDataBase(ex=0):
 
 
 
-def GetData(sql):
+def GetData(sql , nameDB='botdb'):
     '''Выполнить запрос и вернуть кортеж из словарей'''
     #cur = ConnectToDataBase()
     #cur.execute(sql)
     #data = cur.fetchall()
     data = [{" ": "Подключение не удалось"}]
     try:
-        dbconfig = read_db_config()
+        dbconfig = read_db_config(nameDB=nameDB)
         conn = MySQLConnection(**dbconfig)
         cursor = conn.cursor(dictionary=True)
         cursor.execute(sql)
@@ -91,7 +96,7 @@ def GetData(sql):
     return data
 
 
-def ExecuteSQL(sql):
+def ExecuteSQL(sql, nameDB='botdb'):
     '''Выаолняет запрос.
         Возвращает индекс последней добавленной записи
         через INSERT
@@ -104,7 +109,7 @@ def ExecuteSQL(sql):
     '''
     lastID=0
     try:
-        db_config = read_db_config()
+        db_config = read_db_config(nameDB=nameDB)
         conn = MySQLConnection(**db_config)
 
         cursor = conn.cursor()
@@ -127,8 +132,8 @@ def ExecuteSQL(sql):
     return lastID
 
 
-def CreateTableViewModel(sql, fieldTab, fieldsView):
-    data = GetData(sql)
+def CreateTableViewModel(sql, fieldTab, fieldsView, nameDB='botdb'):
+    data = GetData(sql, nameDB=nameDB)
     model = QStandardItemModel()
     model.setHorizontalHeaderLabels(fieldsView)
     model.setVerticalHeaderLabels([' '] * len(data))

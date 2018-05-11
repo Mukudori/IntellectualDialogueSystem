@@ -1,5 +1,6 @@
 import os
 import sys
+from threading import Thread
 
 import tensorflow as tf
 from termcolor import colored
@@ -55,7 +56,7 @@ def chat(args, parent_form=0):
             sys.stdout.flush()
             sentence = sys.stdin.readline()
 
-class ChatWithModel(object):
+class ChatWithModel(Thread):
     def __init__(self):
         super().__init__()
         self.initArgs()
@@ -126,5 +127,8 @@ class ChatWithModel(object):
         #sys.argv.append('First_model')
         sys.argv.append(ModelGetter.getActiveModelName())
         self.args = params_setup()
+
+    def run(self):
+        self.startSession()
 
 

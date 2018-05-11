@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from tempdlg_subsystem.database import DataBaseModule
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
-from PyQt5 import QtCore
+from dbConnector import DataBaseModule
 import tempdlg_subsystem.StringFunctionsModule
 
 
@@ -57,7 +55,7 @@ class QuestionTable:
     def InsertRecord(self, question, idContext):
         currentid = DataBaseModule.ExecuteSQL("""
         INSERT INTO questiontab (question, idContext)
-         VALUES('""" +question+"','"+str(idContext)+"');" )
+         VALUES('""" + question +"','" + str(idContext) +"');")
         return  currentid
 
     def UpdateRecordFromIDAndText(self, id, question):

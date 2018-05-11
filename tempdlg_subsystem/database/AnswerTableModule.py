@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-from tempdlg_subsystem.database import DataBaseModule
-from tempdlg_subsystem.database.ActionTableModule import ActionTable
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
-from PyQt5 import QtCore
+from dbConnector import DataBaseModule
 
 
 class AnswerTable:

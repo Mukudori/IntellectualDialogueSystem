@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: botdb
+-- Host: localhost    Database: botdb
 -- ------------------------------------------------------
--- Server version	5.5.54-log
+-- Server version	5.7.22-0ubuntu18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `answertab` (
   `idContext` int(11) NOT NULL,
   `idAction` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `answertab` (
 
 LOCK TABLES `answertab` WRITE;
 /*!40000 ALTER TABLE `answertab` DISABLE KEYS */;
-INSERT INTO `answertab` VALUES (12,'Приветствую',10,1),(13,'Здравствуйте!',10,1),(14,'Салют!',10,1),(15,'Хорошо',11,1),(16,'Все в пределах нормы',11,1),(17,'Принимаю ваши сообщения',12,1),(18,'Ожидаю вашего следующего вопроса',12,1),(19,'Текущее время :',13,4),(20,'Запускаю тестовое действие: ',14,5),(21,'Запускаю проверочный скрипт',15,6),(22,'Проверка скрипта',15,6);
+INSERT INTO `answertab` VALUES (12,'Приветствую',10,1),(13,'Здравствуйте!',10,1),(14,'Салют!',10,1),(15,'Хорошо',11,1),(16,'Все в пределах нормы',11,1),(17,'Принимаю ваши сообщения',12,1),(18,'Ожидаю вашего следующего вопроса',12,1),(19,'Текущее время :',13,4),(20,'Запускаю тестовое действие: ',14,5),(21,'Запускаю проверочный скрипт',15,6),(22,'Проверка скрипта',15,6),(23,'Режим беседы активирован. Чтобы вернуться в стандартный режим введите команду ЗАКОНЧИТЬ_БЕСЕДУ.',16,7);
 /*!40000 ALTER TABLE `answertab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-02 23:34:55
+-- Dump completed on 2018-05-11 21:31:50

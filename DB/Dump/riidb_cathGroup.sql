@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: botdb
+-- Host: localhost    Database: riidb
 -- ------------------------------------------------------
--- Server version	5.5.54-log
+-- Server version	5.7.22-0ubuntu18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,28 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `questiontab`
+-- Table structure for table `cathGroup`
 --
 
-DROP TABLE IF EXISTS `questiontab`;
+DROP TABLE IF EXISTS `cathGroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `questiontab` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `question` varchar(255) DEFAULT NULL,
-  `idContext` int(11) NOT NULL,
+CREATE TABLE `cathGroup` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `course` varchar(45) DEFAULT NULL,
+  `idCathedra` int(11) DEFAULT NULL,
+  `idCurator` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `questiontab`
+-- Dumping data for table `cathGroup`
 --
 
-LOCK TABLES `questiontab` WRITE;
-/*!40000 ALTER TABLE `questiontab` DISABLE KEYS */;
-INSERT INTO `questiontab` VALUES (18,'Привет',10),(19,'Здравствуй',10),(20,'Как дела',11),(21,'Че как',11),(22,'Что делаешь',12),(23,'Сколько время',13),(25,'Тест',14),(26,'Проверка',15);
-/*!40000 ALTER TABLE `questiontab` ENABLE KEYS */;
+LOCK TABLES `cathGroup` WRITE;
+/*!40000 ALTER TABLE `cathGroup` DISABLE KEYS */;
+INSERT INTO `cathGroup` VALUES (1,'ИВТ-41','4',1,22);
+/*!40000 ALTER TABLE `cathGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-02 23:34:55
+-- Dump completed on 2018-05-11 21:31:50

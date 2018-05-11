@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
-from tempdlg_subsystem.database import DataBaseModule
+from dbConnector import DataBaseModule
 from tempdlg_subsystem.database.AnswerTableModule import AnswerTable
 from tempdlg_subsystem.database.QuestionTableModule import QuestionTable
 from tempdlg_subsystem.database.AccessTableModule import AccessTable
@@ -155,7 +155,7 @@ class ContextTable:
     def InsertRecord(self, header, idParent, level):
        id = DataBaseModule.ExecuteSQL("""
         INSERT INTO contexttab (header, idParent, level) 
-        VALUES ('""" +header+"','"+str(idParent)+"','"+str(level)+"');")
+        VALUES ('""" + header +"','" + str(idParent) +"','" + str(level) +"');")
        return id
 
     def _DeleteRecordFromID(self, idContext):
@@ -190,7 +190,7 @@ class ContextTable:
 
     def GetIDDictFromLevel(self, level, idGroup):
         data = DataBaseModule.GetData("""SELECT id, level, idParent FROM contexttab 
-        WHERE level = '"""+str(level)+"';")
+        WHERE level = '""" + str(level) +"';")
 
 
         retData =  [{'id' : 0, 'level': 0, 'idParent' : 0}, ]

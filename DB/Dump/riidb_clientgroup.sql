@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: botdb
+-- Host: localhost    Database: riidb
 -- ------------------------------------------------------
--- Server version	5.5.54-log
+-- Server version	5.7.22-0ubuntu18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,28 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usergrouptab`
+-- Table structure for table `clientgroup`
 --
 
-DROP TABLE IF EXISTS `usergrouptab`;
+DROP TABLE IF EXISTS `clientgroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usergrouptab` (
+CREATE TABLE `clientgroup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nameGroup` varchar(45) DEFAULT NULL,
-  `editDB` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usergrouptab`
+-- Dumping data for table `clientgroup`
 --
 
-LOCK TABLES `usergrouptab` WRITE;
-/*!40000 ALTER TABLE `usergrouptab` DISABLE KEYS */;
-INSERT INTO `usergrouptab` VALUES (1,'Администратор',1),(2,'Преподаватель',0),(3,'Студент',0),(4,'Гость',0);
-/*!40000 ALTER TABLE `usergrouptab` ENABLE KEYS */;
+LOCK TABLES `clientgroup` WRITE;
+/*!40000 ALTER TABLE `clientgroup` DISABLE KEYS */;
+INSERT INTO `clientgroup` VALUES (1,'Администратор'),(2,'Преаодаватель'),(3,'Студент');
+/*!40000 ALTER TABLE `clientgroup` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-02 23:34:56
+-- Dump completed on 2018-05-11 21:31:50

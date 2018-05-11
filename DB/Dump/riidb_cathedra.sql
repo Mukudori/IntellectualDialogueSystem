@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: botdb
+-- Host: localhost    Database: riidb
 -- ------------------------------------------------------
--- Server version	5.5.54-log
+-- Server version	5.7.22-0ubuntu18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,29 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contexttab`
+-- Table structure for table `cathedra`
 --
 
-DROP TABLE IF EXISTS `contexttab`;
+DROP TABLE IF EXISTS `cathedra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `contexttab` (
+CREATE TABLE `cathedra` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `header` varchar(45) NOT NULL,
-  `idParent` int(11) DEFAULT '0',
-  `level` int(11) DEFAULT '0',
+  `name` varchar(45) DEFAULT NULL,
+  `idZav` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contexttab`
+-- Dumping data for table `cathedra`
 --
 
-LOCK TABLES `contexttab` WRITE;
-/*!40000 ALTER TABLE `contexttab` DISABLE KEYS */;
-INSERT INTO `contexttab` VALUES (10,'Приветствие',0,0),(11,'Приветствие >> Как дела',10,1),(12,'Приветствие >> Как дела >> Что делаешь',11,2),(13,'Запрос текущего времени',0,0),(14,'Тест',0,0),(15,'Проверочный контекст',0,0);
-/*!40000 ALTER TABLE `contexttab` ENABLE KEYS */;
+LOCK TABLES `cathedra` WRITE;
+/*!40000 ALTER TABLE `cathedra` DISABLE KEYS */;
+INSERT INTO `cathedra` VALUES (1,'Прикладная математика',13);
+/*!40000 ALTER TABLE `cathedra` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-02 23:34:55
+-- Dump completed on 2018-05-11 21:31:51

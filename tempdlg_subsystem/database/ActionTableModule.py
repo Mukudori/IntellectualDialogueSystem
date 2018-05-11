@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from tempdlg_subsystem.database import DataBaseModule
+from dbConnector import DataBaseModule
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
 
@@ -59,7 +59,7 @@ class ActionTable:
 
         currentid = DataBaseModule.ExecuteSQL('''
             INSERT INTO actiontab (action,note,scrypt) 
-            VALUES (\'''' + action+"','"+note+"','"+str(check)+"');")
+            VALUES (\'''' + action +"','" + note +"','" + str(check) +"');")
 
         return currentid
 
@@ -71,8 +71,8 @@ class ActionTable:
 
         DataBaseModule.ExecuteSQL('''
         UPDATE actiontab 
-        SET action=\''''+action+"', note='"+note+"', scrypt ='"+str(check)+"' "+
-        "WHERE id='"+str(id)+"';" )
+        SET action=\'''' + action +"', note='" + note +"', scrypt ='" + str(check) +"' " +
+        "WHERE id='" + str(id) +"';")
 
 
     def DeleteRecord(self, id):

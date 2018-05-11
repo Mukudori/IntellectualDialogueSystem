@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from tempdlg_subsystem.database import DataBaseModule
+from dbConnector import DataBaseModule
 from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from PyQt5 import QtCore
 
@@ -14,7 +14,7 @@ class UserGroupTable:
     def InsertRecord(self, **rec):
         currentid = DataBaseModule.ExecuteSQL('''
                    INSERT INTO usergrouptab (nameGroup, editDB) 
-                   VALUES (\'''' +rec['nameGroup'] + "', '"+str(rec['editDB'])+"');")
+                   VALUES (\'''' + rec['nameGroup'] + "', '" + str(rec['editDB']) +"');")
         return currentid
 
     def DeleteRecord(self, id):
@@ -52,7 +52,7 @@ class UserGroupTable:
     def UpdateRecord(self, **rec):
         DataBaseModule.ExecuteSQL('''
                 UPDATE usergrouptab 
-                SET nameGroup=\'''' + rec['nameGroup'] + "', editDB='"+str(rec['editDB'])+ "'"
+                SET nameGroup=\'''' + rec['nameGroup'] + "', editDB='" + str(rec['editDB']) + "'"
                                   + "WHERE id='" + str(rec['id']) + "';")
 
     def GetStringAndIDList(self):
