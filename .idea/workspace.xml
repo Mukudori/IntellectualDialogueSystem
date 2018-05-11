@@ -6,27 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c96dad87-938e-4e49-95d8-030c98ad80d2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/TeacherFormModule.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/CathGroupModule.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/config.ini" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/mainRIIDB.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/IntellectualDialogueSystem.iml" afterPath="$PROJECT_DIR$/.idea/IntellectualDialogueSystem.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/ai_subsystem/lib/chat.py" afterPath="$PROJECT_DIR$/ai_subsystem/lib/chat.py" />
-      <change beforePath="$PROJECT_DIR$/mainDesktop.py" afterPath="$PROJECT_DIR$/mainTempLogic.py" />
-      <change beforePath="$PROJECT_DIR$/server/telegram/TelegramBotModule.py" afterPath="$PROJECT_DIR$/server/telegram/TelegramBotModule.py" />
       <change beforePath="$PROJECT_DIR$/server/telegram/config.py" afterPath="$PROJECT_DIR$/server/telegram/config.py" />
-      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/AccessTableModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/AccessTableModule.py" />
-      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/ActionTableModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/ActionTableModule.py" />
-      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py" />
-      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/ContextTableModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/ContextTableModule.py" />
-      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/DataBaseModule.py" afterPath="$PROJECT_DIR$/dbConnector/DataBaseModule.py" />
-      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/MainTableModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/MainTableModule.py" />
-      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/QuestionTableModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/QuestionTableModule.py" />
-      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/UserGroupModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/UserGroupModule.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,11 +30,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientModule.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClientModule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="106" column="49" lean-forward="true" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+            <state relative-caret-position="1656">
+              <caret line="92" column="13" lean-forward="true" selection-start-line="91" selection-start-column="53" selection-end-line="92" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/telegram/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -85,17 +76,7 @@
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
-              <caret line="18" column="51" lean-forward="true" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccessTableModule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/AccessTableModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <caret line="18" column="51" lean-forward="false" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -214,7 +195,6 @@
         <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py" />
         <option value="$PROJECT_DIR$/ai_subsystem/lib/chat.py" />
         <option value="$PROJECT_DIR$/main_logic_module/MainDialogLogicModule.py" />
-        <option value="$PROJECT_DIR$/server/telegram/config.py" />
         <option value="$PROJECT_DIR$/server/telegram/TelegramBotModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/database/config.ini" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/database/AccessTableModule.py" />
@@ -228,10 +208,11 @@
         <option value="$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/TeacherFormModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py" />
+        <option value="$PROJECT_DIR$/server/telegram/config.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="248" />
     <option name="y" value="68" />
     <option name="width" value="1215" />
@@ -262,37 +243,23 @@
             <path>
               <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="ai_subsystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
               <item name="clients_subsystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="clients_subsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="rii" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="clients_subsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="rii" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="clients_subsystem" type="462c0819:PsiDirectoryNode" />
-              <item name="rii" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
               <item name="dbConnector" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="telegram" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -447,7 +414,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="248" y="68" width="1215" height="1012" extended-state="1" />
+    <frame x="248" y="68" width="1215" height="1012" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20082304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -760,13 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/telegram/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="54" lean-forward="false" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/telegram/TelegramBotModule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -848,7 +808,7 @@
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="18" column="51" lean-forward="true" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
+          <caret line="18" column="51" lean-forward="false" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -914,8 +874,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="106" column="49" lean-forward="true" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+        <state relative-caret-position="1656">
+          <caret line="92" column="13" lean-forward="true" selection-start-line="91" selection-start-column="53" selection-end-line="92" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/telegram/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
           <folding />
         </state>
       </provider>
