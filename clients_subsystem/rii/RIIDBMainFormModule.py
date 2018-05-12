@@ -7,6 +7,7 @@ from clients_subsystem.rii.database.CathedraModule import Cathedra
 from clients_subsystem.rii.TeacherFormModule import TeacherForm
 from clients_subsystem.rii.StudentFormModule import StudentForm
 from clients_subsystem.rii.database.CathGroupModule import CathGroup
+from clients_subsystem.rii.CathGroupFormModule import CathGroupForm
 
 class RIIDataBaseForm(QMainWindow):
     
@@ -82,6 +83,9 @@ class RIIDataBaseForm(QMainWindow):
         elif table=='Студенты':
             self.Student = StudentForm(id)
             self.Student.show()
+        elif table=='Группы студентов':
+            self.CathGroup = CathGroupForm(id=id, parent=self)
+            self.CathGroup.show()
 
 
     def OpenAddRecordForm(self):
@@ -93,6 +97,9 @@ class RIIDataBaseForm(QMainWindow):
         elif table=='Студенты':
             self.Student = StudentForm()
             self.Student.show()
+        elif table=='Группы студентов':
+            self.CathGroup = CathGroupForm(parent=self)
+            self.CathGroup.show()
 
     def DeleteRecord(self):
         id = self.GetSelectedRecordID()

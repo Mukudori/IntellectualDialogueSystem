@@ -59,3 +59,5 @@ BotProgram/modules/bot/config.pyBotProgram/modules/bot/config.pyBotProgram/modul
 ai_subsystem/works/First_model/nn_models/
 
 ai_subsystem/works/Second_model/nn_models/
+
+server/telegram/config\.py

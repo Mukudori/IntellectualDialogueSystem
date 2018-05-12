@@ -79,9 +79,12 @@ class TeacherForm(QWidget):
 
         self.setLayout(self.vLay)
 
+        self.setWindowTitle('Добавление нового преподавателя')
+
     def loadTeacherData(self):
         data = Client().getFromID(self.ID)
         self.fioLE.setText(data['fio'])
+        self.leShort.setText(data['shortfio'])
         self.dolzhnostLE.setText(data['dolzhnost'])
         self.obrazovanieLE.setText(data['obrazovanie'])
         self.stepenLE.setText(data['stepen'])
@@ -90,6 +93,7 @@ class TeacherForm(QWidget):
         for i in range(len(self.cathData)):
             if data['idCath'] == self.cathData[i]['id']:
                 self.kathCB.setCurrentIndex(i)
+        self.setWindowTitle('Редактирование преподавателя')
 
 
     def save(self):

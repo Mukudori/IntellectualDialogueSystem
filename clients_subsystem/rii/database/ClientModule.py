@@ -124,5 +124,22 @@ class Client(object):
                   "WHERE id ='%s'"%record['idInfo']
             DataBaseModule.ExecuteSQL(sql=sql, nameDB='riidb')
 
-    def deleteStudent(self):
-        pass
+    def deleteStudent(self, id):
+        self._deleteRecord(id)
+
+    def getTeachersListFromIDCath(self, idCath):
+        sql = "SELECT clients.id as id, clients.shortfio as shortfio " \
+              "FROM riidb.clients INNER JOIN riidb.teacherinfo " \
+              "ON clients.idInfo = teacherinfo.id " \
+              "WHERE clients.idClientGroup=2 and " \
+              "teacherinfo.idCath='%s';" % idCath
+        data = DataBaseModule.GetData(sql=sql, nameDB='riidb')
+        return data
+
+    def getStudentsListFromIDCathGroup(self, idCathGroup):
+        sql = "SELECT id, fio " \
+              "FROM riidb.clients " \
+              "WHERE idInfo='%s';" % idCathGroup
+        data = DataBaseModule.GetData(sql=sql, nameDB='riidb')
+        return data
+
