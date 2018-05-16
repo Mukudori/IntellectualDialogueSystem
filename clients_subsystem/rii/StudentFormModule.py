@@ -5,10 +5,11 @@ from clients_subsystem.rii.database.CathGroupModule import CathGroup
 from clients_subsystem.rii.database.ClientModule import Client
 
 class StudentForm (QWidget):
-    def __init__(self, id=0):
+    def __init__(self, id=0, parent=0):
         super().__init__()
         self.initUI()
         self.ID = id
+        self.Parent = parent
         if id:
             self.initEdit()
         else:
@@ -62,7 +63,11 @@ class StudentForm (QWidget):
         ind = self.cbGroup.currentIndex()
         idInfo = self.groupList[ind]['id']
         if self.ID:
-            Client().updateStudent(idClient=self.ID, fio=fio, idInfo=idInfo)
+            Client().updateStudent(idClient=self.ID, shortfio=self.leShort.text(),
+                                   fio=fio, idInfo=idInfo)
         else:
-            Client().insertStudent(fio=fio, idInfo=idInfo)
+            Client().insertStudent(fio=fio, shortfio=self.leShort.text(),
+                                   idInfo=idInfo)
+        if self.Parent:
+            self.Parent.RefreshTable()
         self.close()

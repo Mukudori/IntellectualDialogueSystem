@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>516</width>
+    <width>457</width>
     <height>310</height>
    </rect>
   </property>
@@ -21,6 +21,15 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>5</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>5</number>
+      </property>
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
@@ -33,6 +42,12 @@
       </item>
       <item>
        <widget class="QComboBox" name="comboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <item>
          <property name="text">
           <string>Студенты</string>
@@ -55,14 +70,10 @@
         </item>
        </widget>
       </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="lView">
         <property name="text">
-         <string>Поиск :</string>
+         <string>Группа : </string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -70,7 +81,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QComboBox" name="cbView">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -87,6 +105,9 @@
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
    <attribute name="toolBarArea">
     <enum>BottomToolBarArea</enum>
    </attribute>
@@ -98,10 +119,22 @@
    <addaction name="refreshView"/>
    <addaction name="delRecord"/>
   </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actTimeTable"/>
+  </widget>
   <action name="addRecord">
    <property name="icon">
     <iconset>
-     <normaloff>../../pics/Add.png</normaloff>../../pics/Add.png</iconset>
+     <normaloff>../../../pics/Add.png</normaloff>../../../pics/Add.png</iconset>
    </property>
    <property name="text">
     <string>Добавить запись</string>
@@ -116,7 +149,7 @@
   <action name="delRecord">
    <property name="icon">
     <iconset>
-     <normaloff>../../pics/Del.png</normaloff>../../pics/Del.png</iconset>
+     <normaloff>../../../pics/Del.png</normaloff>../../../pics/Del.png</iconset>
    </property>
    <property name="text">
     <string>Удалить запись</string>
@@ -131,7 +164,7 @@
   <action name="editRecord">
    <property name="icon">
     <iconset>
-     <normaloff>../../pics/Edit.png</normaloff>../../pics/Edit.png</iconset>
+     <normaloff>../../../pics/Edit.png</normaloff>../../../pics/Edit.png</iconset>
    </property>
    <property name="text">
     <string>Редактировать запись</string>
@@ -146,7 +179,7 @@
   <action name="refreshView">
    <property name="icon">
     <iconset>
-     <normaloff>../../pics/refresh.png</normaloff>../../pics/refresh.png</iconset>
+     <normaloff>../../../pics/refresh.png</normaloff>../../../pics/refresh.png</iconset>
    </property>
    <property name="text">
     <string>Обновить</string>
@@ -156,6 +189,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actTimeTable">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../pics/schedule.png</normaloff>../../../pics/schedule.png</iconset>
+   </property>
+   <property name="text">
+    <string>Рассписание занятий</string>
+   </property>
+   <property name="toolTip">
+    <string>Рассписание занятий</string>
    </property>
   </action>
  </widget>

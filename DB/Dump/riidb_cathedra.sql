@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `cathedra`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cathedra` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(150) DEFAULT NULL,
   `idZav` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `cathedra` (
 
 LOCK TABLES `cathedra` WRITE;
 /*!40000 ALTER TABLE `cathedra` DISABLE KEYS */;
-INSERT INTO `cathedra` VALUES (1,'Прикладная математика',13);
+INSERT INTO `cathedra` VALUES (1,'Прикладная математика',13),(26,'Высшая математика, физика и химия',23),(27,'Наземные транспортные системы',24),(28,'Строительство и механика',25),(29,'Техника и технологии машиностроения и пищевых производств',26),(30,'Электроэнергетика',27),(31,'Гуманитарные дисциплины',28),(32,'Менеджмент и экономика',29),(33,'Физическая культура и спорт',30),(34,'Финансы и кредит',31);
 /*!40000 ALTER TABLE `cathedra` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-11 21:31:51
+-- Dump completed on 2018-05-16 21:42:37

@@ -29,7 +29,7 @@ CREATE TABLE `cathGroup` (
   `idCathedra` int(11) DEFAULT NULL,
   `idCurator` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `cathGroup` (
 
 LOCK TABLES `cathGroup` WRITE;
 /*!40000 ALTER TABLE `cathGroup` DISABLE KEYS */;
-INSERT INTO `cathGroup` VALUES (1,'ИВТ-41','4',1,22);
+INSERT INTO `cathGroup` VALUES (1,'ИВТ-41','4',1,22),(2,'ИВТ-51','3',1,2),(3,'Тест мат,физ,хим','4',26,23);
 /*!40000 ALTER TABLE `cathGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-11 21:31:50
+-- Dump completed on 2018-05-16 21:42:36

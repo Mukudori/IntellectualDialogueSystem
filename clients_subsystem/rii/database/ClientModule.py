@@ -33,15 +33,27 @@ class Client(object):
     def getTeachersList(self):
         pass
 
-    def getTVTeachersModel(self):
-        sql = "SELECT clients.id as id, clients.fio as fio, " \
-        "teacherinfo.dolzhnost as dolzhnost, teacherinfo.obrazovanie as obrazovanie, " \
-        "teacherinfo.stepen as stepen, teacherinfo.zvanie as zvanie, " \
-        "teacherinfo.kvalifikacia as kvalifikacia, " \
-        "cathedra.name as cathedra " \
-        "FROM (riidb.clients INNER JOIN riidb.teacherinfo " \
-        "ON clients.idInfo = teacherinfo.id and clients.idClientGroup=2) " \
-        "INNER JOIN riidb.cathedra ON cathedra.id = teacherinfo.idCath;"
+    def getTVTeachersModel(self, idCathedra=0):
+        if not idCathedra:
+            sql = "SELECT clients.id as id, clients.fio as fio, " \
+            "teacherinfo.dolzhnost as dolzhnost, teacherinfo.obrazovanie as obrazovanie, " \
+            "teacherinfo.stepen as stepen, teacherinfo.zvanie as zvanie, " \
+            "teacherinfo.kvalifikacia as kvalifikacia, " \
+            "cathedra.name as cathedra " \
+            "FROM (riidb.clients INNER JOIN riidb.teacherinfo " \
+            "ON clients.idInfo = teacherinfo.id and clients.idClientGroup=2) " \
+            "INNER JOIN riidb.cathedra ON cathedra.id = teacherinfo.idCath;"
+        else:
+            sql = "SELECT clients.id as id, clients.fio as fio, " \
+                  "teacherinfo.dolzhnost as dolzhnost, teacherinfo.obrazovanie as obrazovanie, " \
+                  "teacherinfo.stepen as stepen, teacherinfo.zvanie as zvanie, " \
+                  "teacherinfo.kvalifikacia as kvalifikacia, " \
+                  "cathedra.name as cathedra " \
+                  "FROM (riidb.clients INNER JOIN riidb.teacherinfo " \
+                  "ON clients.idInfo = teacherinfo.id and clients.idClientGroup=2 ) " \
+                  "INNER JOIN riidb.cathedra ON cathedra.id = teacherinfo.idCath " \
+                  "AND teacherinfo.idCath = '%s';" % idCathedra
+
         nameList = ['id', 'fio', 'dolzhnost', 'obrazovanie', 'stepen',
                     'zvanie', 'kvalifikacia', 'cathedra']
         asList = ['id', 'ФИО', 'Должность', 'Образование', "Степень",
@@ -49,12 +61,20 @@ class Client(object):
         model = DataBaseModule.CreateTableViewModel(sql, nameList, asList, nameDB='riidb')
         return model
 
-    def getTVStudentsModel(self):
-        sql = "SELECT clients.id as id, clients.fio as fio, " \
-              "clients.idClientGroup, " \
-              "cathGroup.name as cathGroup, cathGroup.course as course " \
-              "FROM riidb.clients INNER JOIN riidb.cathGroup " \
-              "ON clients.idInfo = cathGroup.id and clients.idClientGroup=3;"
+    def getTVStudentsModel(self, cathGroup=0):
+        if cathGroup == 0:
+            sql = "SELECT clients.id as id, clients.fio as fio, " \
+                  "clients.idClientGroup, " \
+                  "cathGroup.name as cathGroup, cathGroup.course as course " \
+                  "FROM riidb.clients INNER JOIN riidb.cathGroup " \
+                  "ON clients.idInfo = cathGroup.id and clients.idClientGroup=3;"
+        else:
+            sql = "SELECT clients.id as id, clients.fio as fio, " \
+                  "clients.idClientGroup, " \
+                  "cathGroup.name as cathGroup, cathGroup.course as course " \
+                  "FROM riidb.clients INNER JOIN riidb.cathGroup " \
+                  "ON clients.idInfo = cathGroup.id and clients.idClientGroup=3 " \
+                  "and clients.idInfo='%s';"%cathGroup
 
         nameList = ['id', 'fio', 'cathGroup', 'course']
         asList = ['id', 'ФИО', 'Группа', 'Курс']

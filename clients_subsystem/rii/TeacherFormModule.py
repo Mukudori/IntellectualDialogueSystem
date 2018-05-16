@@ -4,10 +4,11 @@ from clients_subsystem.rii.database.CathedraModule import Cathedra
 from clients_subsystem.rii.database.ClientModule import Client
 
 class TeacherForm(QWidget):
-    def __init__(self, id=0):
+    def __init__(self, id=0, parent = 0):
         super().__init__()
         self.initUI()
         self.ID=id
+        self.Parent = parent
         if id:
             self.loadTeacherData()
 
@@ -121,6 +122,9 @@ class TeacherForm(QWidget):
                                  kvalifikacia=self.kvalifikaciaLE.text(),
                                  dolzhnost=self.dolzhnostLE.text(),
                                  idCath=idCath)
+
+        if self.Parent:
+            self.Parent.RefreshTable()
         self.close()
 
 

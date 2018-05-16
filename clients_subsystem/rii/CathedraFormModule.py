@@ -4,11 +4,14 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, \
 from clients_subsystem.rii.database.CathedraModule import Cathedra
 from clients_subsystem.rii.database.ClientModule import Client
 
-class CathedraForm(object):
+class CathedraForm(QWidget):
     def __init__(self, id=0, parent=0):
         super().__init__()
         self.ID=id
         self.Parent = parent
+        self.initUI()
+        if id:
+            self.initEdit()
 
     def initUI(self):
         vLay = QVBoxLayout()
@@ -30,6 +33,8 @@ class CathedraForm(object):
         self.pbSave.clicked.connect(self.save)
         vLay.addWidget(self.pbSave)
 
+        self.setLayout(vLay)
+
     def initEdit(self):
         rec = Cathedra().getRecord(self.ID)
         self.leName.setText(rec['name'])
@@ -44,13 +49,31 @@ class CathedraForm(object):
         if ind!= -1:
             self.cbZav.setCurrentIndex(ind)
 
-    def insert(self):
-        ind=self.cbZav.currentIndex()
-        if ind<0: ind=0
+    def getIDZav(self):
+        ind = self.cbZav.currentIndex()
+        if ind < 0: ind = 0
         zav = self.teacherList[ind]['id']
+        return zav
+
+    def insertRecord(self):
+        zav = self.getIDZav()
         Cathedra().insertRecord(name=self.leName.text(),
                                 idZav=zav)
 
+    def updateRecord(self):
+        zav = self.getIDZav()
+        Cathedra().updateRecord(id=self.ID,
+                                name=self.leName.text(),
+                                idZav=zav)
+
+
     def save(self):
-        pass
+        if self.ID:
+            self.updateRecord()
+        else:
+            self.insertRecord()
+        if self.Parent:
+            self.Parent.RefreshTable()
+        self.close()
+
 

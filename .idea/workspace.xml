@@ -6,16 +6,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c96dad87-938e-4e49-95d8-030c98ad80d2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/CathGroupFormModule.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/CathedraFormModule.py" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/OpenTimeTableModule.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/TimeTableFormModule.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/server/telegram/config.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/CathedraFormModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/CathedraFormModule.py" />
       <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py" />
+      <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py" />
       <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/TeacherFormModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/TeacherFormModule.py" />
       <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/database/CathGroupModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/CathGroupModule.py" />
       <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py" />
       <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py" />
-      <change beforePath="$PROJECT_DIR$/server/telegram/config.py" afterPath="$PROJECT_DIR$/server/telegram/config.py" />
+      <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/ui/DataBaseForm.ui" afterPath="$PROJECT_DIR$/clients_subsystem/rii/ui/DataBaseForm.ui" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,8 +32,8 @@
       <file leaf-file-name="ClientModule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="130" column="69" lean-forward="false" selection-start-line="130" selection-start-column="69" selection-end-line="130" selection-end-column="69" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -40,10 +43,8 @@
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/CathGroupFormModule.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#110#0" expanded="true" />
-              </folding>
+              <caret line="0" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -51,9 +52,11 @@
       <file leaf-file-name="StudentFormModule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="37" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="37" />
-              <folding />
+            <state relative-caret-position="349">
+              <caret line="71" column="37" lean-forward="false" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+              <folding>
+                <element signature="e#1#111#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,30 +64,18 @@
       <file leaf-file-name="CathGroupModule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathGroupModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="41" column="47" lean-forward="true" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
+            <state relative-caret-position="252">
+              <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CathedraFormModule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/CathedraFormModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="51" column="42" lean-forward="true" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#110#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CathedraModule.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CathedraModule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="50" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="50" />
+            <state relative-caret-position="72">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,12 +84,46 @@
       <file leaf-file-name="RIIDBMainFormModule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state relative-caret-position="18">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="11" selection-end-column="71" />
               <folding>
                 <element signature="e#24#79#0" expanded="true" />
-                <element signature="e#2398#2553#0" expanded="false" />
+                <element signature="e#2915#3070#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OpenTimeTableModule.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/OpenTimeTableModule.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="756">
+              <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#99#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimeTableFormModule.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/TimeTableFormModule.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+              <folding>
+                <element signature="e#1#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimeTableModule.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,34 +131,10 @@
       <file leaf-file-name="TeacherFormModule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/TeacherFormModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="98" column="19" lean-forward="true" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
+            <state relative-caret-position="327">
+              <caret line="126" column="38" lean-forward="false" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
               <folding>
                 <element signature="e#0#110#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mainRIIDB.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainRIIDB.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataBaseModule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dbConnector/DataBaseModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1746">
-              <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-              <folding>
-                <element signature="e#1118#1868#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -166,9 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ai_subsystem/subParser.py" />
-        <option value="$PROJECT_DIR$/modules/database/DataBaseModule.py" />
-        <option value="$PROJECT_DIR$/ai_subsystem/lib/data_utils.py" />
         <option value="$PROJECT_DIR$/mainAI.py" />
         <option value="$PROJECT_DIR$/ai_subsystem/lib/predict.py" />
         <option value="$PROJECT_DIR$/pics/ImagePlayerModule.py" />
@@ -208,22 +206,25 @@
         <option value="$PROJECT_DIR$/clients_subsystem/rii/DataBaseForm.py" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/database/mysql.ini" />
         <option value="$PROJECT_DIR$/dbConnector/DataBaseModule.py" />
-        <option value="$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py" />
         <option value="$PROJECT_DIR$/server/telegram/config.py" />
-        <option value="$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py" />
-        <option value="$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py" />
-        <option value="$PROJECT_DIR$/clients_subsystem/rii/TeacherFormModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/CathGroupFormModule.py" />
-        <option value="$PROJECT_DIR$/clients_subsystem/rii/database/CathGroupModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/CathedraFormModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/TeacherFormModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/database/CathGroupModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/OpenTimeTableModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/TimeTableFormModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="65" />
+    <option name="x" value="75" />
     <option name="y" value="24" />
-    <option name="width" value="1281" />
+    <option name="width" value="960" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
@@ -241,7 +242,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -287,7 +288,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -420,18 +421,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1281" height="1056" extended-state="4" />
+    <frame x="75" y="24" width="960" height="1056" extended-state="4" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18969555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46842104" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46842104" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2505263" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -483,7 +484,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py</url>
-          <line>59</line>
+          <line>60</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -496,6 +497,16 @@
           <line>59</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py</url>
+          <line>145</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -504,32 +515,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="91" />
+      <option name="time" value="94" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ai_subsystem/lib/predict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="50" column="28" lean-forward="false" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ai_subsystem/lib/data_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="172" column="28" lean-forward="false" selection-start-line="171" selection-start-column="6" selection-end-line="173" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="308" column="0" lean-forward="false" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ai_subsystem/editModelFormModule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
@@ -566,17 +556,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="139" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="139" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="846">
             <caret line="47" column="72" lean-forward="false" selection-start-line="47" selection-start-column="72" selection-end-line="47" selection-end-column="72" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="139" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="139" />
         </state>
       </provider>
     </entry>
@@ -792,9 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="954">
           <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
-          <folding>
-            <element signature="e#803#1615#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -802,15 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="37" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -824,39 +802,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#79#0" expanded="true" />
-            <element signature="e#2398#2553#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mainRIIDB.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="108">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
+            <element signature="e#0#40#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py">
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/CathedraFormModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="130" column="69" lean-forward="false" selection-start-line="130" selection-start-column="69" selection-end-line="130" selection-end-column="69" />
+        <state relative-caret-position="1296">
+          <caret line="76" column="20" lean-forward="false" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#110#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="71" column="37" lean-forward="false" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+          <folding>
+            <element signature="e#1#111#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/TeacherFormModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="98" column="19" lean-forward="true" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
+        <state relative-caret-position="327">
+          <caret line="126" column="38" lean-forward="false" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
           <folding>
             <element signature="e#0#110#0" expanded="true" />
           </folding>
@@ -866,35 +853,62 @@
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/CathGroupFormModule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#110#0" expanded="true" />
-          </folding>
+          <caret line="0" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathGroupModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="41" column="47" lean-forward="true" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
+        <state relative-caret-position="252">
+          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/CathedraFormModule.py">
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/OpenTimeTableModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="51" column="42" lean-forward="true" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
+        <state relative-caret-position="756">
+          <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
           <folding>
-            <element signature="e#0#110#0" expanded="true" />
+            <element signature="e#0#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py">
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="50" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="50" />
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="11" selection-end-column="71" />
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+            <element signature="e#2915#3070#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/TimeTableFormModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+          <folding>
+            <element signature="e#1#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>

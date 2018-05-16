@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `timedis`
+-- Table structure for table `timetable`
 --
 
-DROP TABLE IF EXISTS `timedis`;
+DROP TABLE IF EXISTS `timetable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `timedis` (
+CREATE TABLE `timetable` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discipline` varchar(45) DEFAULT NULL,
+  `idTeacher` int(11) DEFAULT NULL,
   `idCathGroup` int(11) DEFAULT NULL,
-  `ind` int(11) DEFAULT NULL,
   `numDay` int(11) DEFAULT NULL,
-  `idDis` int(11) DEFAULT NULL,
+  `numLesson` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `timedis`
+-- Dumping data for table `timetable`
 --
 
-LOCK TABLES `timedis` WRITE;
-/*!40000 ALTER TABLE `timedis` DISABLE KEYS */;
-INSERT INTO `timedis` VALUES (1,1,1,1,1),(2,1,2,1,2),(3,1,3,1,5);
-/*!40000 ALTER TABLE `timedis` ENABLE KEYS */;
+LOCK TABLES `timetable` WRITE;
+/*!40000 ALTER TABLE `timetable` DISABLE KEYS */;
+INSERT INTO `timetable` VALUES (1,'КТО',2,1,1,1),(2,'Защита информации',2,1,1,2),(3,'Функц. анализ',3,1,1,3),(4,'Мат. Моделирование',2,1,2,1),(5,'Арихитектура ЭВМ',4,1,2,2),(6,'Интеллектуальные системы',4,1,2,3);
+/*!40000 ALTER TABLE `timetable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-11 21:31:51
+-- Dump completed on 2018-05-16 21:42:36

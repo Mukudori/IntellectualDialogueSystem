@@ -27,7 +27,7 @@ class Cathedra(object):
         return data
 
     def getList(self):
-        SQL = "SELECT id, name, idZav " \
+        SQL = "SELECT * " \
               "FROM riidb.cathedra;"
         data = DBM.GetData(sql=SQL, nameDB='riidb')
         return data
