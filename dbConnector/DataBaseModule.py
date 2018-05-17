@@ -117,11 +117,6 @@ def ExecuteSQL(sql, nameDB='botdb'):
 
         if cursor.lastrowid:
             lastID = cursor.lastrowid
-            #print('last insert id', lastID)
-        #else:
-            #print('last insert id not found')
-
-
         conn.commit()
     except Error as error:
         print(error)
@@ -145,6 +140,28 @@ def CreateTableViewModel(sql, fieldTab, fieldsView, nameDB='botdb'):
             model.setItem(i, j, item)
 
     return model
+
+def CreateTableViewModelFromData(data, fieldTab, fieldsView, firstcolumn=0):
+    model = QStandardItemModel()
+    model.setHorizontalHeaderLabels(fieldsView)
+    model.setVerticalHeaderLabels([' '] * len(data))
+
+    fc = 1 if firstcolumn else 0
+    for i in range(len(data)):
+        for j in range(len(fieldTab)+fc):
+            if j==0 and firstcolumn:
+                item = QStandardItem(str(firstcolumn[i]))
+                item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                model.setItem(i, j, item)
+            else:
+                try:
+                    item = QStandardItem(str(data[i][fieldTab[j-fc]]))
+                except:
+                    item = QStandardItem('-')
+                item.setFlags(QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled)
+                model.setItem(i, j, item)
+    return model
+
 
 
 

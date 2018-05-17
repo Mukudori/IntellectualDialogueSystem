@@ -3,13 +3,13 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, \
 from clients_subsystem.rii.database.CathGroupModule import CathGroup
 from clients_subsystem.rii.database.ClientModule import Client
 from clients_subsystem.rii.database.CathedraModule import Cathedra
+from clients_subsystem.rii.TimeTableFormModule import TimeTableForm
 
 class OpenTimeTableForm(QWidget):
     def __init__(self):
         super().__init__()
         self.SelectedGroups = {'None': 0, 'Students' : 1, 'Teachers' : 2}
         self.initUI()
-
 
     def initUI(self):
         vLay = QVBoxLayout()
@@ -31,7 +31,6 @@ class OpenTimeTableForm(QWidget):
             self.cbCathedra.addItem(row['name'])
         vLay.addLayout(hl2)
 
-
         hl3 = QHBoxLayout()
         self.lab3 = QLabel('Группа студентов: ')
         self.cbGroup = QComboBox()
@@ -39,8 +38,8 @@ class OpenTimeTableForm(QWidget):
         hl3.addWidget(self.cbGroup)
         vLay.addLayout(hl3)
 
-        self.pbSave = QPushButton('Открыть')
-        vLay.addWidget(self.pbSave)
+        self.pbOpen = QPushButton('Открыть')
+        vLay.addWidget(self.pbOpen)
 
         self.connectSlots()
         self.initStudent()
@@ -79,3 +78,28 @@ class OpenTimeTableForm(QWidget):
     def connectSlots(self):
         self.cbCathedra.currentIndexChanged.connect(self.initClient)
         self.cbClientsGroup.currentIndexChanged.connect(self.initClient)
+        self.pbOpen.clicked.connect(self.openTimeTableForm)
+
+    def getTeacherTT(self):
+        idT = self.cbGroup.currentIndex()
+        if idT==-1: idT=0
+        idTeacher = self.teachList[idT]['id']
+
+        return (idTeacher, 2)
+
+    def getStudentsTT(self):
+        idG = self.cbGroup.currentIndex()
+        if idG==-1: idG=0
+        idGroup = self.stGroup[idG]['id']
+        return  (idGroup,3)
+
+    def openTimeTableForm(self):
+        idClientGroup = 0
+        idClient = 0
+        if self.cbClientsGroup.currentText() == 'Студенты':
+            idClient, idClientGroup = self.getStudentsTT()
+        else:
+            idClient, idClientGroup = self.getTeacherTT()
+
+        self.tt = TimeTableForm(idClientsGroup=idClientGroup, idClient=idClient, parent=self)
+        self.tt.show()
