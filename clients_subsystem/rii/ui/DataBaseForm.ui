@@ -68,6 +68,11 @@
           <string>Группы студентов</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Аудитории</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>

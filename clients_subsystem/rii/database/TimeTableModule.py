@@ -60,7 +60,7 @@ class TimeTable(object):
         i=0
 
         pad = {'discipline': '-', 'fioTeacher' : '-', 'numAud' : '-'}
-        while i<(len(data)-1):
+        while i<(len(data)):
             if i+1!=data[i]['numLesson']:
                 pad['numLesson'] = i+1
                 data.insert(i, pad)
@@ -84,8 +84,8 @@ class TimeTable(object):
 
     def getTeacherModel(self, idTeacher, numDay):
         data = self.getTeacherList(idTeacher=idTeacher, numDay=numDay)
-        fieldsView = ['Время', "Дисциплина", "Ауд."]
-        fieldsTable = ['discipline', 'numAud']
+        fieldsView = ['Время',"Группа", "Дисциплина", "Ауд."]
+        fieldsTable = ['nameGroup', 'discipline', 'numAud']
         timelist = ['8:30-10:00',
                     '10:10-11:40',
                     '12:10-13:40',

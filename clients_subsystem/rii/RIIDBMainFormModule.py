@@ -10,6 +10,8 @@ from clients_subsystem.rii.database.CathGroupModule import CathGroup
 from clients_subsystem.rii.CathGroupFormModule import CathGroupForm
 from clients_subsystem.rii.CathedraFormModule import CathedraForm
 from clients_subsystem.rii.OpenTimeTableModule import OpenTimeTableForm
+from clients_subsystem.rii.database.AuditoryModule import Auditory
+from clients_subsystem.rii.AddAuditoryDialogModule import AddAuditoryDialog
 
 class RIIDataBaseForm(QMainWindow):
     
@@ -44,6 +46,9 @@ class RIIDataBaseForm(QMainWindow):
                 self.cbCathedraInit()
             idCathedra = self.getAdditionalParIndex()
             model = CathGroup().getTVCathGroup(idCathedra)
+        elif table == 'Аудитории':
+            self.setVisibleCB(False)
+            model = Auditory().getTVModel()
 
 
         self.tableView.setModel(model)
@@ -123,6 +128,9 @@ class RIIDataBaseForm(QMainWindow):
         elif table == 'Кафедры':
             self.Cathedra = CathedraForm(parent=self)
             self.Cathedra.show()
+        elif table == 'Аудитории':
+            self.AuditInsert = AddAuditoryDialog(parent = self)
+            self.AuditInsert.show()
 
     def DeleteRecord(self):
         id = self.GetSelectedRecordID()
@@ -130,8 +138,9 @@ class RIIDataBaseForm(QMainWindow):
             table = self.GetTableName()
 
             if (table == 'Преподаватели'):
-                table = Client()
-                table.deleteTeacher(id)
+                Client().deleteTeacher(id)
+            elif table == "Аудитории":
+                Auditory().deleteRecord(id)
 
             self.RefreshTable()
 
@@ -202,8 +211,3 @@ class RIIDataBaseForm(QMainWindow):
         self.delRecord.triggered.connect(self.DeleteRecord)
 
         self.actTimeTable.triggered.connect(self.openTimeTable)
-
-
-
-
-
