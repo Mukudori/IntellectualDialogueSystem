@@ -6,19 +6,101 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>473</width>
-    <height>418</height>
+    <width>614</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ИВТ-41 Ассистент</string>
+   <string>Подсистема шаблонной логики</string>
   </property>
   <property name="windowIcon">
    <iconset>
     <normaloff>../../pics/binbetbot.jpg</normaloff>../../pics/binbetbot.jpg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Группа клиентов : </string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="cbClient">
+        <item>
+         <property name="text">
+          <string>Администратор</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Преподаватель</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Студент</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Гость</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="lCath">
+            <property name="text">
+             <string>Кафедра : </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbCath"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="lOther">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Доп.параметр : </string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbOther"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
     <item>
      <widget class="QListWidget" name="chatWidget"/>
     </item>
@@ -75,7 +157,6 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="startTele"/>
    <addaction name="DB"/>
    <addaction name="settings"/>
    <addaction name="action_SQL"/>

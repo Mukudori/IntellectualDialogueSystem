@@ -16,28 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usergrouptab`
+-- Table structure for table `clietntstab`
 --
 
-DROP TABLE IF EXISTS `usergrouptab`;
+DROP TABLE IF EXISTS `clietntstab`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usergrouptab` (
+CREATE TABLE `clietntstab` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nameGroup` varchar(45) DEFAULT NULL,
-  `editDB` tinyint(4) DEFAULT NULL,
+  `idRii` int(11) DEFAULT NULL,
+  `idTelegram` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usergrouptab`
+-- Dumping data for table `clietntstab`
 --
 
-LOCK TABLES `usergrouptab` WRITE;
-/*!40000 ALTER TABLE `usergrouptab` DISABLE KEYS */;
-INSERT INTO `usergrouptab` VALUES (1,'Администратор',1),(2,'Преподаватель',0),(3,'Студент',0),(4,'Гость',0);
-/*!40000 ALTER TABLE `usergrouptab` ENABLE KEYS */;
+LOCK TABLES `clietntstab` WRITE;
+/*!40000 ALTER TABLE `clietntstab` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clietntstab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-19 21:17:09
+-- Dump completed on 2018-05-19 21:17:08

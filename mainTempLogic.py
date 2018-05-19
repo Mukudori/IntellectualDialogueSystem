@@ -7,6 +7,10 @@ from tempdlg_subsystem.MessageWidgetModule import MessageWidget
 from tempdlg_subsystem.temp_logic.LocalChatModule import LocalChat
 from tempdlg_subsystem.SQLForm import SQLForm
 from tempdlg_subsystem.SettingFormModule import SettingForm
+# Клиентские подсистемы
+from clients_subsystem.rii.database.CathedraModule import Cathedra
+from clients_subsystem.rii.database.ClientModule import Client
+from clients_subsystem.rii.database.CathGroupModule import CathGroup
 
 
 class MainWindow(QMainWindow):
@@ -14,17 +18,23 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow,self).__init__()
         uic.loadUi("tempdlg_subsystem/ui/mainwindow.ui", self)
-        self.labToolBar = QLabel('<font color=red>Бот не запущен в Telegram<font>')
-        self.statusBar.addWidget(self.labToolBar)
-        self.PathAdminPic = 'pics/admin.png'
-        self.PathBotPic = 'pics/bot.jpg'
-        self.LocalBot = LocalChat(self)
-        self.EditDlgForm = 0
-        self.leMessage.setFocus()
+        self.initUI()
+        self.setupPars()
+        self.LocalBot = LocalChat(parent=self)
+        self.connectSlots()
+
         self.SendMessage('<font color=green size=4><b>Бот</b></font>',
                          self.LocalBot.GetHelloMessage()[0], self.PathBotPic)
-        self.TeleBotStarted = 0
 
+
+    def initUI(self):
+        self.labToolBar = QLabel('<font color=red>Локальный режим системы<font>')
+        self.statusBar.addWidget(self.labToolBar)
+        self.leMessage.setFocus()
+        self.setVisibleOtherCB(False)
+
+
+    def connectSlots(self):
         self.pbText.clicked.connect(self.SendAdmin)
         self.DB.triggered.connect(self.openDataBaseForm)
         self.checkBox.stateChanged.connect(self.LocalBot.SetVoiceMode)
@@ -32,7 +42,17 @@ class MainWindow(QMainWindow):
         self.action_SQL.triggered.connect(self.OpenSQLForm)
         self.settings.triggered.connect(self.OpenSettingForm)
         self.dbRefresh.triggered.connect(self.LocalBot.ReConnectToDB)
-        self.startTele.triggered.connect(self.StartTelegram)
+        self.cbClient.currentIndexChanged.connect(self.setupOtherCB)
+        self.cbCath.currentIndexChanged.connect(self.refreshOtherCB)
+
+    def setupPars(self):
+        self.PathAdminPic = 'pics/admin.png'
+        self.PathBotPic = 'pics/bot.jpg'
+        self.EditDlgForm = 0
+        self.cathList = 0 # Список кафедр
+        self.groupList = 0 # Список групп студентов
+        self.teachersList = 0 # Список преподавателей
+
 
 
     def changeVoiceMode(self):
@@ -94,8 +114,66 @@ class MainWindow(QMainWindow):
         self.f = SettingForm()
         self.f.show()
 
-    def StartTelegram(self):
-        pass
+    def setVisibleOtherCB(self, val):
+        self.lOther.setVisible(val)
+        self.cbOther.setVisible(val)
+        self.lCath.setVisible(val)
+        self.cbCath.setVisible(val)
+
+    def refreshOtherCB(self):
+        ind = self.cbCath.currentIndex()
+        if ind == -1:
+            ind = self.cathList[0]['id']
+        else:
+            ind=self.cathList[ind]['id']
+
+
+        curText = self.cbClient.currentText()
+        if curText == 'Преподаватель':
+            self.initTeachers(idCath=ind)
+        else:
+            self.initGroup(idCath=ind)
+
+    def initCath(self):
+        self.cathList = Cathedra().getList()
+        self.cbCath.clear()
+        self.cbCath.addItems([row['name'] for row in self.cathList])
+
+    def initTeachers(self, idCath=0):
+        if not idCath:
+            self.initCath()
+            idCath=1
+        self.teachersList = Client().getTeachersListFromIDCath(idCath=idCath)
+        self.cbOther.clear()
+        self.cbOther.addItems([row['shortfio'] for row in self.teachersList])
+
+    def initGroup(self, idCath=0):
+        if not idCath:
+            self.initCath()
+            idCath=1
+        self.groupList = CathGroup().getList(idCath=idCath)
+        self.cbOther.clear()
+        self.cbOther.addItems([row['name'] for row in self.groupList])
+
+    def setupOtherCB(self):
+
+        def _setVis(val):
+            self.setVisibleOtherCB(val)
+
+        curText = self.cbClient.currentText()
+
+        if curText == 'Администратор':
+            _setVis(False)
+        elif curText == 'Преподаватель':
+            _setVis(True)
+            self.initTeachers()
+        elif curText == 'Студент':
+            _setVis(True)
+            self.initGroup()
+        elif curText == 'Гость':
+            _setVis(False)
+
+
 
 
 

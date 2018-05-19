@@ -27,7 +27,7 @@ CREATE TABLE `questiontab` (
   `question` varchar(255) DEFAULT NULL,
   `idContext` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `questiontab` (
 
 LOCK TABLES `questiontab` WRITE;
 /*!40000 ALTER TABLE `questiontab` DISABLE KEYS */;
-INSERT INTO `questiontab` VALUES (18,'Привет',10),(19,'Здравствуй',10),(20,'Как дела',11),(21,'Че как',11),(22,'Что делаешь',12),(23,'Сколько время',13),(25,'Тест',14),(26,'Проверка',15),(27,'Как жизнь?',11),(28,'Приветствую',10),(29,'Запусти режим беседы',16),(30,'Давай побеседуем',16),(32,'Давай поболтаем',16),(33,'Активируй модуль ИИ',16);
+INSERT INTO `questiontab` VALUES (18,'Привет',10),(19,'Здравствуй',10),(20,'Как дела',11),(21,'Че как',11),(22,'Что делаешь',12),(23,'Сколько время',13),(25,'Тест',14),(26,'Проверка',15),(27,'Как жизнь?',11),(28,'Приветствую',10),(29,'Запусти режим беседы',16),(30,'Давай побеседуем',16),(32,'Давай поболтаем',16),(33,'Активируй модуль ИИ',16),(34,'Кто ты?',17),(35,'Что ты?',17),(36,'Перейди в режим ии',16);
 /*!40000 ALTER TABLE `questiontab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-18 20:35:06
+-- Dump completed on 2018-05-19 21:17:09

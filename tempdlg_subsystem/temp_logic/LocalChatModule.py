@@ -1,30 +1,30 @@
 # -*- coding: utf-8 -*-
 from tempdlg_subsystem.database.QuestionTableModule import QuestionTable
-#from tempdlg_subsystem.EditDlgForm import EditDlgForm
-from tempdlg_subsystem.EditActionForm import EditActionForm
 from gtts import gTTS
 from pygame import mixer
 import os
 import  datetime
-from tempdlg_subsystem.temp_logic.TempDialogModule import TempDialog
 from main_logic_module.MainDialogLogicModule import MainDialogLogic
 
 class LocalChat:
-    def __init__(self, parent = 0, online=0, voice=0):
-        self.Online = online # Бот пишет в телеграме или в программе
-        self.Voice = voice # Бот озвучивает свои реплики
+    def __init__(self, parent = 0, voice=0):
+        self.setupPars(voice)
+
         self.ReConnectToDB()
-        self.SaveMessage = str() # сообщение, отсутствующее в базе
-        self.previousMessage = [str(),0] # Предыдущий ответ бота и его id
+
+        self.LogicModule = MainDialogLogic()
+
+    def setupPars(self, voice=0):
+        self.Voice = voice  # Бот озвучивает свои реплики
+        self.SaveMessage = str()  # сообщение, отсутствующее в базе
+        self.previousMessage = [str(), 0]  # Предыдущий ответ бота и его id
         self.UserGroup = 4
         self._mp3_nameold = 'file'
-        self.audioDir=os.path.abspath(os.curdir)+'\\audio\\'
-        self.LogicModule = MainDialogLogic()
+        self.audioDir = os.path.abspath(os.curdir) + '//audio//' # Установки папки с аудио
         if os.path.exists(self.audioDir):
             self.__DelAllAudioFiles() # Чистит папку audio, если она есть
 
-    def SetOnlineMode(self, mode):
-        self.Online = mode
+
     def SetVoiceMode(self, mode=-1):
         if mode == -1:
             if self.Voice :
@@ -35,16 +35,15 @@ class LocalChat:
             self.Voice = mode
 
     def GetHelloMessage(self):
-        return ['Здравствуйте!\nЯ ваш персональный помощник.\nРад буду ответить на ваши вопросы.', 0,0]
+        return ['Здравствуйте!\nЯ далоговая система.\nРада буду ответить на ваши вопросы.', 0,0]
 
     def GetAnswer(self, text):
         return self.LogicModule.getAnswerFromText(text)
 
-
     def ReceiveMessage(self, text):
         self.previousMessage = self.GetAnswer(text)
         if(self.Voice):
-            self.__Say(self.previousMessage)
+            self.__Say(self.previousMessage[0]['answer'])
         return self.previousMessage
 
     def executeScrypt(self, client, idAction):
@@ -56,11 +55,11 @@ class LocalChat:
         tts = gTTS(text=phrase, lang="ru")
         now_time = datetime.datetime.now()
         self._mp3_name = now_time.strftime("%d%m%Y%I%M%S") + ".mp3"
-        tts.save(self.audiodir+self._mp3_name)
-        mixer.music.load(self.audiodir+self._mp3_name)
+        tts.save(self.audioDir+self._mp3_name)
+        mixer.music.load(self.audioDir+self._mp3_name)
         mixer.music.play()
-        if(os.path.exists(self.audiodir+self._mp3_nameold)):
-            os.remove(self.audiodir+self._mp3_nameold)
+        if(os.path.exists(self.audioDir+self._mp3_nameold)):
+            os.remove(self.audioDir+self._mp3_nameold)
         now_time = datetime.datetime.now()
         self._mp3_nameold=self._mp3_name
         self._mp3_name = now_time.strftime("%d%m%Y%I%M%S")+".mp3"
@@ -70,22 +69,14 @@ class LocalChat:
                 break  # и выход из программы"""
 
     def __DelAllAudioFiles(self):
-        for the_file in os.listdir(self.audiodir):
-            file_path = os.path.join(self.audiodir, the_file)
+        for the_file in os.listdir(self.audioDir):
+            file_path = os.path.join(self.audioDir, the_file)
             try:
                 if os.path.isfile(file_path):
                     os.unlink(file_path)
                 # elif os.path.isdir(file_path): shutil.rmtree(file_path)
             except Exception as e:
                 print(e)
-
-    def __ExecuteAction(self, id):
-        if (id==13):
-            self.f = EditActionForm()
-            self.f.show()
-        elif(id==14):
-            self.f = EditDlgForm()
-            self.f.show()
 
     def ReConnectToDB(self):
         self.tabQ = QuestionTable()  # Список записей из таблицы вопросов
