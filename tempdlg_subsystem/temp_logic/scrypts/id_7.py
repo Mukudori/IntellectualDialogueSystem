@@ -3,10 +3,11 @@
  Активировать режим ИИ
 '''
 
-def GetAnswer(mainLogic=0):
+def execute(args):
     '''
 
     :param mainLogic: ссылка на основной модуль логики
     :return:
     '''
-    mainLogic.startAI()
+    tempLogic = args[0]
+    tempLogic.startAI()

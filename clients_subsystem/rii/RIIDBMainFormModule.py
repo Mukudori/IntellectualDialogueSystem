@@ -12,6 +12,7 @@ from clients_subsystem.rii.CathedraFormModule import CathedraForm
 from clients_subsystem.rii.OpenTimeTableModule import OpenTimeTableForm
 from clients_subsystem.rii.database.AuditoryModule import Auditory
 from clients_subsystem.rii.AddAuditoryDialogModule import AddAuditoryDialog
+from clients_subsystem.rii.EditClientFormModule import EditClientForm
 
 class RIIDataBaseForm(QMainWindow):
     
@@ -211,3 +212,8 @@ class RIIDataBaseForm(QMainWindow):
         self.delRecord.triggered.connect(self.DeleteRecord)
 
         self.actTimeTable.triggered.connect(self.openTimeTable)
+        self.act_AddClient.triggered.connect(self.AddClient)
+
+    def AddClient(self):
+        self.EditClient = EditClientForm()
+        self.EditClient.show()

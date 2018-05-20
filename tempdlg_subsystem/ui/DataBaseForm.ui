@@ -58,6 +58,11 @@
           <string>Действия</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Клиенты</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>

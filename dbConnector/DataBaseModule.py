@@ -70,7 +70,7 @@ def GetData(sql , nameDB='botdb'):
     #cur = ConnectToDataBase()
     #cur.execute(sql)
     #data = cur.fetchall()
-    data = [{" ": "Подключение не удалось"}]
+    data = [{"Error": "Подключение не удалось"},]
     try:
         dbconfig = read_db_config(nameDB=nameDB)
         conn = MySQLConnection(**dbconfig)

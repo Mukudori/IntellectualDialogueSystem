@@ -16,27 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `clietntstab`
+-- Table structure for table `clientstab`
 --
 
-DROP TABLE IF EXISTS `clietntstab`;
+DROP TABLE IF EXISTS `clientstab`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `clietntstab` (
+CREATE TABLE `clientstab` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idRii` int(11) DEFAULT NULL,
   `idTelegram` int(11) DEFAULT NULL,
+  `idClientGroup` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `clietntstab`
+-- Dumping data for table `clientstab`
 --
 
-LOCK TABLES `clietntstab` WRITE;
-/*!40000 ALTER TABLE `clietntstab` DISABLE KEYS */;
-/*!40000 ALTER TABLE `clietntstab` ENABLE KEYS */;
+LOCK TABLES `clientstab` WRITE;
+/*!40000 ALTER TABLE `clientstab` DISABLE KEYS */;
+INSERT INTO `clientstab` VALUES (1,0,1,1),(2,2,2,2),(3,1,3,3);
+/*!40000 ALTER TABLE `clientstab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-19 21:17:08
+-- Dump completed on 2018-05-20 21:19:03

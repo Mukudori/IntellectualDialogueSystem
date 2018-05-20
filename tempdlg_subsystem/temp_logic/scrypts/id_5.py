@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-def GetAnswer(mainLogic=0):
+def execute(*args):
 	return 'тест'

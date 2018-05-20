@@ -7,10 +7,13 @@ from tempdlg_subsystem.MessageWidgetModule import MessageWidget
 from tempdlg_subsystem.temp_logic.LocalChatModule import LocalChat
 from tempdlg_subsystem.SQLForm import SQLForm
 from tempdlg_subsystem.SettingFormModule import SettingForm
+from tempdlg_subsystem.database.ClientTabModule import ClientsTab
 # Клиентские подсистемы
 from clients_subsystem.rii.database.CathedraModule import Cathedra
 from clients_subsystem.rii.database.ClientModule import Client
 from clients_subsystem.rii.database.CathGroupModule import CathGroup
+from main_logic_module.UserMessageModule import UserMessage
+
 
 
 class MainWindow(QMainWindow):
@@ -52,8 +55,7 @@ class MainWindow(QMainWindow):
         self.cathList = 0 # Список кафедр
         self.groupList = 0 # Список групп студентов
         self.teachersList = 0 # Список преподавателей
-
-
+        self.message = UserMessage()
 
     def changeVoiceMode(self):
         self.Bot.SetVoiceMode()
@@ -68,19 +70,22 @@ class MainWindow(QMainWindow):
 
     def SendAdmin(self):
         AdminMessage = self.leMessage.text()
-        answerData = self.LocalBot.ReceiveMessage(AdminMessage)
-
-        self.SendMessage('<font color=blue size=4><b>Админ<b></font>',
+        self.SendMessage('<font color=blue size=4><b>%s<b></font>' % self.cbClient.currentText(),
                          AdminMessage,self.PathAdminPic)
+
+        self.initMessage(AdminMessage)
+        message = self.LocalBot.ReceiveMessageFromUserMessage(self.message)
         self.SendMessage('<font color=green size=4><b>Бот</b></font>',
-                         answerData[0]['answer'], self.PathBotPic)
+                         message['answerData']['answer'], self.PathBotPic)
         #potok.start()
         self.leMessage.setText('')
         self.chatWidget.scrollToBottom()
         self.leMessage.setFocus()
 
-        if answerData[0]['executable']:
-            answer=self.LocalBot.executeScrypt(idAction=answerData[0]['idAction'],  client=answerData[1])
+        if message['answerData']['executable']:
+            tempLogic = message['tempLogic']
+            idScrypt = message['answerData']['idAction']
+            answer=tempLogic.executeScrypt(idScrypt)
             self.SendMessage('<font color=green size=4><b>Бот</b></font>',
                              answer, self.PathBotPic)
 
@@ -172,6 +177,60 @@ class MainWindow(QMainWindow):
             self.initGroup()
         elif curText == 'Гость':
             _setVis(False)
+
+
+    def initAdminMessage(self):
+        self.message.from_user.setUser(id=1,
+                                       first_name='Админ',
+                                       last_name='Admin',
+                                       username='@admin')
+    def initGuestMessage(self):
+        self.message.from_user.setUser(id=0,
+                                       first_name='Гость',
+                                       last_name='Guest',
+                                       username='@guest')
+    def initTeacherMessage(self):
+        indCBT = self.cbOther.currentIndex()
+        if indCBT == -1:
+            indCBT = 0
+        idTeacher = self.teachersList[indCBT]['id']
+        rec = ClientsTab().getRecordFromIDRII(idTeacher, 2)
+        if rec:
+            self.message.from_user.setUser(id=rec['id'],
+                                           first_name='Преподаватель',
+                                           last_name='Teacher',
+                                           username='@teacher')
+        else:
+            self.initGuestMessage()
+
+    def initStudentMessage(self):
+        indCBG = self.cbOther.currentIndex()
+        if indCBG == -1:
+            indCBG = 0
+        idStudentsGroup = self.groupList[indCBG]['id']
+        rec = ClientsTab().getRecordFromIDRII(idStudentsGroup, 3)
+        if rec:
+            self.message.from_user.setUser(id=rec['id'],
+                                           first_name='Студент',
+                                           last_name='Student',
+                                           username='@student')
+        else:
+            self.initGuestMessage()
+
+    def initMessage(self, text=0):
+        curText = self.cbClient.currentText()
+
+        if curText == 'Администратор':
+            self.initAdminMessage()
+        elif curText == 'Преподаватель':
+            self.initTeacherMessage()
+        elif curText == 'Студент':
+            self.initStudentMessage()
+        elif curText == 'Гость':
+            self.initGuestMessage()
+        if text:
+            self.message.text=text
+
 
 
 

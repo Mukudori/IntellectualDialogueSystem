@@ -5,6 +5,7 @@ from tempdlg_subsystem.database.AnswerTableModule import AnswerTable
 import random
 from tempdlg_subsystem.database.ActionTableModule import ActionTable
 from tempdlg_subsystem.temp_logic.scrypts import ExecuteScryptsModule
+from tempdlg_subsystem.database.ClientTabModule import ClientsTab
 
 
 class TempDialog:
@@ -12,8 +13,8 @@ class TempDialog:
      Модуль шаблонной логики.
 
      При инициализации принимает 2 аргумента:
-     idGroup - идентефикатор группы пользователей
-               по умолчанию равен 4 (Гость)
+     telegramMessage - сообщение из телеграма, содержащее
+                        информацию о клиенте.
 
      mainLogic - ссылка на основной модуль логики,
                 для обмена информацией между модулями.
@@ -22,15 +23,19 @@ class TempDialog:
      GetAnswer, который принимает текстовую строку и выдает
      ответ с учетом предыдущего контекста.
     '''
-    def __init__(self,client, mainLogic):
+    def __init__(self,mainLogic, telegramMessage=0):
+        self.mainLogic = mainLogic
+        self.setupPars()
+        self.initClient(telegramMessage)
+
+
+    def setupPars(self):
         self.conTab = ContextTable()
-        self.idGroup = client['id_Group']
         self.CurrentContextLevel = 0
         self.CurrentContextID = 0
         self.FindedContext = False
-        self.mainLogic = mainLogic
-        self.client=client
         self.carrentMessage = 0
+
 
     def FuncCoefError(self, check, lenText, lenQ):
         if lenText and lenQ:
@@ -40,7 +45,7 @@ class TempDialog:
 
     def FindQuestionInContext(self, question, idContext):
         questionDict = self.conTab.GetQuestionDictFromContextID(idContext=idContext,
-                                                                idGroup=self.idGroup)
+                                                                idGroup=self.client['idClientGroup'])
         if questionDict != None:
             WordList = StringFunctionsModule.GetWordsListFromTextWithRE(question)
             checkCoef = 0
@@ -74,31 +79,31 @@ class TempDialog:
             """ Если уровень 1, то грузим весь верхний уровень,
             иначе только родительский уровень текущего контекста"""
             if self.CurrentContextLevel == 1:
-                parentTup = self.conTab.GetIDDictFromLevel(0, self.idGroup)
+                parentTup = self.conTab.GetIDDictFromLevel(0, self.client['idClientGroup'])
             else:
-                parentTup = self.conTab.GetIDParent(self.CurrentContextID, self.idGroup)
+                parentTup = self.conTab.GetIDParent(self.CurrentContextID, self.client['idClientGroup'])
 
 
             if parentTup:
 
                 contextIDTup+=parentTup
             #Средний уровень
-            currentParent = self.conTab.GetIDParent(self.CurrentContextID, self.idGroup)
-            broTup = self.conTab.GetChildContextIDList(currentParent[0]['id'], self.idGroup)
+            currentParent = self.conTab.GetIDParent(self.CurrentContextID, self.client['idClientGroup'])
+            broTup = self.conTab.GetChildContextIDList(currentParent[0]['id'], self.client['idClientGroup'])
 
             if broTup:
                 contextIDTup+=broTup
 
             #Нижний уровень
-            childTup = self.conTab.GetChildContextIDList(self.CurrentContextID, self.idGroup)
+            childTup = self.conTab.GetChildContextIDList(self.CurrentContextID, self.client['idClientGroup'])
 
             if childTup:
                 contextIDTup+=childTup
 
         else:
-            contextIDTup = self.conTab.GetIDDictFromLevel(0, self.idGroup)
+            contextIDTup = self.conTab.GetIDDictFromLevel(0, self.client['idClientGroup'])
             self.CurrentContextLevel = 0
-            childTup = self.conTab.GetChildContextIDList(self.CurrentContextID, self.idGroup)
+            childTup = self.conTab.GetChildContextIDList(self.CurrentContextID, self.client['idClientGroup'])
 
             if childTup:
                 contextIDTup += childTup
@@ -133,7 +138,7 @@ class TempDialog:
 
                 return self.carrentMessage
             elif self.CurrentContextLevel:
-                curCon = self.conTab.GetIDParent(self.CurrentContextID, self.idGroup)[0]
+                curCon = self.conTab.GetIDParent(self.CurrentContextID, self.client['id_Group'])[0]
                 self.CurrentContextID = curCon['id']
                 self.CurrentContextLevel = curCon['level']
             else:
@@ -148,7 +153,7 @@ class TempDialog:
         self.carrentMessage = {'answer': retError, 'idAction' : 0, 'executable' : False}
         return self.carrentMessage
 
-    def сheckAction(self, idAction):
+    def executeScrypt(self, idAction):
         actionRec = ActionTable().CheckScryptFromIDAction(idAction)
         if actionRec:
             #print()[str(actionRec)].GetAnswer()
@@ -163,6 +168,44 @@ class TempDialog:
     def startAI(self):
         self.client['ai_activated'] = True
         self.mainLogic.startAI()
+
+    def initClient(self, telegramMessage):
+        if telegramMessage:
+            rec = ClientsTab().getInfoFromIDTelegram(
+                idTelegram=telegramMessage.from_user.id)
+            if rec:
+                rec['idTelegram'] = telegramMessage.from_user.id
+                rec['first_name'] = telegramMessage.from_user.first_name
+                rec['last_name'] = telegramMessage.from_user.last_name
+                rec['username'] = telegramMessage.from_user.username
+                rec['ai_activated'] = False
+                rec['args'] = []
+                if telegramMessage.from_user.id == 1:
+                    rec['idClientGroup'] = 1
+
+
+
+
+            else:
+                rec = dict()
+                rec['idTelegram'] = telegramMessage.from_user.id
+                rec['first_name'] = telegramMessage.from_user.first_name
+                rec['last_name'] = telegramMessage.from_user.last_name
+                rec['username'] = telegramMessage.from_user.username
+                rec['ai_activated'] = False
+                rec['idClientGroup'] = 4
+                rec['args'] = []
+        else:
+            rec = dict()
+            rec['idTelegram'] = 0
+            rec['first_name'] = '-'
+            rec['last_name'] = '-'
+            rec['username'] = '-'
+            rec['ai_activated'] = False
+            rec['idClientGroup'] = 4
+            rec['args'] = []
+
+        self.client = rec
 
 
 

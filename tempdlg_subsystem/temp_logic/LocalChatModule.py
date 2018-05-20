@@ -40,10 +40,18 @@ class LocalChat:
     def GetAnswer(self, text):
         return self.LogicModule.getAnswerFromText(text)
 
-    def ReceiveMessage(self, text):
+    def ReceiveMessageFromText(self, text):
         self.previousMessage = self.GetAnswer(text)
+        textAnswer = self.previousMessage['answerData']['answer']
         if(self.Voice):
-            self.__Say(self.previousMessage[0]['answer'])
+            self.__Say(textAnswer)
+        return self.previousMessage
+
+    def ReceiveMessageFromUserMessage(self, message):
+        self.previousMessage = self.LogicModule.getAnswerFromMessage(message)
+        textAnswer = self.previousMessage['answerData']['answer']
+        if (self.Voice):
+            self.__Say(textAnswer)
         return self.previousMessage
 
     def executeScrypt(self, client, idAction):

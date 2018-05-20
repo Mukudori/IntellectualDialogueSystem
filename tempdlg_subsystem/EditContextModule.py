@@ -94,8 +94,8 @@ class AddAnswerDlg(AddQuestionDlg):
             answer, action = AnswerTable().GetAnswerAndActionFromAnswerID(self.IDRecord)
             self.le.setText(answer)
             i=0
-            for row in self.actTab:
-                if row[1] == action:
+            for row in self.idList:
+                if row == action:
                     self.cb.setCurrentIndex(i)
                     break
                 i+=1

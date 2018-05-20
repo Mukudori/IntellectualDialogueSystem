@@ -135,6 +135,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actTimeTable"/>
+   <addaction name="act_AddClient"/>
   </widget>
   <action name="addRecord">
    <property name="icon">
@@ -206,6 +207,18 @@
    </property>
    <property name="toolTip">
     <string>Рассписание занятий</string>
+   </property>
+  </action>
+  <action name="act_AddClient">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../pics/addClient.png</normaloff>../../../pics/addClient.png</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить меседжер клиента</string>
+   </property>
+   <property name="toolTip">
+    <string>Добавить меседжер клиента</string>
    </property>
   </action>
  </widget>

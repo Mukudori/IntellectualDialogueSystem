@@ -11,10 +11,11 @@
     ЕСЛИ ВЫ СОБИРАЕТЕСТЬ СОХРАНИТЬ СКРИПТ
 '''
 
-def GetAnswer(mainLogic=0):
+def execute(args):
     '''
 
-    :param mainLogic: ссылка на основной модуль логики
-    :return:
+    :param args: кортеж входных параметров,
+            args[0] == ссылка на класс шаблонной логики
+    :return: Возвращает текстовый ответ в конце сценария
     '''
-    pass
+    tempLogic = args[0]

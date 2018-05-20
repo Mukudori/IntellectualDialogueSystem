@@ -12,6 +12,7 @@ from tempdlg_subsystem.database.UserGroupModule import UserGroupTable
 from tempdlg_subsystem.database.ContextTableModule import ContextTable
 from tempdlg_subsystem.EditUserGroupForm import EditUserGroup
 from tempdlg_subsystem.EditContextModule import EditContextForm
+from tempdlg_subsystem.database.ClientTabModule import ClientsTab
 
 class DataBaseForm(QMainWindow):
     
@@ -33,8 +34,8 @@ class DataBaseForm(QMainWindow):
             model = UserGroupTable().GetTableViewModel()
         elif table == 'contexttab':
             model = ContextTable().GetTableViewModel()
-        #else:
-           # model = DlgTable().GetViewModel()
+        else:
+            model = ClientsTab().getTVModel()
         self.tableView.setModel(model)
         self.tableView.resizeRowsToContents()
         self.tableView.resizeColumnsToContents()
@@ -132,7 +133,11 @@ class DataBaseForm(QMainWindow):
             return 'contexttab'
         elif text == u'Группы пользователей':
             return 'usergrouptab'
-        return 'actiontab'
+        elif text == 'Действия':
+            return 'actiontab'
+        else:
+            return 'clientstab'
+
 
 
 

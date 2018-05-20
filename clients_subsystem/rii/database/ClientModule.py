@@ -10,21 +10,23 @@ class Client(object):
         sql = "SELECT id as idClient, fio, shortfio, idClientGroup,\
            idInfo FROM riidb.clients WHERE id='%s';"%str(id)
 
-        rec = DataBaseModule.GetData(nameDB='riidb', sql=sql)[0]
-        if rec['idClientGroup'] == 3:
-            sql = "SELECT id as idCathGroup, name as nameCathGroup, cource," \
-                  " idCathedra, idCurator FROM riidb.cathGroup " \
-                  "WHERE id='%s';"%str(rec['idClientGroup'])
-        else:
-            sql = "SELECT teacherinfo.dolzhnost as dozhnost, teacherinfo.obrazovanie " \
-                  "as obrazovanie, teacherinfo.stepen as stepen, teacherinfo.zvanie " \
-                  "as zvanie, teacherinfo.kvalifikacia as kvalifikacia, teacherinfo.idCath " \
-                  "as idCath, cathedra.name as nameCath " \
-                  "FROM riidb.teacherinfo INNER JOIN riidb.cathedra " \
-                  "ON teacherinfo.idCath = cathedra.id" \
-                  " WHERE teacherinfo.id='%s';"%rec['idInfo']
-        rec = {**rec, **DataBaseModule.GetData(nameDB='riidb', sql=sql)[0]}
-        return rec
+        rec = DataBaseModule.GetData(nameDB='riidb', sql=sql)
+        if len(rec):
+            rec = rec[0]
+            if rec['idClientGroup'] == 3:
+                sql = "SELECT id as idCathGroup, name as nameCathGroup, cource," \
+                      " idCathedra, idCurator FROM riidb.cathGroup " \
+                      "WHERE id='%s';"%str(rec['idClientGroup'])
+            else:
+                sql = "SELECT teacherinfo.dolzhnost as dozhnost, teacherinfo.obrazovanie " \
+                      "as obrazovanie, teacherinfo.stepen as stepen, teacherinfo.zvanie " \
+                      "as zvanie, teacherinfo.kvalifikacia as kvalifikacia, teacherinfo.idCath " \
+                      "as idCath, cathedra.name as nameCath " \
+                      "FROM riidb.teacherinfo INNER JOIN riidb.cathedra " \
+                      "ON teacherinfo.idCath = cathedra.id" \
+                      " WHERE teacherinfo.id='%s';"%rec['idInfo']
+            rec = {**rec, **DataBaseModule.GetData(nameDB='riidb', sql=sql)[0]}
+            return rec
 
     def getStudentsList(self):
         sql = "SELECT clients.id as id, clients.fio as fio, " \
