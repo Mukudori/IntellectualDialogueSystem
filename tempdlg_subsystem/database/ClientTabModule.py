@@ -79,3 +79,13 @@ class ClientsTab(object):
         model = DBM.CreateTableViewModel(sql=sql, fieldsView=fieldsTable,
                                          fieldTab=fieldsTable, nameDB='botdb')
         return model
+
+    def insertClient(self, idClient, idClientGroup, idTelegram):
+        sql = "INSERT INTO botdb.clientstab (idRii, idClientGroup, idTelegram) " \
+              "VALUES ('%s', '%s','%s')" % (idClient, idClientGroup, idTelegram)
+        insertID = DBM.ExecuteSQL(sql=sql, nameDB='botdb')
+        return insertID
+
+    def deleteClient(self, idTelegram):
+        sql = "DELETE FROM botdb.clientstab " \
+              "WHERE idTelegram = '%s'" % idTelegram

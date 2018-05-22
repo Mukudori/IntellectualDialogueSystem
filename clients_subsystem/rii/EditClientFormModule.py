@@ -1,9 +1,6 @@
 
 
-    def initUI(self):
-        vLay = QVBoxLayout()
-
-        h1 = QHBoxLayout()from clients_subsystem.rii.database.CathGroupModule import CathGroup
+from clients_subsystem.rii.database.CathGroupModule import CathGroup
 from clients_subsystem.rii.database.ClientModule import Client
 from clients_subsystem.rii.database.CathedraModule import Cathedra
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, \
@@ -14,6 +11,17 @@ class EditClientForm (QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
+        self.initClientsGroup()
+        self.initCath()
+        self.initStudents()
+        self.connectSlots()
+
+
+    def initUI(self):
+        vLay = QVBoxLayout()
+
+        h1 = QHBoxLayout()
+
         self.lab1 = QLabel('Группа клиентов')
         self.cbClientGroup = QComboBox()
         h1.addWidget(self.lab1)
@@ -48,19 +56,75 @@ class EditClientForm (QWidget):
         self.setWindowTitle('Редактирование информации о клиенте')
 
     def initClientsGroup(self):
-        pass
+        self.clientGroupList = [{'name' : 'Студент', 'id': 3},
+                                {'name': 'Преподаватель', 'id': 2},
+                                {'name': 'Администратор', 'id': 1}
+                                ]
+        self.cbClientGroup.addItems([row['name'] for row in self.clientGroupList])
+
 
     def initCath(self):
-        pass
+        self.cathList = Cathedra().getList()
+        self.cbCath.clear()
+        self.cbCath.addItems([row['name'] for row in self.cathList])
+
+
+    def _getCathID(self):
+        ind = self.cbCath.currentIndex()
+        if ind == -1:
+            ind = 0
+
+        return self.cathList[ind]['id']
 
     def initStudents(self):
-        pass
+        self.setVisibleOtherCB(True)
+        idCath = self._getCathID()
+
+        self.labClient.setText('Группа')
+        self.studentList = CathGroup().getList(idCath=idCath)
+        self.cbClient.clear()
+        self.cbClient.addItems([row['name'] for row in self.studentList])
+
+
 
     def initTeachers(self):
-        pass
+        self.setVisibleOtherCB(True)
+        idCath = self._getCathID()
+        self.labClient.setText('ФИО')
+        self.teacherList = Client().getTeachersListFromIDCath(idCath=idCath)
+        self.cbClient.clear()
+        self.cbClient.addItems([row['shortfio'] for row in self.teacherList])
+
+    def setVisibleOtherCB(self, val):
+        self.lab2.setVisible(val)
+        self.cbCath.setVisible(val)
+        self.labClient.setVisible(val)
+        self.cbClient.setVisible(val)
+
+    def initAdmin(self):
+        self.setVisibleOtherCB(False)
+
+    def refreshClient(self):
+
+        def getCurID():
+            curInd = self.cbClientGroup.currentIndex()
+            if curInd == -1:
+                curInd = 0
+            return self.clientGroupList[curInd]['id']
+
+        text = self.cbClientGroup.currentText()
+        if text == "Администратор":
+            self.initAdmin()
+        elif text == "Преподаватель":
+            self.initTeachers()
+        elif text == "Студент":
+            self.initStudents()
+
+
 
     def connectSlots(self):
-        pass
+        self.cbClientGroup.currentIndexChanged.connect(self.refreshClient)
+        self.cbCath.currentIndexChanged.connect(self.refreshClient)
 
     def initEdit(self):
         pass
