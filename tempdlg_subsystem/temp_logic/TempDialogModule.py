@@ -35,6 +35,7 @@ class TempDialog:
         self.CurrentContextID = 0
         self.FindedContext = False
         self.carrentMessage = 0
+        self.permissibleError = 1.7
 
 
     def FuncCoefError(self, check, lenText, lenQ):
@@ -62,7 +63,7 @@ class TempDialog:
                         id =row['idQ']
                         lenQ =len(StringFunctionsModule.GetWordsListFromTextWithRE(row['question']))
                 check = self.FuncCoefError(check=check, lenText=len(WordList), lenQ=lenQ)
-                if check>checkCoef:
+                if check>checkCoef and check>self.permissibleError:
                     checkCoef=check
                     checkID=id
             return [checkID, checkCoef]
@@ -138,7 +139,7 @@ class TempDialog:
 
                 return self.carrentMessage
             elif self.CurrentContextLevel:
-                curCon = self.conTab.GetIDParent(self.CurrentContextID, self.client['id_Group'])[0]
+                curCon = self.conTab.GetIDParent(self.CurrentContextID, self.client['idClientGroup'])[0]
                 self.CurrentContextID = curCon['id']
                 self.CurrentContextLevel = curCon['level']
             else:

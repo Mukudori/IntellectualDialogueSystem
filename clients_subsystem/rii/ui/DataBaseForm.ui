@@ -73,6 +73,16 @@
           <string>Аудитории</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Клиенты Telegram</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string/>
+         </property>
+        </item>
        </widget>
       </item>
       <item>

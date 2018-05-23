@@ -27,7 +27,7 @@ CREATE TABLE `accesstab` (
   `idContext` int(11) DEFAULT NULL,
   `idGroup` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `accesstab` (
 
 LOCK TABLES `accesstab` WRITE;
 /*!40000 ALTER TABLE `accesstab` DISABLE KEYS */;
-INSERT INTO `accesstab` VALUES (16,10,1),(17,10,2),(18,10,3),(19,10,4),(20,11,1),(21,11,2),(22,11,3),(23,11,4),(24,12,1),(25,12,2),(26,12,3),(27,12,4),(28,13,1),(29,13,2),(30,13,3),(31,13,4),(32,14,1),(33,14,2),(34,14,3),(35,14,4),(36,15,1),(37,15,4),(38,16,1),(39,16,2),(40,16,3),(41,16,4),(42,17,1),(43,17,2),(44,17,3),(45,17,4),(46,18,1),(47,18,2),(48,18,3),(49,18,4);
+INSERT INTO `accesstab` VALUES (16,10,1),(17,10,2),(18,10,3),(19,10,4),(20,11,1),(21,11,2),(22,11,3),(23,11,4),(24,12,1),(25,12,2),(26,12,3),(27,12,4),(28,13,1),(29,13,2),(30,13,3),(31,13,4),(32,14,1),(33,14,2),(34,14,3),(35,14,4),(36,15,1),(37,15,4),(38,16,1),(39,16,2),(40,16,3),(41,16,4),(42,17,1),(43,17,2),(44,17,3),(45,17,4),(46,18,1),(47,18,2),(48,18,3),(49,18,4),(50,19,2),(51,19,3),(52,20,1),(53,20,2),(54,20,3),(55,20,4),(56,24,2),(57,24,3),(58,25,2),(59,25,3),(60,26,2),(61,26,3),(62,27,2),(63,27,3),(64,28,2),(65,28,3),(66,29,2),(67,29,3);
 /*!40000 ALTER TABLE `accesstab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-20 21:19:02
+-- Dump completed on 2018-05-23 21:02:15

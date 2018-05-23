@@ -28,7 +28,7 @@ CREATE TABLE `clientstab` (
   `idTelegram` int(11) DEFAULT NULL,
   `idClientGroup` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `clientstab` (
 
 LOCK TABLES `clientstab` WRITE;
 /*!40000 ALTER TABLE `clientstab` DISABLE KEYS */;
-INSERT INTO `clientstab` VALUES (1,0,1,1),(2,2,2,2),(3,1,3,3);
+INSERT INTO `clientstab` VALUES (1,0,1,1),(2,2,2,2),(3,1,3,3),(6,13,5,2),(7,22,6,2),(8,40,7,2),(9,41,8,2),(10,42,9,2),(11,43,10,2),(12,3,4,2);
 /*!40000 ALTER TABLE `clientstab` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-20 21:19:03
+-- Dump completed on 2018-05-23 21:02:15

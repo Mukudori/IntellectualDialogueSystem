@@ -32,7 +32,7 @@ class AnswerTable:
     def InsertRecord(self,answer,idContext, idAction):
         currentid = DataBaseModule.ExecuteSQL(
                 "INSERT INTO answertab (answer, idContext, idAction) "+
-                "VALUES('" + answer +"','"+str(idContext)+"', idAction='"+str(idAction)+"');" )
+                "VALUES('%s','%s', '%s');" % (answer, idContext, idAction))
         return currentid
 
     def UpdateRecord(self,id,answer):

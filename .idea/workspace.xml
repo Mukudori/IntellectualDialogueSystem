@@ -6,9 +6,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c96dad87-938e-4e49-95d8-030c98ad80d2" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/tempdlg_subsystem/AddAnswerModule.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tempdlg_subsystem/AddClientsGroupModule.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tempdlg_subsystem/AddQuestionModule.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/CalcDaysModule.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/botdb_accesstab.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/botdb_actiontab.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/botdb_answertab.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/botdb_clientstab.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/botdb_contexttab.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/botdb_questiontab.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/botdb_usergrouptab.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/riidb_audtable.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/riidb_cathGroup.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/riidb_cathedra.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/riidb_clientgroup.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/riidb_clients.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/riidb_teacherinfo.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/DB/Dump/riidb_timetable.sql" afterPath="" />
       <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/EditClientFormModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/EditClientFormModule.py" />
+      <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py" />
+      <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py" afterPath="$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py" />
+      <change beforePath="$PROJECT_DIR$/clients_subsystem/rii/ui/DataBaseForm.ui" afterPath="$PROJECT_DIR$/clients_subsystem/rii/ui/DataBaseForm.ui" />
+      <change beforePath="$PROJECT_DIR$/mainTempLogic.py" afterPath="$PROJECT_DIR$/mainTempLogic.py" />
+      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/EditContextModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/EditContextModule.py" />
+      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py" />
       <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/database/ClientTabModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/database/ClientTabModule.py" />
+      <change beforePath="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py" afterPath="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +47,8 @@
       <file leaf-file-name="mainTempLogic.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainTempLogic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="57" column="36" lean-forward="false" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
+            <state relative-caret-position="246">
+              <caret line="242" column="0" lean-forward="false" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
               <folding>
                 <element signature="e#25#35#0" expanded="true" />
               </folding>
@@ -31,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RIIDBMainFormModule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py">
+      <file leaf-file-name="id_9.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_9.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+            <state relative-caret-position="177">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="e#24#79#0" expanded="true" />
               </folding>
@@ -43,90 +68,90 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainRIIDB.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainRIIDB.py">
+      <file leaf-file-name="ExecuteScryptsModule.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/ExecuteScryptsModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            <state relative-caret-position="126">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditClientFormModule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/EditClientFormModule.py">
+      <file leaf-file-name="id_12.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_12.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1740">
-              <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+            <state relative-caret-position="18">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="68" />
               <folding>
-                <element signature="e#2#70#0" expanded="true" />
+                <element signature="e#24#79#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CathedraModule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py">
+      <file leaf-file-name="id_13.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_13.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="72">
+              <caret line="13" column="10" lean-forward="true" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+              <folding>
+                <element signature="e#24#79#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TempDialogModule.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="136" column="19" lean-forward="true" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
+              <folding>
+                <element signature="e#24#94#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainDialogLogicModule.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_logic_module/MainDialogLogicModule.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CathGroupFormModule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/CathGroupFormModule.py">
+      <file leaf-file-name="LocalChatModule.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/LocalChatModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#110#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientTabModule.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/ClientTabModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="90" column="52" lean-forward="false" selection-start-line="90" selection-start-column="52" selection-end-line="90" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnswerTableModule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
-              <caret line="75" column="9" lean-forward="false" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
+            <state relative-caret-position="122">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataBaseForm.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/DataBaseForm.py">
+      <file leaf-file-name="TimeTableModule.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
-              <folding>
-                <element signature="e#24#88#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="884">
+              <caret line="113" column="21" lean-forward="false" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="id_8.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_8.py">
+      <file leaf-file-name="CalcDaysModule.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/CalcDaysModule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="57" lean-forward="false" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
-              <folding />
+            <state relative-caret-position="428">
+              <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,15 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ai_subsystem/main_logic_module/UserMessageModule.py" />
-        <option value="$PROJECT_DIR$/ai_subsystem/main_logic_module/MainDialogLogicModule.py" />
-        <option value="$PROJECT_DIR$/tempdlg_subsystem/database/ActionTableModule.py" />
-        <option value="$PROJECT_DIR$/tempdlg_subsystem/EditActionForm.py" />
-        <option value="$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py" />
-        <option value="$PROJECT_DIR$/mainDesktop.py" />
-        <option value="$PROJECT_DIR$/ai_subsystem/lib/chat.py" />
-        <option value="$PROJECT_DIR$/server/telegram/TelegramBotModule.py" />
-        <option value="$PROJECT_DIR$/clients_subsystem/rii/database/config.ini" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/database/AccessTableModule.py" />
         <option value="$PROJECT_DIR$/mainRIIDB.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/DataBaseForm.py" />
@@ -189,7 +205,6 @@
         <option value="$PROJECT_DIR$/clients_subsystem/rii/TimeTableFormModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/database/AuditoryModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/AddAuditoryDialogModule.py" />
-        <option value="$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/AddDisciplineModule.py" />
         <option value="$PROJECT_DIR$/main_logic_module/ClientDataModule.py" />
         <option value="$PROJECT_DIR$/dbConnector/DataBaseModule.py" />
@@ -198,26 +213,36 @@
         <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_4.py" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_7.py" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/ExecuteScryptsModule.py" />
-        <option value="$PROJECT_DIR$/tempdlg_subsystem/EditContextModule.py" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/Template.py" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/LocalChatModule.py" />
         <option value="$PROJECT_DIR$/main_logic_module/MainDialogLogicModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py" />
-        <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_8.py" />
-        <option value="$PROJECT_DIR$/mainTempLogic.py" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/DataBaseForm.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/AddClientFormModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/EditClientFromModule.py" />
-        <option value="$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py" />
         <option value="$PROJECT_DIR$/clients_subsystem/rii/EditClientFormModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py" />
         <option value="$PROJECT_DIR$/tempdlg_subsystem/database/ClientTabModule.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_10.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/AddQuestionModule.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/EditContextModule.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/AddAnswerModule.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_9.py" />
+        <option value="$PROJECT_DIR$/mainTempLogic.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/AddClientsGroupModule.py" />
+        <option value="$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_12.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/CalcDaysModule.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_13.py" />
+        <option value="$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="324" />
-    <option name="y" value="93" />
+    <option name="x" value="287" />
+    <option name="y" value="185" />
     <option name="width" value="1272" />
     <option name="height" value="1076" />
   </component>
@@ -236,12 +261,32 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="clients_subsystem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="clients_subsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="rii" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="clients_subsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="rii" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -266,14 +311,25 @@
             </path>
             <path>
               <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="tempdlg_subsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="temp_logic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IntellectualDialogueSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="tempdlg_subsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="temp_logic" type="462c0819:PsiDirectoryNode" />
+              <item name="scrypts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IntellectualDialogueSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -301,7 +357,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.mainRIIDB">
+  <component name="RunManager" selected="Python.mainDesktop">
     <configuration name="mainAI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -382,8 +438,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.mainRIIDB" />
-        <item index="1" class="java.lang.String" itemvalue="Python.mainDesktop" />
+        <item index="0" class="java.lang.String" itemvalue="Python.mainDesktop" />
+        <item index="1" class="java.lang.String" itemvalue="Python.mainRIIDB" />
         <item index="2" class="java.lang.String" itemvalue="Python.mainAI" />
         <item index="3" class="java.lang.String" itemvalue="Python.mainTelegram" />
       </list>
@@ -406,19 +462,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="324" y="93" width="1272" height="1076" extended-state="0" />
-    <editor active="true" />
+    <frame x="287" y="185" width="1272" height="1076" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22955975" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45773196" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44742268" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5587629" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55789477" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -459,11 +514,6 @@
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tempdlg_subsystem/database/ContextTableModule.py</url>
-          <line>93</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/clients_subsystem/rii/StudentFormModule.py</url>
           <line>60</line>
           <option name="timeStamp" value="80" />
@@ -484,14 +534,44 @@
           <option name="timeStamp" value="92" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/ExecuteScryptsModule.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_7.py</url>
           <line>11</line>
           <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clients_subsystem/rii/EditClientFormModule.py</url>
+          <line>150</line>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clients_subsystem/rii/EditClientFormModule.py</url>
+          <line>170</line>
+          <option name="timeStamp" value="127" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tempdlg_subsystem/AddAnswerModule.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_9.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_12.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py</url>
+          <line>135</line>
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="142" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -501,76 +581,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="123" />
+      <option name="time" value="143" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/EditActionForm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ai_subsystem/lib/chat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="131" column="27" lean-forward="false" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/telegram/TelegramBotModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainServer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="83" lean-forward="false" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/ContextTableModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2628">
-          <caret line="151" column="8" lean-forward="false" selection-start-line="151" selection-start-column="8" selection-end-line="152" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainAI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/mysql.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="7" lean-forward="true" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/AccessTableModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/ActionTableModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/telegram/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -643,13 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="86" column="39" lean-forward="false" selection-start-line="86" selection-start-column="39" selection-end-line="86" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/AddDisciplineModule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3132">
@@ -661,13 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="890">
           <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/TimeTableFormModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -725,14 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/ExecuteScryptsModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_7.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -748,13 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/EditContextModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="97" column="22" lean-forward="false" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/ClientModule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -763,39 +749,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_logic_module/MainDialogLogicModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/LocalChatModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#96#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5580">
           <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#94#0" expanded="true" />
-            <element signature="e#1335#1436#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -817,94 +774,233 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/DataBaseForm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
-          <folding>
-            <element signature="e#24#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainTempLogic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="57" column="36" lean-forward="false" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
-          <folding>
-            <element signature="e#25#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/CathGroupFormModule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#110#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/mysql/connector/network.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/CathedraModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
+        <state relative-caret-position="558">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py">
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/DataBaseForm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+        <state relative-caret-position="482">
+          <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
           <folding>
-            <element signature="e#24#79#0" expanded="true" />
+            <element signature="e#24#88#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainRIIDB.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/EditClientFormModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1740">
-          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        <state relative-caret-position="290">
+          <caret line="166" column="30" lean-forward="false" selection-start-line="166" selection-start-column="30" selection-end-line="166" selection-end-column="30" />
           <folding>
             <element signature="e#2#70#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py">
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/RIIDBMainFormModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="75" column="9" lean-forward="false" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="316">
+          <caret line="151" column="28" lean-forward="false" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
+          <folding>
+            <element signature="e#24#79#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/ClientTabModule.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="90" column="52" lean-forward="false" selection-start-line="90" selection-start-column="52" selection-end-line="90" selection-end-column="52" />
+        <state relative-caret-position="336">
+          <caret line="123" column="23" lean-forward="false" selection-start-line="123" selection-start-column="23" selection-end-line="123" selection-end-column="23" />
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#0#45#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/ContextTableModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/AddQuestionModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#97#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/EditContextModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/database/AnswerTableModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="38" column="12" lean-forward="true" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainRIIDB.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/AddAnswerModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/AddClientsGroupModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/CathGroupFormModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/TimeTableFormModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-522">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients_subsystem/rii/database/TimeTableModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="113" column="21" lean-forward="false" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_12.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="68" />
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/CalcDaysModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_13.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="13" column="10" lean-forward="true" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_logic_module/MainDialogLogicModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/LocalChatModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/id_9.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/scrypts/ExecuteScryptsModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainTempLogic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="242" column="0" lean-forward="false" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+          <folding>
+            <element signature="e#25#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tempdlg_subsystem/temp_logic/TempDialogModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="136" column="19" lean-forward="true" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
+          <folding>
+            <element signature="e#24#94#0" expanded="true" />
           </folding>
         </state>
       </provider>

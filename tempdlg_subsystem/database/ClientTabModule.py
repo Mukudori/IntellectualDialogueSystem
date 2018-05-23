@@ -2,6 +2,7 @@ from dbConnector import DataBaseModule as DBM
 from clients_subsystem.rii.database.ClientModule import Client
 from clients_subsystem.rii.database.CathGroupModule import CathGroup
 
+
 class ClientsTab(object):
     def __init__(self):
         super().__init__()
@@ -80,6 +81,38 @@ class ClientsTab(object):
                                          fieldTab=fieldsTable, nameDB='botdb')
         return model
 
+    def getTVModelRII(self):
+        data = self.getAllData()
+
+        for i in range(len(data)):
+            data2=0
+            idGroup =data[i]['idClientGroup']
+            if idGroup ==2:
+                data2 = Client().getFromID(data[i]['idRii'])
+                data2['nameClientGroup'] = 'Преподаватель'
+
+            elif idGroup==3:
+                data2= CathGroup().getFromID(id=data[i]['idRii'])
+                if data2:
+                    data2['shortfio'] = data2['name']
+                data2['nameClientGroup'] = 'Студент'
+
+            if data2:
+                if 'id' in data2.keys():
+                    del data2['id']
+                data[i] = {**data[i], **data2}
+            else:
+                data[i]['shortfio'] = "-"
+                data[i]['nameClientGroup'] = 'Администратор'
+
+        fieldsTable = ['id', 'idTelegram', 'shortfio', 'nameClientGroup']
+        fieldsView = ['id', 'idTelegram', 'ФИО/группа клиента', 'Группа клиентов']
+
+        model = DBM.CreateTableViewModelFromData(data=data, fieldTab=fieldsTable,
+                                                 fieldsView=fieldsView)
+        return model
+
+
     def insertClient(self, idClient, idClientGroup, idTelegram):
         sql = "INSERT INTO botdb.clientstab (idRii, idClientGroup, idTelegram) " \
               "VALUES ('%s', '%s','%s')" % (idClient, idClientGroup, idTelegram)
@@ -88,4 +121,5 @@ class ClientsTab(object):
 
     def deleteClient(self, idTelegram):
         sql = "DELETE FROM botdb.clientstab " \
-              "WHERE idTelegram = '%s'" % idTelegram
+              "WHERE id = '%s'" % idTelegram
+        DBM.ExecuteSQL(sql=sql, nameDB='botdb')

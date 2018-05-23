@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit,QPushButton, QVBoxLayout,QHBoxLayout,QComboBox, QMessageBox
+from PyQt5.QtWidgets import QWidget, QMessageBox
 from tempdlg_subsystem.database.ContextTableModule import ContextTable
-from PyQt5.QtGui import QStandardItem
+from PyQt5.QtGui import QStandardItemModel
 from tempdlg_subsystem.database.QuestionTableModule import QuestionTable
 from tempdlg_subsystem.database.AnswerTableModule import AnswerTable
 from tempdlg_subsystem import ObjectMethodsModule
-from tempdlg_subsystem.database.ActionTableModule import ActionTable
+
 from tempdlg_subsystem.database.AccessTableModule import AccessTable
-from tempdlg_subsystem.database.UserGroupModule import UserGroupTable
+
+from tempdlg_subsystem.AddQuestionModule import AddQuestionDlg
+from tempdlg_subsystem.AddAnswerModule import AddAnswerDlg
+from tempdlg_subsystem.AddClientsGroupModule import AddGroupDlg
 
 
 def PrintMessage(title,text, icon =QMessageBox.Critical):
@@ -22,157 +25,6 @@ def PrintMessage(title,text, icon =QMessageBox.Critical):
 
 
     #okButton = msg.addButton('Окей', QMessageBox.AcceptRole)
-
-
-#Классы для добавления вопросов и ответов
-class AddQuestionDlg(QWidget):
-    def __init__(self, tableView, model, idC, idRecord=0, indModel=0):
-        super().__init__()
-        self.IDRecord = idRecord
-        self.INDModel = indModel
-        self.label = QLabel()
-        self.le = QLineEdit()
-        self.layH = QHBoxLayout()
-        self.layH.addWidget(self.label)
-        self.layH.addWidget(self.le)
-        self.layV = QVBoxLayout()
-        self.layV.addLayout(self.layH)
-        self.AddOtherWidgets()
-        self.setLayout(self.layV)
-        self.tv = tableView
-        self.Model = model
-        self.IDC = idC
-
-        self.pb.clicked.connect(self.click)
-        self.SetHeaders()
-
-    def AddOtherWidgets(self, ):
-        self.pb = QPushButton('Добавить')
-        self.layV.addWidget(self.pb)
-        if self.IDRecord:
-            self.le.setText(QuestionTable().GetQuestionFromID(self.IDRecord))
-
-
-    def click(self):
-        tab = QuestionTable()
-        if not self.IDRecord:
-            id=tab.InsertRecord(self.le.text(), self.IDC)
-            i = self.Model.rowCount()
-
-            self.Model.setItem(i,1,QStandardItem(self.le.text()) )
-            self.Model.setItem(i,0,QStandardItem(str(id)))
-            self.Model.setVerticalHeaderLabels([' '] * (i + 1))
-        else:
-            tab.UpdateRecordFromIDAndText(self.IDRecord, self.le.text())
-            self.Model.setItem(self.INDModel.row(), 1, QStandardItem(self.le.text()))
-
-        self.tv.setModel(self.Model)
-        self.close()
-
-    def keyPressEvent(self, event):
-        key = event.key()
-        if key == 16777220: # код клавиши Enter
-            self.click()
-
-    def SetHeaders(self):
-        self.label.setText('Введите вопрос :')
-        self.setWindowTitle('Ввод вопроса')
-
-class AddAnswerDlg(AddQuestionDlg):
-    def AddOtherWidgets(self):
-        self.label2 = QLabel('Действие')
-        self.layAction =QHBoxLayout()
-        self.cb = QComboBox()
-        self.layAction.addWidget(self.label2)
-        self.layAction.addWidget(self.cb)
-        self.pb = QPushButton('Добавить')
-        self.layV.addLayout(self.layAction)
-        self.layV.addWidget(self.pb)
-        self._initComboBox()
-
-        if self.IDRecord:
-            answer, action = AnswerTable().GetAnswerAndActionFromAnswerID(self.IDRecord)
-            self.le.setText(answer)
-            i=0
-            for row in self.idList:
-                if row == action:
-                    self.cb.setCurrentIndex(i)
-                    break
-                i+=1
-            self.pb.setText('Изменить')
-
-
-    def SetHeaders(self):
-        self.label.setText('Введите ответ на вопрос :')
-        self.setWindowTitle('Ввод ответа')
-
-    def _initComboBox(self):
-        actList = ActionTable().GetStringAndIDList()
-        self.cb.addItems([row[1] for row in actList])
-        self.idList = [row[0] for row in actList]
-
-
-    def click(self):
-        text = self.cb.currentText()
-        ci = self.cb.currentIndex()
-        idA = self.idList[ci] if self.idList[ci]!=-1 else self.idList[0]
-
-        if idA:
-            if not self.IDRecord:
-                idA =AnswerTable().InsertRecord(self.le.text(),self.IDC, idA)
-                i = self.Model.rowCount()
-                self.Model.setItem(i, 2, QStandardItem(text))
-                self.Model.setItem(i, 1, QStandardItem(self.le.text()))
-                self.Model.setItem(i, 0, QStandardItem(str(idA)))
-                self.Model.setVerticalHeaderLabels([' '] * (i + 1))
-
-            else:
-                AnswerTable().UpdateRecord(id=self.IDRecord ,answer=self.le.text(), idAction = idA)
-                i = self.INDModel.row()
-                self.Model.setItem(i, 2, QStandardItem(text))
-                self.Model.setItem(i, 1, QStandardItem(self.le.text()))
-                self.Model.setItem(i, 0, QStandardItem(str(idA)))
-
-
-        self.tv.setModel(self.Model)
-        self.close()
-
-class AddGroupDlg(QWidget):
-    def __init__(self, tableView, model, idContext):
-        super().__init__()
-        self.lay = QVBoxLayout()
-        self.cb = QComboBox()
-        self.but = QPushButton("Добавить")
-        self.lay.addWidget(self.cb)
-        self.lay.addWidget(self.but)
-        self.setLayout(self.lay)
-        self.setWindowTitle("Добавление группы в контекст")
-
-        self.but.clicked.connect(self.click)
-
-        self.tv = tableView
-        self.Model = model
-        self.idCon = idContext
-        self.Groups = UserGroupTable().GetStringAndIDList()
-        self.cb.addItems([row[1] for row in self.Groups])
-        self.GroupIDList = AccessTable().GetIDGroupListFromIDContext(idContext)
-
-    def click(self):
-        idGroup = 0
-        for row in self.Groups:
-            if row[1] == self.cb.currentText():
-                idGroup = row[0]
-                break
-        if idGroup not in self.GroupIDList:
-            AccessTable().AddRecord(idGroup=idGroup, idContext=self.idCon)
-            i = self.Model.rowCount()
-            self.Model.setItem(i, 1, QStandardItem(self.cb.currentText()))
-            self.Model.setItem(i, 0, QStandardItem(str(idGroup)))
-            self.Model.setVerticalHeaderLabels([' '] * (i+1))
-            self.close()
-        else:
-            self.qmb = QMessageBox()
-            self.qmb.about(self, 'Ошибка', 'Группа пользователей уже имеет доступ к этому контексту.')
 
 
 # Основной класс
@@ -232,12 +84,13 @@ class EditContextForm(QWidget):
             self.tvQ.setModel(self.modelQ)
         except:
             PrintMessage('Ошибка вопросов', 'Не удалось получить информацию о вопросах')
-
+            self.modelQ = QStandardItemModel()
         try:
             self.modelA = self.table.GetAnswerModelFromContextID(id)
             self.tvA.setModel(self.modelA)
         except:
             PrintMessage('Ошибка ответов', 'Не удалось получить информацию об ответах')
+            self.modelA = QStandardItemModel()
         self.RefreshChildContexts(id)
         self.modelG = self.table.GetGroupsModelFromID(id)
         self.tvG.setModel(self.modelG)

@@ -13,6 +13,7 @@ from clients_subsystem.rii.OpenTimeTableModule import OpenTimeTableForm
 from clients_subsystem.rii.database.AuditoryModule import Auditory
 from clients_subsystem.rii.AddAuditoryDialogModule import AddAuditoryDialog
 from clients_subsystem.rii.EditClientFormModule import EditClientForm
+from tempdlg_subsystem.database.ClientTabModule import ClientsTab
 
 class RIIDataBaseForm(QMainWindow):
     
@@ -50,6 +51,10 @@ class RIIDataBaseForm(QMainWindow):
         elif table == 'Аудитории':
             self.setVisibleCB(False)
             model = Auditory().getTVModel()
+        elif table=='Клиенты Telegram':
+            self.setVisibleCB(False)
+            model = ClientsTab().getTVModelRII()
+
 
 
         self.tableView.setModel(model)
@@ -133,6 +138,7 @@ class RIIDataBaseForm(QMainWindow):
             self.AuditInsert = AddAuditoryDialog(parent = self)
             self.AuditInsert.show()
 
+
     def DeleteRecord(self):
         id = self.GetSelectedRecordID()
         if id:
@@ -142,6 +148,8 @@ class RIIDataBaseForm(QMainWindow):
                 Client().deleteTeacher(id)
             elif table == "Аудитории":
                 Auditory().deleteRecord(id)
+            elif table=="Клиенты Telegram":
+                ClientsTab().deleteClient(idTelegram=id)
 
             self.RefreshTable()
 

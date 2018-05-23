@@ -96,6 +96,28 @@ class TimeTable(object):
         model = DBM.CreateTableViewModelFromData(data, fieldsTable, fieldsView, timelist)
         return model
 
+    def getTimeTableOnWeek(self, idClientGroup, idClient, numWeek):
+
+        if numWeek == 1:
+            dayRange = (1, 2, 3, 4, 5, 6)
+        else:
+            dayRange = (7, 8, 9, 10, 11, 12)
+        ttList = []
+        if idClientGroup == 2:
+            for day in dayRange:
+                ttList.append(self.getTeacherList(idTeacher=idClient,
+                                                  numDay=day))
+        else:
+            for day in dayRange:
+                ttList.append(self.getGroupList(idGroup=idClient,
+                                                  numDay=day))
+        return ttList
+
+
+
+
+
+
 
 
 

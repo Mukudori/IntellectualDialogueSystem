@@ -26,12 +26,12 @@ class MainWindow(QMainWindow):
         self.LocalBot = LocalChat(parent=self)
         self.connectSlots()
 
-        self.SendMessage('<font color=green size=4><b>Бот</b></font>',
+        self.SendMessage('<font color=green size=4><b>Система</b></font>',
                          self.LocalBot.GetHelloMessage()[0], self.PathBotPic)
 
 
     def initUI(self):
-        self.labToolBar = QLabel('<font color=red>Локальный режим системы<font>')
+        self.labToolBar = QLabel('<font color=red>Локальный режим системы активен<font>')
         self.statusBar.addWidget(self.labToolBar)
         self.leMessage.setFocus()
         self.setVisibleOtherCB(False)
@@ -75,7 +75,7 @@ class MainWindow(QMainWindow):
 
         self.initMessage(AdminMessage)
         message = self.LocalBot.ReceiveMessageFromUserMessage(self.message)
-        self.SendMessage('<font color=green size=4><b>Бот</b></font>',
+        self.SendMessage('<font color=green size=4><b>Система</b></font>',
                          message['answerData']['answer'], self.PathBotPic)
         #potok.start()
         self.leMessage.setText('')
@@ -86,7 +86,7 @@ class MainWindow(QMainWindow):
             tempLogic = message['tempLogic']
             idScrypt = message['answerData']['idAction']
             answer=tempLogic.executeScrypt(idScrypt)
-            self.SendMessage('<font color=green size=4><b>Бот</b></font>',
+            self.SendMessage('<font color=green size=4><b>Система</b></font>',
                              answer, self.PathBotPic)
 
     def SendMessage(self, author, text, imgPath):
@@ -196,7 +196,7 @@ class MainWindow(QMainWindow):
         idTeacher = self.teachersList[indCBT]['id']
         rec = ClientsTab().getRecordFromIDRII(idTeacher, 2)
         if rec:
-            self.message.from_user.setUser(id=rec['id'],
+            self.message.from_user.setUser(id=rec['idTelegram'],
                                            first_name='Преподаватель',
                                            last_name='Teacher',
                                            username='@teacher')
@@ -210,7 +210,7 @@ class MainWindow(QMainWindow):
         idStudentsGroup = self.groupList[indCBG]['id']
         rec = ClientsTab().getRecordFromIDRII(idStudentsGroup, 3)
         if rec:
-            self.message.from_user.setUser(id=rec['id'],
+            self.message.from_user.setUser(id=rec['idTelegram'],
                                            first_name='Студент',
                                            last_name='Student',
                                            username='@student')

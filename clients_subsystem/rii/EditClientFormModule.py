@@ -3,6 +3,7 @@
 from clients_subsystem.rii.database.CathGroupModule import CathGroup
 from clients_subsystem.rii.database.ClientModule import Client
 from clients_subsystem.rii.database.CathedraModule import Cathedra
+from tempdlg_subsystem.database.ClientTabModule import ClientsTab
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, \
     QLineEdit, QPushButton, QComboBox
 
@@ -120,14 +121,53 @@ class EditClientForm (QWidget):
         elif text == "Студент":
             self.initStudents()
 
-
-
     def connectSlots(self):
         self.cbClientGroup.currentIndexChanged.connect(self.refreshClient)
         self.cbCath.currentIndexChanged.connect(self.refreshClient)
+        self.pb.clicked.connect(self.save)
 
     def initEdit(self):
         pass
 
+    def insertAdmin(self):
+        idTele = self.leTelegram.text()
+        ClientsTab().insertClient(idClient=1,
+                                  idClientGroup=1,
+                                  idTelegram=idTele)
+
+
+    def insertStudent(self):
+        idTele = self.leTelegram.text()
+        inC = self.cbClient.currentIndex()
+        if inC == -1:
+            inC = 0
+        inC = self.studentList[inC]['id']
+        ClientsTab().insertClient(idClient=inC,
+                                  idClientGroup=3,
+                                  idTelegram=idTele
+                                  )
+
+    def insertTeacher(self):
+        idTele = self.leTelegram.text()
+        inC = self.cbClient.currentIndex()
+        if inC == -1:
+            inC = 0
+        inC = self.teacherList[inC]['id']
+        ClientsTab().insertClient(idClient=inC,
+                                  idClientGroup=2,
+                                  idTelegram=idTele
+                                  )
+
+    def insertRecord(self, text):
+        if text == 'Администратор':
+            self.insertAdmin()
+        elif text == "Студент":
+            self.insertStudent()
+        elif text == 'Преподаватель':
+            self.insertTeacher()
+
+
     def save(self):
-        pass
+        text = self.cbClientGroup.currentText()
+        self.insertRecord(text)
+        self.close()
