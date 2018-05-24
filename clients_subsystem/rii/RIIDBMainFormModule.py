@@ -14,6 +14,7 @@ from clients_subsystem.rii.database.AuditoryModule import Auditory
 from clients_subsystem.rii.AddAuditoryDialogModule import AddAuditoryDialog
 from clients_subsystem.rii.EditClientFormModule import EditClientForm
 from tempdlg_subsystem.database.ClientTabModule import ClientsTab
+from tempdlg_subsystem.WebBrowserModule import WebBrowser
 
 class RIIDataBaseForm(QMainWindow):
     
@@ -221,7 +222,13 @@ class RIIDataBaseForm(QMainWindow):
 
         self.actTimeTable.triggered.connect(self.openTimeTable)
         self.act_AddClient.triggered.connect(self.AddClient)
+        self.act_Browser.triggered.connect(self.showBrowser)
 
     def AddClient(self):
         self.EditClient = EditClientForm()
         self.EditClient.show()
+
+    def showBrowser(self):
+        self.wb = WebBrowser()
+        self.wb.show()
+

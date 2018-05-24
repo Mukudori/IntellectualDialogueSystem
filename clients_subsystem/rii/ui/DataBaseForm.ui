@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>457</width>
+    <width>459</width>
     <height>310</height>
    </rect>
   </property>
@@ -146,6 +146,7 @@
    </attribute>
    <addaction name="actTimeTable"/>
    <addaction name="act_AddClient"/>
+   <addaction name="act_Browser"/>
   </widget>
   <action name="addRecord">
    <property name="icon">
@@ -229,6 +230,18 @@
    </property>
    <property name="toolTip">
     <string>Добавить меседжер клиента</string>
+   </property>
+  </action>
+  <action name="act_Browser">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../pics/browser.png</normaloff>../../../pics/browser.png</iconset>
+   </property>
+   <property name="text">
+    <string>Открыть браузер</string>
+   </property>
+   <property name="toolTip">
+    <string>Открыть браузер</string>
    </property>
   </action>
  </widget>

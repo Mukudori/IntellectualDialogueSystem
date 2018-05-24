@@ -53,6 +53,11 @@ class EditContextForm(QWidget):
             self.leHeader.setText(parent.leHeader.text()+" >> ")
             self.leParentContext.setText(parent.leHeader.text())
 
+        self.connectSlots()
+
+
+
+    def connectSlots(self):
         self.pbQAdd.clicked.connect(self.AddQuestion)
         self.pbAAdd.clicked.connect(self.AddAnswer)
         self.pbCAdd.clicked.connect(self.AddChildContext)

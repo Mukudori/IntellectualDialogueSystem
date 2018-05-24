@@ -135,11 +135,14 @@ class TempDialog:
         while True:
             idQ = self.GetQuestionID(question)
             if idQ:
-                self.carrentMessage = random.choice(AnswerTable().GetAnswerDictFromContextID(self.CurrentContextID))
+                self.carrentMessage = random.choice(
+                    AnswerTable().GetAnswerDictFromContextID(
+                        self.CurrentContextID))
 
                 return self.carrentMessage
             elif self.CurrentContextLevel:
-                curCon = self.conTab.GetIDParent(self.CurrentContextID, self.client['idClientGroup'])[0]
+                curCon = self.conTab.GetIDParent(self.CurrentContextID,
+                                                 self.client['idClientGroup'])[0]
                 self.CurrentContextID = curCon['id']
                 self.CurrentContextLevel = curCon['level']
             else:
@@ -147,7 +150,9 @@ class TempDialog:
 
         retError = random.choice(
                 [
-                    'Я вас не понимаю.',
+                    'Я вас не понимаю.\n'
+                    'Если выхотите перейти в режим беседы, '
+                    'то введите "давай побеседуем".',
                     'Неизвестная команда.'
                 ]
             )
