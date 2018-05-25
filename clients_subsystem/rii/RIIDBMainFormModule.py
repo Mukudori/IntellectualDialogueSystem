@@ -15,6 +15,7 @@ from clients_subsystem.rii.AddAuditoryDialogModule import AddAuditoryDialog
 from clients_subsystem.rii.EditClientFormModule import EditClientForm
 from tempdlg_subsystem.database.ClientTabModule import ClientsTab
 from tempdlg_subsystem.WebBrowserModule import WebBrowser
+from clients_subsystem.rii.database.ProjectorsModule import Prohectors
 
 class RIIDataBaseForm(QMainWindow):
     
@@ -55,6 +56,8 @@ class RIIDataBaseForm(QMainWindow):
         elif table=='Клиенты Telegram':
             self.setVisibleCB(False)
             model = ClientsTab().getTVModelRII()
+        elif table == "Проекторы":
+            model = Prohectors().getTVModel()
 
 
 

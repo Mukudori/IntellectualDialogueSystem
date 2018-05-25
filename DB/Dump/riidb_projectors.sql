@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
--- Host: localhost    Database: botdb
+-- Host: localhost    Database: riidb
 -- ------------------------------------------------------
 -- Server version	5.7.22-0ubuntu18.04.1
 
@@ -16,28 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `accesstab`
+-- Table structure for table `projectors`
 --
 
-DROP TABLE IF EXISTS `accesstab`;
+DROP TABLE IF EXISTS `projectors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `accesstab` (
+CREATE TABLE `projectors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idContext` int(11) DEFAULT NULL,
-  `idGroup` int(11) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `numAud` varchar(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `accesstab`
+-- Dumping data for table `projectors`
 --
 
-LOCK TABLES `accesstab` WRITE;
-/*!40000 ALTER TABLE `accesstab` DISABLE KEYS */;
-INSERT INTO `accesstab` VALUES (16,10,1),(17,10,2),(18,10,3),(19,10,4),(20,11,1),(21,11,2),(22,11,3),(23,11,4),(24,12,1),(25,12,2),(26,12,3),(27,12,4),(28,13,1),(29,13,2),(30,13,3),(31,13,4),(32,14,1),(33,14,2),(34,14,3),(35,14,4),(36,15,1),(37,15,4),(38,16,1),(39,16,2),(40,16,3),(41,16,4),(42,17,1),(43,17,2),(44,17,3),(45,17,4),(46,18,1),(47,18,2),(48,18,3),(49,18,4),(50,19,2),(51,19,3),(52,20,1),(53,20,2),(54,20,3),(55,20,4),(56,24,2),(57,24,3),(58,25,2),(59,25,3),(60,26,2),(61,26,3),(62,27,2),(63,27,3),(64,28,2),(65,28,3),(66,29,2),(67,29,3),(68,30,1),(69,30,2),(70,30,3),(71,30,4),(72,31,1),(73,31,2),(74,32,1),(75,32,2);
-/*!40000 ALTER TABLE `accesstab` ENABLE KEYS */;
+LOCK TABLES `projectors` WRITE;
+/*!40000 ALTER TABLE `projectors` DISABLE KEYS */;
+INSERT INTO `projectors` VALUES (1,'Первый','0'),(2,'Второй','0'),(3,'Третий','0');
+/*!40000 ALTER TABLE `projectors` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-25 20:44:15
+-- Dump completed on 2018-05-25 20:44:16

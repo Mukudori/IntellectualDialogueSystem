@@ -1,4 +1,5 @@
 from dbConnector import DataBaseModule as DBM
+from clients_subsystem.rii.database.TimeTableModule import TimeTable
 
 class Auditory(object):
     def __init__(self):
@@ -29,3 +30,21 @@ class Auditory(object):
         sql = "DELETE FROM riidb.audtable " \
               "WHERE id = '%s' " % id
         DBM.ExecuteSQL(sql=sql, nameDB='riidb')
+
+    def getAuditoryInfo(self, numAud, numDay, numLesson):
+        audList = self.getList()
+        info = None
+        for row in audList:
+            if row['num'] == numAud:
+                info = row
+
+        if info:
+            info['checkLesson'] = False
+            dop_inf= TimeTable().getAudInfo(id=info['id'],
+                                            numDay=numDay,
+                                            numLesson=numLesson
+                                            )
+            if dop_inf:
+                info['checkLesson'] = True
+                info = {**info, **dop_inf}
+            return info

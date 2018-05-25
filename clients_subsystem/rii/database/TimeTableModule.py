@@ -114,6 +114,19 @@ class TimeTable(object):
         return ttList
 
 
+    def getAudInfo(self, id, numDay, numLesson):
+        sql = "SELECT clients.shortfio as teacherFio, timetable.discipline " \
+              "as discipline " \
+              "FROM riidb.clients INNER JOIN riidb.timetable " \
+              "ON clients.id = timetable.idTeacher AND " \
+              "timetable.idAud ='%s' AND timetable.numDay='%s' " \
+              "AND timetable.numLesson='%s'" \
+              % (id, numDay, numLesson)
+        data =  DBM.GetData(sql=sql, nameDB='riidb')
+        if len(data):
+            return data[0]
+
+
 
 
 

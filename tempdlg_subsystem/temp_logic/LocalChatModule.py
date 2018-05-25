@@ -52,10 +52,14 @@ class LocalChat:
         textAnswer = self.previousMessage['answerData']['answer']
         if (self.Voice):
             self.__Say(textAnswer)
+
         return self.previousMessage
 
     def executeScrypt(self, client, idAction):
-        return self.LogicModule.executeScrypt(idAction=idAction, client=client)
+        textAnswer = self.LogicModule.executeScrypt(idAction=idAction, client=client)
+        if (self.Voice):
+            self.__Say(textAnswer)
+        return textAnswer
 
     def __Say(self, phrase):
         # Функция произносит вслух фразу
@@ -66,12 +70,12 @@ class LocalChat:
         tts.save(self.audioDir+self._mp3_name)
         mixer.music.load(self.audioDir+self._mp3_name)
         mixer.music.play()
-        if(os.path.exists(self.audioDir+self._mp3_nameold)):
-            os.remove(self.audioDir+self._mp3_nameold)
+        #if(os.path.exists(self.audioDir+self._mp3_nameold)):
+           # os.remove(self.audioDir+self._mp3_nameold)
         now_time = datetime.datetime.now()
         self._mp3_nameold=self._mp3_name
         self._mp3_name = now_time.strftime("%d%m%Y%I%M%S")+".mp3"
-        """while True:
+        while True:
             if not mixer.music.get_busy():  # как только воспроизведение музыкального файла закончится
                 mixer.quit()  # тогда происходит деактивация модуля mixer
                 break  # и выход из программы"""

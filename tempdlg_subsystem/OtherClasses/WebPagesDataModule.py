@@ -61,4 +61,7 @@ class WebPageData(object):
         except:
             print('Ошибка удаления по индексу %s' % id)
 
+    def getList(self):
+        return self.webList
+
 

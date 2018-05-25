@@ -101,6 +101,7 @@
    <addaction name="act_Back"/>
    <addaction name="act_Next"/>
    <addaction name="act_Add"/>
+   <addaction name="act_Refresh"/>
    <addaction name="act_Del"/>
   </widget>
   <action name="act_Browser">
@@ -185,6 +186,18 @@
    </property>
    <property name="toolTip">
     <string>Назад</string>
+   </property>
+  </action>
+  <action name="act_Refresh">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../pics/refresh.png</normaloff>../../pics/refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>Обновить</string>
+   </property>
+   <property name="toolTip">
+    <string>Обновить</string>
    </property>
   </action>
  </widget>

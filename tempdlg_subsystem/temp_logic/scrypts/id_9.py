@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from tempdlg_subsystem.temp_logic import CalcDaysModule
+from tempdlg_subsystem.temp_logic import CalcWorkDaysModule
 from clients_subsystem.rii.database.TimeTableModule import TimeTable
 
 
 def getTTforTeacher(client):
-    numDay = CalcDaysModule.getWeekDay()
+    numDay = CalcWorkDaysModule.getWeekDay()
     idClient = client['idRii']
     ttList = TimeTable().getTeacherList(idTeacher=idClient,
                                         numDay=numDay)
@@ -12,7 +12,7 @@ def getTTforTeacher(client):
     return ttList
 
 def getTTforStudent(client):
-    numDay = CalcDaysModule.getWeekDay()
+    numDay = CalcWorkDaysModule.getWeekDay()
     idClient = client['idRii']
     ttList = TimeTable().getGroupList(idGroup=idClient,
                                       numDay=numDay)
@@ -25,7 +25,7 @@ def createViewString(client):
         ttList = getTTforStudent(client)
 
     if len(ttList):
-        timeList = CalcDaysModule.getTimeList()
+        timeList = CalcWorkDaysModule.getTimeList()
         text = "Ваше раписание на сегодня : \n" \
                "Время \t Дисциплина \t Аудитория \n"
         for i in range(len(ttList)):

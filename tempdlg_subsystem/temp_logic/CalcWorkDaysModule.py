@@ -28,10 +28,11 @@ def getNumNextWeek():
 
 def getWeekDay(num_week = 0):
     if not num_week: num_week = getNumWeek()
+    weekday = datetime.today().weekday()+1
     if num_week == 1:
-        numDay = num_week
+        numDay = weekday
     else:
-        numDay = num_week + 7
+        numDay = weekday + 6
     return numDay
 
 def getDayTupleForThisWeek():
@@ -46,6 +47,24 @@ def getDayTupleForNextWeek():
         first_day = getWeekDay(1)
     return (i for i in range(first_day-2, first_day + 5))
 
+def getMinuts(hours,minuts):
+    return hours*60+minuts
+
+def getNumLesson():
+    now = datetime.now()
+    hours, minuts = (now.hour, now.minute)
+    now = getMinuts(hours,minuts)
+
+    lessonTime = [(getMinuts(8,30), getMinuts(10,0)),
+                  (getMinuts(10,10), getMinuts(11,40)),
+                  (getMinuts(12,10), getMinuts(13,40)),
+                  (getMinuts(13,50), getMinuts(15,20)),
+                  (getMinuts(15,30), getMinuts(17,00)),
+                  (getMinuts(17,10), getMinuts(18,40))]
+
+    for i in range(len(lessonTime)):
+        if now>=lessonTime[i][0] and now<=lessonTime[i][1]:
+            return i+1
 
 
 

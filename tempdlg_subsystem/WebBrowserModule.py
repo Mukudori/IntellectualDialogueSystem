@@ -18,7 +18,7 @@ class WebBrowser(QMainWindow):
         self.leUrl.setVisible(val)
         self.label.setVisible(val)
         self.act_Back.setVisible(val)
-        self.act_Next.setVisible(val)
+        self.act_Next.setVisible(False)
         self.pbGo.setVisible(val)
 
     def setTableVisible(self, val):
@@ -31,37 +31,46 @@ class WebBrowser(QMainWindow):
         self.HomePage = 'http://rubinst.ru/'
         self.urlList = []
         self.openTV()
+        self.curInd = 1
+
 
     def connectSlots(self):
         self.act_Home.triggered.connect(self.goHome)
-        self.webView.urlChanged.connect(self.addUrl)
+        self.webView.urlChanged.connect(self.setUrl)
         self.act_Back.triggered.connect(self.backUrl)
         self.pbGo.clicked.connect(self.gotoUrl)
         self.act_Add.triggered.connect(self.saveUrl)
         self.act_Del.triggered.connect(self.delUrl)
         self.act_Browser.triggered.connect(self.openBrowser)
         self.act_Table.triggered.connect(self.openTV)
+        self.act_Refresh.triggered.connect(self.refresh)
 
     def openBrowser(self):
+        self.viewBrowser = True
         self.setTableVisible(False)
         self.setBrowserVisible(True)
 
     def openTV(self):
+        self.viewBrowser = False
         self.setTableVisible(True)
         self.setBrowserVisible(False)
 
     def goHome(self):
         self.webView.load(QUrl(self.HomePage))
 
-    def addUrl(self):
-        self.urlList.append(self.webView.url())
+    def setUrl(self):
+        url = self.webView.url()
+        self.leUrl.setText(url.toString())
+        self.urlList.append(url)
 
     def backUrl(self):
-        if len(self.urlList) == 1:
-            shift=1
-        else:
-            shift=2
-        self.webView.load(QUrl(self.urlList[-shift]))
+        if self.curInd > 0:
+            self.curInd -= 1
+        if len(self.urlList):
+            self.webView.load(self.urlList[self.curInd])
+
+    def nextUrl(self):
+        pass
 
     def gotoUrl(self):
         try:
@@ -71,9 +80,18 @@ class WebBrowser(QMainWindow):
             print('Произошла ошибка при загрузке страницы')
 
     def saveUrl(self):
-        web = [self.webView.url().toString(), self.webView.title()]
-        self.anf = AddNewsForm(web)
+        if self.viewBrowser:
+            web = [self.webView.url().toString(), self.webView.title()]
+            self.anf = AddNewsForm(web)
+        else:
+            self.anf = AddNewsForm()
         self.anf.show()
+
+    def refresh(self):
+        if self.viewBrowser:
+            pass
+        else:
+            self.tableView.setModel(self.wpData.getTVModel())
 
     def delUrl(self):
         id = GetSelectedRecordID(self.tableView)[0]

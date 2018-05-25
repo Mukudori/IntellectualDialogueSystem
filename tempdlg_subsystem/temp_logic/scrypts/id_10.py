@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from tempdlg_subsystem.temp_logic import CalcDaysModule
+from tempdlg_subsystem.temp_logic import CalcWorkDaysModule
 
 
 def execute(args):
@@ -10,5 +10,5 @@ def execute(args):
             args[0] == ссылка на класс шаблонной логики
     :return: Возвращает текстовый ответ в конце сценария
     '''
-    num_week = CalcDaysModule.getNumWeek()
+    num_week = CalcWorkDaysModule.getNumWeek()
     return "Сейчас идет %s неделя." % num_week

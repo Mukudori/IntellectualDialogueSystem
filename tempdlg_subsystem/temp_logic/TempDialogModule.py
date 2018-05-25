@@ -40,7 +40,9 @@ class TempDialog:
 
     def FuncCoefError(self, check, lenText, lenQ):
         if lenText and lenQ:
-            return check/lenText + check/lenQ
+            p = check/lenText if check<lenText else lenText/check
+            q = check/lenQ if check<lenQ else lenQ/check
+            return p + q
         else:
             return 0
 
@@ -126,7 +128,7 @@ class TempDialog:
                     self.CurrentContextID = idContext['id']
                     self.CurrentContextLevel = idContext['level']
 
-
+        #print("er = %s"%errorQ)
         return idQ
 
     def GetAnswer(self, question):
@@ -175,18 +177,18 @@ class TempDialog:
         self.client['ai_activated'] = True
         self.mainLogic.startAI()
 
-    def initClient(self, telegramMessage):
-        if telegramMessage:
+    def initClient(self, message):
+        if message:
             rec = ClientsTab().getInfoFromIDTelegram(
-                idTelegram=telegramMessage.from_user.id)
+                idTelegram=message.from_user.id)
             if rec:
-                rec['idTelegram'] = telegramMessage.from_user.id
-                rec['first_name'] = telegramMessage.from_user.first_name
-                rec['last_name'] = telegramMessage.from_user.last_name
-                rec['username'] = telegramMessage.from_user.username
+                rec['idTelegram'] = message.from_user.id
+                rec['first_name'] = message.from_user.first_name
+                rec['last_name'] = message.from_user.last_name
+                rec['username'] = message.from_user.username
                 rec['ai_activated'] = False
                 rec['args'] = []
-                if telegramMessage.from_user.id == 1:
+                if message.from_user.id == 1:
                     rec['idClientGroup'] = 1
 
 
@@ -194,10 +196,10 @@ class TempDialog:
 
             else:
                 rec = dict()
-                rec['idTelegram'] = telegramMessage.from_user.id
-                rec['first_name'] = telegramMessage.from_user.first_name
-                rec['last_name'] = telegramMessage.from_user.last_name
-                rec['username'] = telegramMessage.from_user.username
+                rec['idTelegram'] = message.from_user.id
+                rec['first_name'] = message.from_user.first_name
+                rec['last_name'] = message.from_user.last_name
+                rec['username'] = message.from_user.username
                 rec['ai_activated'] = False
                 rec['idClientGroup'] = 4
                 rec['args'] = []
@@ -210,6 +212,7 @@ class TempDialog:
             rec['ai_activated'] = False
             rec['idClientGroup'] = 4
             rec['args'] = []
+        rec['message'] = message
 
         self.client = rec
 

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from tempdlg_subsystem.temp_logic import CalcDaysModule
+from tempdlg_subsystem.temp_logic import CalcWorkDaysModule
 from clients_subsystem.rii.database.TimeTableModule import TimeTable
 
 
 def getText(client):
-    this_week = CalcDaysModule.getNumWeek()
+    this_week = CalcWorkDaysModule.getNumWeek()
     ttList = TimeTable().getTimeTableOnWeek(idClientGroup=client['idClientGroup'],
                                             idClient=client['idRii'],
                                             numWeek=this_week)
@@ -13,7 +13,7 @@ def getText(client):
     dayName = ['\nПонедельник\n', '\nВторник\n', '\nСреда\n', '\nЧетверг\n',
                '\nПятница\n', '\nСуббота\n']
     iDay=0
-    timeList = CalcDaysModule.getTimeList()
+    timeList = CalcWorkDaysModule.getTimeList()
     for dayList in ttList:
         if iDay<6:
             text += dayName[iDay]

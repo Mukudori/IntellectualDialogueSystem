@@ -80,6 +80,11 @@
         </item>
         <item>
          <property name="text">
+          <string>Проекторы</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string/>
          </property>
         </item>
