@@ -24,10 +24,10 @@ def GetWordsListFromTextWithRE(text):
     # Более грамотный способ выделения списка слов
     # через регулярное выражение
     if type(text) == type(u''):
-        p = re.compile(u'[А-Я]+', re.S)
+        p = re.compile(u'[А-ЯA-Z0-9]+', re.S)
         ret = p.findall(text.upper())#.encode('UTF-8'))
     else:
-        p = re.compile('[А-Я]+', re.S)
+        p = re.compile('[А-ЯA-Z0-9]+', re.S)
         buf = p.findall(text.upper())
         ret = [word.decode('UTF-8') for word in buf]
     return ret
@@ -37,6 +37,13 @@ def checkLineInVocab(vocab, line):
     for word in words:
         if word not in vocab:
             vocab.append(word)
+
+def isint(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
 
 
 

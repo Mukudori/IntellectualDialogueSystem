@@ -15,7 +15,7 @@ from clients_subsystem.rii.AddAuditoryDialogModule import AddAuditoryDialog
 from clients_subsystem.rii.EditClientFormModule import EditClientForm
 from tempdlg_subsystem.database.ClientTabModule import ClientsTab
 from tempdlg_subsystem.WebBrowserModule import WebBrowser
-from clients_subsystem.rii.database.ProjectorsModule import Prohectors
+from clients_subsystem.rii.database.ProjectorsModule import Projectors
 
 class RIIDataBaseForm(QMainWindow):
     
@@ -57,7 +57,7 @@ class RIIDataBaseForm(QMainWindow):
             self.setVisibleCB(False)
             model = ClientsTab().getTVModelRII()
         elif table == "Проекторы":
-            model = Prohectors().getTVModel()
+            model = Projectors().getTVModel()
 
 
 

@@ -48,3 +48,16 @@ class Auditory(object):
                 info['checkLesson'] = True
                 info = {**info, **dop_inf}
             return info
+
+    def getIDAudFromName(self, numAud):
+        sql = "SELECT id FROM riidb.audtable " \
+              "WHERE numAud = '%s';" % numAud
+        data = DBM.GetData(sql=sql, nameDB='riidb')
+        if len(data):
+            return data
+
+    def getNumAudFromID(self, id):
+        data = self.getList()
+        for row in data:
+            if row['id'] == id:
+                return row['num']

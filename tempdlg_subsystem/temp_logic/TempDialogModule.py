@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tempdlg_subsystem.database.ContextTableModule import ContextTable
-from tempdlg_subsystem import StringFunctionsModule
+from tempdlg_subsystem import StringFunctionsModule as SFM
 from tempdlg_subsystem.database.AnswerTableModule import AnswerTable
 import random
 from tempdlg_subsystem.database.ActionTableModule import ActionTable
@@ -35,7 +35,7 @@ class TempDialog:
         self.CurrentContextID = 0
         self.FindedContext = False
         self.carrentMessage = 0
-        self.permissibleError = 1.7
+        self.permissibleError = 1.5
 
 
     def FuncCoefError(self, check, lenText, lenQ):
@@ -46,24 +46,40 @@ class TempDialog:
         else:
             return 0
 
+    def compare(self, word, wordQuestion):
+
+        w = word.upper()
+        wList = wordQuestion
+        for wq in wList:
+            if w in wq:
+                return True
+            elif wq == 'NUM' and SFM.isint(w):
+                return True
+        #elif wq == 'STR':
+            #return True
+
+        return False
+
     def FindQuestionInContext(self, question, idContext):
         questionDict = self.conTab.GetQuestionDictFromContextID(idContext=idContext,
                                                                 idGroup=self.client['idClientGroup'])
         if questionDict != None:
-            WordList = StringFunctionsModule.GetWordsListFromTextWithRE(question)
+            WordList = SFM.GetWordsListFromTextWithRE(question)
             checkCoef = 0
             checkID = 0
             for row in questionDict:
+               # if row['idQ'] == 67:
+               #     print('bug')
                 check=0
                 id=0
                 lenQ=0
                 for word in WordList:
-                    w=row['question'].upper()
 
-                    if word in w.upper():
+                    wq=SFM.GetWordsListFromTextWithRE(row['question'])
+                    if self.compare(word,wq):
                         check+=1
                         id =row['idQ']
-                        lenQ =len(StringFunctionsModule.GetWordsListFromTextWithRE(row['question']))
+                        lenQ =len(SFM.GetWordsListFromTextWithRE(row['question']))
                 check = self.FuncCoefError(check=check, lenText=len(WordList), lenQ=lenQ)
                 if check>checkCoef and check>self.permissibleError:
                     checkCoef=check
@@ -158,7 +174,8 @@ class TempDialog:
                     'Неизвестная команда.'
                 ]
             )
-        self.carrentMessage = {'answer': retError, 'idAction' : 0, 'executable' : False}
+        self.carrentMessage = {'answer': retError, 'idAction' : 0,
+                               'executable' : False}
         return self.carrentMessage
 
     def executeScrypt(self, idAction):
