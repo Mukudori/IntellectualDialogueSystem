@@ -6,6 +6,7 @@ import random
 from tempdlg_subsystem.database.ActionTableModule import ActionTable
 from tempdlg_subsystem.temp_logic.scrypts import ExecuteScryptsModule
 from tempdlg_subsystem.database.ClientTabModule import ClientsTab
+from main_logic_module.LogsSaverModule import LogsSaver
 
 
 class TempDialog:
@@ -23,19 +24,21 @@ class TempDialog:
      GetAnswer, который принимает текстовую строку и выдает
      ответ с учетом предыдущего контекста.
     '''
-    def __init__(self,mainLogic, telegramMessage=0):
+    def __init__(self,mainLogic, telegramMessage=0, logging=True):
         self.mainLogic = mainLogic
-        self.setupPars()
+        self.setupPars(logging)
         self.initClient(telegramMessage)
 
 
-    def setupPars(self):
+    def setupPars(self, logging):
         self.conTab = ContextTable()
         self.CurrentContextLevel = 0
         self.CurrentContextID = 0
         self.FindedContext = False
         self.carrentMessage = 0
         self.permissibleError = 1.5
+        self.logsSaver = LogsSaver()
+        self.logging =logging
 
 
     def FuncCoefError(self, check, lenText, lenQ):
@@ -156,6 +159,7 @@ class TempDialog:
                 self.carrentMessage = random.choice(
                     AnswerTable().GetAnswerDictFromContextID(
                         self.CurrentContextID))
+                self.carrentMessage = {**self.carrentMessage, **{'error': 0} }
 
                 return self.carrentMessage
             elif self.CurrentContextLevel:
@@ -175,7 +179,7 @@ class TempDialog:
                 ]
             )
         self.carrentMessage = {'answer': retError, 'idAction' : 0,
-                               'executable' : False}
+                               'executable' : False, 'error' : 1}
         return self.carrentMessage
 
     def executeScrypt(self, idAction):
@@ -185,10 +189,16 @@ class TempDialog:
             text = ExecuteScryptsModule.GetAnswer('id_'+str(idAction),
                                                   self)
             if text:
-                return '\n\n' +text
+                ret = text
             else:
-                return 'Сценарий выполнен'
-        return False
+                ret = 'Сценарий выполнен'
+        else:
+            ret = "Сценарий не выполнен"
+        if self.logging:
+            self.logsSaver.saveAllLog(client=self.client,
+                                      answer=ret,
+                                      error=0)
+        return ret
 
     def startAI(self):
         self.client['ai_activated'] = True

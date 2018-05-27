@@ -1,14 +1,22 @@
 from tempdlg_subsystem.temp_logic.TempDialogModule import TempDialog
 from ai_subsystem.lib.chat import ChatWithModel
 from main_logic_module.UserMessageModule import UserMessage
+from main_logic_module.LogsSaverModule import LogsSaver
 
 class MainDialogLogic(object):
-    def __init__(self):
+    def __init__(self, learning=False,logging=True):
         super().__init__()
+        self.setupPars(learning,logging)
+
+
+    def setupPars(self, learning, logging):
         self.clients = []
-        self.ai_activated=False
-        self.ai_chat=0
+        self.ai_activated = False
+        self.ai_chat = 0
         self.stopWord = 'ЗАКОНЧИТЬ_БЕСЕДУ'
+        self.learning = learning
+        self.logging = logging
+        self.logsSaver =LogsSaver()
 
     def getAnswerFromMessage(self, message):
         tempLogic = self.checkClient(message)
@@ -22,10 +30,16 @@ class MainDialogLogic(object):
             else:
                 answer = self.ai_chat.GetAnswer(message.text)
                 answerData = {'answer' : answer[0], 'executable' : False}
-            return {'answerData':answerData, 'tempLogic' :  0}
+            ret = {'answerData' : answerData, 'tempLogic' :  0}
         else:
             answerData=tempLogic.GetAnswer(message.text)
-            return {'answerData': answerData, 'tempLogic' : tempLogic}
+            ret = {'answerData': answerData, 'tempLogic' : tempLogic}
+
+        if self.logging:
+            self.logsSaver.saveAllLog(client=tempLogic.client,
+                                      answer = ret['answerData']['answer'],
+                                      error = ret['answerData']['error'])
+        return ret
 
     def getAnswerFromText(self, text):
         message=UserMessage()
